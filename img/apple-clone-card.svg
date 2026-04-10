@@ -1,0 +1,29 @@
+<svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="600" rx="36" fill="#E9EAEC"/>
+  <rect x="28" y="28" width="904" height="544" rx="28" fill="url(#bg)"/>
+  <rect x="80" y="76" width="800" height="448" rx="34" fill="#FFFFFF" fill-opacity="0.9"/>
+  <rect x="120" y="114" width="720" height="38" rx="19" fill="#141414"/>
+  <rect x="146" y="126" width="96" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.85"/>
+  <rect x="574" y="126" width="62" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.42"/>
+  <rect x="658" y="126" width="62" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.42"/>
+  <rect x="742" y="126" width="62" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.42"/>
+  <rect x="120" y="188" width="340" height="252" rx="28" fill="#F4F5F6"/>
+  <rect x="500" y="188" width="304" height="252" rx="28" fill="#F7F7F8"/>
+  <rect x="550" y="220" width="150" height="180" rx="36" fill="url(#phone)"/>
+  <circle cx="625" cy="244" r="9" fill="#121212"/>
+  <rect x="180" y="238" width="188" height="22" rx="11" fill="#141414"/>
+  <rect x="180" y="280" width="132" height="18" rx="9" fill="#8E8F93"/>
+  <rect x="180" y="318" width="164" height="18" rx="9" fill="#8E8F93" fill-opacity="0.65"/>
+  <rect x="180" y="372" width="150" height="44" rx="22" fill="#141414"/>
+  <text x="120" y="490" fill="#141414" font-family="Arial, sans-serif" font-size="52" font-weight="700">Apple Landing</text>
+  <defs>
+    <linearGradient id="bg" x1="80" y1="74" x2="882" y2="530" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F7F8"/>
+      <stop offset="1" stop-color="#D7DADF"/>
+    </linearGradient>
+    <linearGradient id="phone" x1="550" y1="220" x2="700" y2="400" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9FD8FF"/>
+      <stop offset="1" stop-color="#4A6FFF"/>
+    </linearGradient>
+  </defs>
+</svg>

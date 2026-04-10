@@ -1,0 +1,26 @@
+<svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="600" rx="36" fill="#18352F"/>
+  <rect x="28" y="28" width="904" height="544" rx="28" fill="url(#bg)"/>
+  <rect x="74" y="76" width="812" height="448" rx="28" fill="#F7F0E7" fill-opacity="0.08" stroke="#F7F0E7" stroke-opacity="0.12"/>
+  <rect x="118" y="120" width="280" height="182" rx="20" fill="#F7F0E7" fill-opacity="0.08"/>
+  <rect x="144" y="148" width="118" height="76" rx="16" fill="#F29C38"/>
+  <path d="M150 215H256L240 250H166L150 215Z" fill="#1D1D1B" fill-opacity="0.25"/>
+  <circle cx="183" cy="253" r="18" fill="#18352F"/>
+  <circle cx="223" cy="253" r="18" fill="#18352F"/>
+  <rect x="434" y="122" width="330" height="26" rx="13" fill="#F7F0E7" fill-opacity="0.7"/>
+  <rect x="434" y="164" width="222" height="16" rx="8" fill="#F7F0E7" fill-opacity="0.36"/>
+  <rect x="434" y="198" width="274" height="16" rx="8" fill="#F7F0E7" fill-opacity="0.36"/>
+  <rect x="434" y="242" width="296" height="114" rx="18" fill="#F7F0E7" fill-opacity="0.1"/>
+  <path d="M464 320L524 274L582 308L640 258L700 332" stroke="#F29C38" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="118" y="340" width="646" height="126" rx="20" fill="#F7F0E7" fill-opacity="0.08"/>
+  <rect x="146" y="372" width="198" height="42" rx="14" fill="#F7F0E7" fill-opacity="0.7"/>
+  <rect x="370" y="372" width="170" height="42" rx="14" fill="#3C8B75"/>
+  <rect x="566" y="372" width="170" height="42" rx="14" fill="#F7F0E7" fill-opacity="0.18"/>
+  <text x="118" y="525" fill="#F7F0E7" font-family="Arial, sans-serif" font-size="52" font-weight="700">Fleet API</text>
+  <defs>
+    <linearGradient id="bg" x1="72" y1="70" x2="888" y2="538" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#21473F"/>
+      <stop offset="1" stop-color="#102621"/>
+    </linearGradient>
+  </defs>
+</svg>
