@@ -1,0 +1,37 @@
+<svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="600" rx="36" fill="#102329"/>
+  <rect x="30" y="30" width="900" height="540" rx="28" fill="url(#bg)"/>
+  <rect x="84" y="84" width="792" height="432" rx="28" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.11"/>
+  <rect x="122" y="118" width="292" height="72" rx="20" fill="#FFFFFF" fill-opacity="0.08"/>
+  <circle cx="154" cy="154" r="12" fill="#4DE0B8"/>
+  <circle cx="190" cy="154" r="12" fill="#4FB3FF"/>
+  <circle cx="226" cy="154" r="12" fill="#FFD166"/>
+  <rect x="446" y="118" width="372" height="72" rx="20" fill="#FFFFFF" fill-opacity="0.08"/>
+  <rect x="474" y="142" width="160" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.42"/>
+  <rect x="474" y="166" width="232" height="10" rx="5" fill="#FFFFFF" fill-opacity="0.22"/>
+  <rect x="122" y="218" width="250" height="212" rx="24" fill="#FFFFFF" fill-opacity="0.08"/>
+  <rect x="402" y="218" width="438" height="212" rx="24" fill="#0A1418" fill-opacity="0.55" stroke="#FFFFFF" stroke-opacity="0.1"/>
+  <rect x="154" y="248" width="88" height="14" rx="7" fill="#FFFFFF" fill-opacity="0.36"/>
+  <rect x="154" y="286" width="184" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.24"/>
+  <rect x="154" y="316" width="140" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.24"/>
+  <rect x="154" y="346" width="206" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.24"/>
+  <rect x="154" y="382" width="114" height="30" rx="15" fill="#4DE0B8" fill-opacity="0.2"/>
+  <text x="170" y="404" fill="#DFFBF3" font-family="Arial, sans-serif" font-size="18" font-weight="700">Audit log</text>
+  <path d="M458 366L506 328L552 340L598 286L652 308L706 256L784 278" stroke="#4FB3FF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="506" cy="328" r="8" fill="#4FB3FF"/>
+  <circle cx="598" cy="286" r="8" fill="#4FB3FF"/>
+  <circle cx="706" cy="256" r="8" fill="#4FB3FF"/>
+  <rect x="446" y="248" width="128" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.08"/>
+  <rect x="446" y="284" width="164" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.08"/>
+  <rect x="446" y="320" width="108" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.08"/>
+  <rect x="596" y="248" width="170" height="24" rx="12" fill="#4DE0B8" fill-opacity="0.16"/>
+  <rect x="596" y="284" width="126" height="24" rx="12" fill="#FFD166" fill-opacity="0.18"/>
+  <rect x="596" y="320" width="196" height="24" rx="12" fill="#4FB3FF" fill-opacity="0.18"/>
+  <text x="122" y="520" fill="#EAF7F4" font-family="Arial, sans-serif" font-size="52" font-weight="700">DocAudit</text>
+  <defs>
+    <linearGradient id="bg" x1="88" y1="76" x2="872" y2="524" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#16353F"/>
+      <stop offset="1" stop-color="#0B1A1F"/>
+    </linearGradient>
+  </defs>
+</svg>
