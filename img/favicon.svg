@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>KR favicon</title>
+  <rect width="64" height="64" rx="14" fill="#fff9f1"/>
+  <rect x="3" y="3" width="58" height="58" rx="12" fill="none" stroke="#2f6b5a" stroke-width="3"/>
+  <path d="M9 19h7v11l10-11h9L23 32l13 13h-9L16 34v11H9V19Z" fill="#b6542f"/>
+  <path d="M33 19h13c7 0 11 4 11 10 0 4-2 7-6 9l7 7h-9l-6-7h-3v7h-7V19Zm7 7v7h6c2 0 4-1 4-4s-2-3-4-3h-6Z" fill="#2f6b5a"/>
+  <circle cx="52" cy="12" r="4" fill="#d8a13b"/>
+</svg>
