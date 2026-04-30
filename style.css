@@ -730,6 +730,12 @@ body.theme-dark .theme-toggle__icon--moon {
   margin: 0 0 18px;
   color: var(--text-secondary);
   font-size: 0.95rem;
+  line-height: 1.55;
+  min-height: calc(0.95rem * 1.55 * 3);
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .project-card__tags {
