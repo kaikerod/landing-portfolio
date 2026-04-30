@@ -68,6 +68,77 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 revealElements.forEach(el => revealObserver.observe(el));
 
+// ===== PROJECT CARD FOCUS =====
+const projectsGrid = document.querySelector('.projects__grid');
+const projectCards = document.querySelectorAll('.project-card');
+const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+const interactiveSelector = 'a, button, input, textarea, select, [role="button"]';
+
+function getCardTitle(card) {
+  return card.querySelector('.project-card__title')?.textContent?.trim() || 'project';
+}
+
+function getClosestElement(target, selector) {
+  return target instanceof Element ? target.closest(selector) : null;
+}
+
+function selectProjectCard(selectedCard) {
+  projectCards.forEach((card) => {
+    const isSelected = card === selectedCard;
+    const action = isSelected ? 'Collapse' : 'Expand';
+
+    card.classList.toggle('is-selected', isSelected);
+    card.setAttribute('aria-expanded', String(isSelected));
+    card.setAttribute('aria-label', `${action} ${getCardTitle(card)} project card`);
+  });
+
+  if (projectsGrid) {
+    projectsGrid.classList.toggle('has-selected', Boolean(selectedCard));
+  }
+
+  if (selectedCard) {
+    selectedCard.focus({ preventScroll: true });
+    selectedCard.scrollIntoView({
+      behavior: reduceMotionQuery.matches ? 'auto' : 'smooth',
+      block: 'nearest'
+    });
+  }
+}
+
+projectCards.forEach((card) => {
+  card.setAttribute('tabindex', '0');
+  card.setAttribute('aria-expanded', 'false');
+  card.setAttribute('aria-label', `Expand ${getCardTitle(card)} project card`);
+
+  card.addEventListener('click', (event) => {
+    if (getClosestElement(event.target, interactiveSelector)) return;
+
+    const nextCard = card.classList.contains('is-selected') ? null : card;
+    selectProjectCard(nextCard);
+  });
+
+  card.addEventListener('keydown', (event) => {
+    if (event.target !== card || (event.key !== 'Enter' && event.key !== ' ')) return;
+
+    event.preventDefault();
+    const nextCard = card.classList.contains('is-selected') ? null : card;
+    selectProjectCard(nextCard);
+  });
+});
+
+document.addEventListener('click', (event) => {
+  if (!projectsGrid?.classList.contains('has-selected')) return;
+  if (getClosestElement(event.target, '.project-card')) return;
+
+  selectProjectCard(null);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    selectProjectCard(null);
+  }
+});
+
 // ===== HEADER SCROLL EFFECT =====
 const header = document.getElementById('header');
 let lastScroll = 0;
