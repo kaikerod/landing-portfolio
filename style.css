@@ -653,9 +653,11 @@ body.theme-dark .theme-toggle__icon--moon {
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   gap: 22px;
   margin-top: 34px;
+  align-items: start;
 }
 
 .project-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100%;
@@ -664,9 +666,10 @@ body.theme-dark .theme-toggle__icon--moon {
   overflow: hidden;
   background: var(--bg-card-strong);
   box-shadow: var(--shadow-soft);
+  cursor: pointer;
   opacity: 0;
   transform: translate3d(0, 36px, 0);
-  transition: transform 320ms ease, box-shadow 320ms ease, border-color 320ms ease, opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: grid-column 320ms ease, transform 320ms ease, box-shadow 320ms ease, border-color 320ms ease, filter 320ms ease, opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .project-card.revealed {
@@ -678,6 +681,55 @@ body.theme-dark .theme-toggle__icon--moon {
   transform: translateY(-8px);
   border-color: rgba(47, 107, 90, 0.18);
   box-shadow: var(--shadow-card);
+}
+
+.project-card:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent-secondary) 55%, transparent);
+  outline-offset: 5px;
+}
+
+.projects__grid.has-selected .project-card.revealed:not(.is-selected) {
+  opacity: 0.34;
+  filter: saturate(0.45) blur(0.3px);
+  transform: scale(0.96);
+}
+
+.projects__grid.has-selected .project-card.revealed:not(.is-selected):hover {
+  opacity: 0.62;
+  filter: saturate(0.7);
+  transform: scale(0.98);
+}
+
+.project-card.is-selected,
+.project-card.is-selected:hover {
+  grid-column: span 2;
+  z-index: 4;
+  opacity: 1;
+  transform: translateY(-10px);
+  border-color: color-mix(in srgb, var(--accent-secondary) 42%, var(--border-soft));
+  box-shadow: 0 34px 110px rgba(35, 71, 63, 0.2);
+}
+
+.project-card.is-selected::before {
+  content: "Selected";
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(23, 50, 44, 0.78);
+  color: #fff7ef;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
+
+.project-card.is-selected .project-card__image img {
+  transform: scale(1.03);
 }
 
 .project-card__image {
@@ -736,6 +788,21 @@ body.theme-dark .theme-toggle__icon--moon {
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+}
+
+.project-card.is-selected .project-card__body {
+  padding: 30px;
+}
+
+.project-card.is-selected .project-card__title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.project-card.is-selected .project-card__description {
+  display: block;
+  min-height: auto;
+  overflow: visible;
+  -webkit-line-clamp: unset;
 }
 
 .project-card__tags {
@@ -937,6 +1004,16 @@ body.theme-dark .project-card__tag {
   color: #a7e4d2;
 }
 
+body.theme-dark .project-card.is-selected,
+body.theme-dark .project-card.is-selected:hover {
+  box-shadow: 0 34px 110px rgba(0, 0, 0, 0.42);
+}
+
+body.theme-dark .project-card.is-selected::before {
+  background: rgba(239, 141, 83, 0.86);
+  color: #091013;
+}
+
 .footer__social a:hover {
   transform: translateY(-2px);
   background: rgba(47, 107, 90, 0.08);
@@ -975,6 +1052,11 @@ body.theme-dark .project-card__tag {
     top: auto;
     bottom: 14px;
     right: 28px;
+  }
+
+  .project-card.is-selected,
+  .project-card.is-selected:hover {
+    grid-column: 1 / -1;
   }
 }
 
@@ -1044,6 +1126,12 @@ body.theme-dark .project-card__tag {
   .contact__inner {
     padding: 26px;
   }
+
+  .projects__grid.has-selected .project-card.revealed:not(.is-selected) {
+    opacity: 0.5;
+    filter: saturate(0.6);
+    transform: none;
+  }
 }
 
 @media (max-width: 640px) {
@@ -1077,6 +1165,20 @@ body.theme-dark .project-card__tag {
     font-size: 0.98rem;
   }
 
+  .project-card.is-selected,
+  .project-card.is-selected:hover {
+    transform: none;
+  }
+
+  .project-card.is-selected::before {
+    top: 14px;
+    right: 14px;
+  }
+
+  .project-card.is-selected .project-card__body {
+    padding: 24px;
+  }
+
   .footer .container {
     flex-direction: column;
     text-align: center;
@@ -1091,5 +1193,14 @@ body.theme-dark .project-card__tag {
   [data-parallax] {
     transform: none;
     will-change: auto;
+  }
+
+  .project-card,
+  .project-card:hover,
+  .project-card.is-selected,
+  .project-card.is-selected:hover,
+  .projects__grid.has-selected .project-card.revealed:not(.is-selected),
+  .projects__grid.has-selected .project-card.revealed:not(.is-selected):hover {
+    transform: none;
   }
 }
