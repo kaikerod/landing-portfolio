@@ -1,8 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
   <title>KR favicon</title>
-  <rect width="64" height="64" rx="14" fill="#fff9f1"/>
-  <rect x="3" y="3" width="58" height="58" rx="12" fill="none" stroke="#2f6b5a" stroke-width="3"/>
-  <path d="M9 19h7v11l10-11h9L23 32l13 13h-9L16 34v11H9V19Z" fill="#b6542f"/>
-  <path d="M33 19h13c7 0 11 4 11 10 0 4-2 7-6 9l7 7h-9l-6-7h-3v7h-7V19Zm7 7v7h6c2 0 4-1 4-4s-2-3-4-3h-6Z" fill="#2f6b5a"/>
-  <circle cx="52" cy="12" r="4" fill="#d8a13b"/>
+  <defs>
+    <linearGradient id="bg" x1="10" y1="6" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0b0c17"/>
+      <stop offset="0.52" stop-color="#11101f"/>
+      <stop offset="1" stop-color="#05060d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="10" y1="18" x2="54" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7ce7ff"/>
+      <stop offset="0.4" stop-color="#9f8cff"/>
+      <stop offset="0.72" stop-color="#ff4db7"/>
+      <stop offset="1" stop-color="#ff7d4a"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <rect x="2.5" y="2.5" width="59" height="59" rx="13.5" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+  <path d="M14 46V18h6v11.5L31.5 18h8.6L27.1 31.2 40.8 46h-8.2L20 34.3V46h-6Z" fill="url(#accent)"/>
+  <path d="M37.4 18H49c5.9 0 9.5 3.2 9.5 8.4 0 3.7-1.8 6.4-5.2 7.9L60 46h-7.4l-5.8-10.1H44V46h-6.6V18Zm6.6 6.1v6.3h4.2c2.4 0 3.8-1.1 3.8-3.2 0-2.1-1.4-3.1-3.8-3.1H44Z" fill="#f7f3ed"/>
+  <circle cx="52.5" cy="11.5" r="3.2" fill="#ff4db7"/>
 </svg>
