@@ -1,49 +1,4 @@
 // ===== SCROLL REVEAL =====
-// ===== THEME TOGGLE =====
-const themeToggle = document.getElementById('theme-toggle');
-const storedTheme = window.localStorage.getItem('theme');
-const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-
-function isDarkThemePreferred() {
-  if (storedTheme === 'dark') return true;
-  if (storedTheme === 'light') return false;
-  return systemPrefersDark.matches;
-}
-
-function applyTheme(isDark) {
-  document.body.classList.toggle('theme-dark', isDark);
-
-  if (themeToggle) {
-    themeToggle.setAttribute('aria-pressed', String(isDark));
-    themeToggle.setAttribute('aria-label', isDark ? 'Activate light theme' : 'Activate dark theme');
-  }
-}
-
-applyTheme(isDarkThemePreferred());
-
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    const isDark = !document.body.classList.contains('theme-dark');
-    applyTheme(isDark);
-    window.localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  });
-}
-
-if (typeof systemPrefersDark.addEventListener === 'function') {
-  systemPrefersDark.addEventListener('change', (event) => {
-    if (!window.localStorage.getItem('theme')) {
-      applyTheme(event.matches);
-    }
-  });
-} else if (typeof systemPrefersDark.addListener === 'function') {
-  systemPrefersDark.addListener((event) => {
-    if (!window.localStorage.getItem('theme')) {
-      applyTheme(event.matches);
-    }
-  });
-}
-
-// ===== SCROLL REVEAL =====
 const revealElements = document.querySelectorAll('.reveal, .project-card');
 
 const revealObserver = new IntersectionObserver((entries) => {
