@@ -26,9 +26,6 @@
   --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.24);
   --shadow-card: 0 34px 120px rgba(0, 0, 0, 0.45);
   --overlay-dark: rgba(5, 6, 13, 0.58);
-  --theme-toggle-bg: rgba(255, 255, 255, 0.06);
-  --theme-toggle-color: var(--text-primary);
-  --theme-toggle-border: rgba(255, 255, 255, 0.14);
   --radius-sm: 12px;
   --radius-md: 22px;
   --radius-lg: 34px;
@@ -36,35 +33,6 @@
   --transition: 220ms ease;
   --font-sans: "Manrope", "Segoe UI", sans-serif;
   --font-display: "Anton", "Impact", sans-serif;
-}
-
-body.theme-dark {
-  --bg-primary: #05060d;
-  --bg-secondary: #090a13;
-  --bg-tertiary: #11121f;
-  --bg-card: rgba(15, 16, 28, 0.76);
-  --bg-card-strong: rgba(12, 13, 24, 0.94);
-  --bg-elevated: rgba(255, 255, 255, 0.055);
-  --bg-elevated-strong: rgba(255, 255, 255, 0.09);
-  --bg-nav: rgba(5, 6, 13, 0.58);
-  --bg-nav-mobile: rgba(5, 6, 13, 0.96);
-  --bg-header-scrolled: rgba(5, 6, 13, 0.82);
-  --surface-dark: #f7f3ed;
-  --surface-dark-soft: #d9d3cf;
-  --text-primary: #fbf8f2;
-  --text-secondary: #b9b2bd;
-  --text-muted: #7e7887;
-  --border-soft: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.22);
-  --accent-primary: #ff4db7;
-  --accent-secondary: #9f8cff;
-  --accent-tertiary: #ff7d4a;
-  --gradient-accent: linear-gradient(90deg, #ff7d4a 0%, #ff4db7 45%, #9f8cff 100%);
-  --button-primary-text: #05060d;
-  --button-primary-hover: #ffffff;
-  --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.24);
-  --shadow-card: 0 34px 120px rgba(0, 0, 0, 0.45);
-  --overlay-dark: rgba(5, 6, 13, 0.58);
 }
 
 *,
@@ -294,7 +262,7 @@ select {
 }
 
 .header__menu-btn,
-.theme-toggle {
+.header__menu-btn {
   width: 46px;
   height: 46px;
   border: 1px solid rgba(255, 255, 255, 0.13);
@@ -319,47 +287,6 @@ select {
   background: var(--text-primary);
   border-radius: 999px;
   transition: transform var(--transition), opacity var(--transition);
-}
-
-.theme-toggle {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  transition: transform var(--transition), background var(--transition), border-color var(--transition), color var(--transition);
-}
-
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.theme-toggle__icon {
-  position: absolute;
-  width: 19px;
-  height: 19px;
-  transition: opacity 180ms ease, transform 220ms ease;
-}
-
-.theme-toggle__icon svg {
-  width: 100%;
-  height: 100%;
-}
-
-.theme-toggle__icon--moon {
-  opacity: 0;
-  transform: scale(0.6) rotate(-18deg);
-}
-
-body.theme-dark .theme-toggle__icon--sun {
-  opacity: 0;
-  transform: scale(0.6) rotate(18deg);
-}
-
-body.theme-dark .theme-toggle__icon--moon {
-  opacity: 1;
-  transform: scale(1) rotate(0deg);
 }
 
 .hero {
@@ -1238,7 +1165,6 @@ body.theme-dark .theme-toggle__icon--moon {
     padding: 9px 12px;
   }
 
-  .theme-toggle,
   .header__menu-btn {
     width: 42px;
     height: 42px;
