@@ -699,18 +699,147 @@ select {
   color: var(--accent-primary);
 }
 
+.projects__header {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.projects__header .section-title {
+  margin-bottom: 0;
+}
+
+.projects__controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.projects__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03)),
+    rgba(5, 6, 13, 0.78);
+  color: var(--text-primary);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+  transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition), opacity var(--transition);
+}
+
+.projects__control:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 77, 183, 0.48);
+  background: rgba(255, 77, 183, 0.13);
+}
+
+.projects__control:focus-visible,
+.projects__viewport:focus-visible {
+  outline: 3px solid rgba(255, 77, 183, 0.5);
+  outline-offset: 5px;
+}
+
+.projects__control:disabled {
+  cursor: not-allowed;
+  opacity: 0.38;
+  transform: none;
+}
+
+.projects__control svg {
+  width: 20px;
+  height: 20px;
+}
+
+.projects__counter {
+  min-width: 82px;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.projects__counter span:first-child {
+  color: var(--text-primary);
+}
+
+.projects__carousel {
+  position: relative;
+  z-index: 1;
+  margin-top: 8px;
+  isolation: isolate;
+  --projects-shadow-space-top: 34px;
+  --projects-shadow-space-bottom: 46px;
+  --projects-shadow-space-bottom-negative: -46px;
+}
+
+.projects__carousel::before,
+.projects__carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 28px;
+  z-index: 2;
+  width: 76px;
+  pointer-events: none;
+}
+
+.projects__carousel::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg-primary), rgba(5, 6, 13, 0));
+}
+
+.projects__carousel::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--bg-primary), rgba(5, 6, 13, 0));
+}
+
+.projects__viewport {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: max(2px, calc((100% - min(420px, 78vw)) / 2));
+  scroll-snap-type: x mandatory;
+  scrollbar-color: rgba(255, 77, 183, 0.44) rgba(255, 255, 255, 0.07);
+  scrollbar-width: thin;
+  margin: 0 0 var(--projects-shadow-space-bottom-negative);
+  padding: calc(var(--projects-shadow-space-top) + 8px) 2px calc(var(--projects-shadow-space-bottom) + 30px);
+}
+
+.projects__viewport::-webkit-scrollbar {
+  height: 8px;
+}
+
+.projects__viewport::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.projects__viewport::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 125, 74, 0.78), rgba(255, 77, 183, 0.82), rgba(159, 140, 255, 0.78));
+}
+
 .projects__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  align-items: stretch;
   gap: 18px;
-  margin-top: 38px;
-  align-items: start;
+  min-width: max-content;
 }
 
 .project-card {
   position: relative;
   display: flex;
   flex-direction: column;
+  flex: 0 0 min(420px, 78vw);
   min-height: 100%;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 28px;
@@ -718,11 +847,14 @@ select {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
     var(--bg-card-strong);
-  box-shadow: var(--shadow-soft);
-  cursor: pointer;
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.28),
+    0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
   opacity: 0;
   transform: translate3d(0, 36px, 0);
-  transition: grid-column 320ms ease, transform 320ms ease, box-shadow 320ms ease, border-color 320ms ease, filter 320ms ease, opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 320ms ease, box-shadow 320ms ease, border-color 320ms ease, filter 320ms ease, opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .project-card::before {
@@ -745,7 +877,10 @@ select {
 .project-card:hover {
   transform: translateY(-9px);
   border-color: rgba(255, 77, 183, 0.32);
-  box-shadow: var(--shadow-card);
+  box-shadow:
+    0 28px 72px rgba(0, 0, 0, 0.42),
+    0 0 46px rgba(255, 77, 183, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.05) inset;
 }
 
 .project-card:hover::before {
@@ -757,47 +892,20 @@ select {
   outline-offset: 5px;
 }
 
-.projects__grid.has-selected .project-card.revealed:not(.is-selected) {
-  opacity: 0.28;
-  filter: saturate(0.45) blur(0.3px);
-  transform: scale(0.96);
-}
-
-.projects__grid.has-selected .project-card.revealed:not(.is-selected):hover {
-  opacity: 0.58;
-  filter: saturate(0.7);
-  transform: scale(0.98);
-}
-
-.project-card.is-selected,
-.project-card.is-selected:hover {
-  grid-column: span 2;
+.project-card.is-active,
+.project-card.is-active:hover {
   z-index: 4;
   opacity: 1;
-  transform: translateY(-10px);
+  transform: translateY(-8px);
   border-color: rgba(255, 77, 183, 0.5);
-  box-shadow: 0 34px 130px rgba(255, 77, 183, 0.16), var(--shadow-card);
+  box-shadow:
+    0 0 0 1px rgba(255, 77, 183, 0.12),
+    0 26px 78px rgba(255, 77, 183, 0.16),
+    0 32px 84px rgba(0, 0, 0, 0.44),
+    0 1px 0 rgba(255, 255, 255, 0.06) inset;
 }
 
-.project-card.is-selected::after {
-  content: "Selected";
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  z-index: 2;
-  padding: 8px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  background: rgba(5, 6, 13, 0.74);
-  color: #fff;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  backdrop-filter: blur(12px);
-}
-
-.project-card.is-selected .project-card__image img {
+.project-card.is-active .project-card__image img {
   transform: scale(1.03);
 }
 
@@ -855,21 +963,6 @@ select {
   color: var(--text-secondary);
   font-size: 0.92rem;
   line-height: 1.62;
-}
-
-.project-card.is-selected .project-card__body {
-  padding: 30px;
-}
-
-.project-card.is-selected .project-card__title {
-  font-size: clamp(2.8rem, 5vw, 4.8rem);
-}
-
-.project-card.is-selected .project-card__description {
-  display: block;
-  min-height: auto;
-  overflow: visible;
-  -webkit-line-clamp: unset;
 }
 
 .project-card__tags {
@@ -1066,9 +1159,8 @@ select {
     top: 305px;
   }
 
-  .project-card.is-selected,
-  .project-card.is-selected:hover {
-    grid-column: 1 / -1;
+  .project-card {
+    flex-basis: min(390px, 78vw);
   }
 }
 
@@ -1145,10 +1237,14 @@ select {
     will-change: auto;
   }
 
-  .projects__grid.has-selected .project-card.revealed:not(.is-selected) {
-    opacity: 0.5;
-    filter: saturate(0.6);
-    transform: none;
+  .projects__header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .projects__controls {
+    align-self: flex-end;
+    padding-bottom: 0;
   }
 }
 
@@ -1224,18 +1320,33 @@ select {
     font-size: clamp(2.8rem, 15vw, 4.5rem);
   }
 
-  .project-card.is-selected,
-  .project-card.is-selected:hover {
+  .projects__carousel {
+    margin-top: 6px;
+    --projects-shadow-space-top: 24px;
+    --projects-shadow-space-bottom: 34px;
+    --projects-shadow-space-bottom-negative: -34px;
+  }
+
+  .projects__carousel::before,
+  .projects__carousel::after {
+    display: none;
+  }
+
+  .projects__controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .projects__control {
+    width: 44px;
+    height: 44px;
+  }
+
+  .project-card,
+  .project-card:hover,
+  .project-card.is-active,
+  .project-card.is-active:hover {
     transform: none;
-  }
-
-  .project-card.is-selected::after {
-    top: 14px;
-    right: 14px;
-  }
-
-  .project-card.is-selected .project-card__body {
-    padding: 24px;
   }
 
   .footer .container {
@@ -1256,10 +1367,8 @@ select {
 
   .project-card,
   .project-card:hover,
-  .project-card.is-selected,
-  .project-card.is-selected:hover,
-  .projects__grid.has-selected .project-card.revealed:not(.is-selected),
-  .projects__grid.has-selected .project-card.revealed:not(.is-selected):hover {
+  .project-card.is-active,
+  .project-card.is-active:hover {
     transform: none;
   }
 }

@@ -1,29 +1,37 @@
 <svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="960" height="600" rx="36" fill="#18322C"/>
-  <rect x="28" y="28" width="904" height="544" rx="28" fill="url(#bg)"/>
-  <rect x="78" y="78" width="804" height="444" rx="30" fill="#FFF8EF" fill-opacity="0.08" stroke="#FFF8EF" stroke-opacity="0.13"/>
-  <rect x="118" y="118" width="724" height="72" rx="20" fill="#FFF8EF" fill-opacity="0.08"/>
-  <circle cx="160" cy="154" r="12" fill="#D96B42"/>
-  <circle cx="196" cy="154" r="12" fill="#E8AD4B"/>
-  <circle cx="232" cy="154" r="12" fill="#57B98D"/>
-  <rect x="142" y="224" width="302" height="244" rx="26" fill="#FFF8EF" fill-opacity="0.1"/>
-  <rect x="176" y="262" width="148" height="18" rx="9" fill="#FFF8EF" fill-opacity="0.42"/>
-  <rect x="176" y="306" width="226" height="44" rx="15" fill="#FFF8EF" fill-opacity="0.16"/>
-  <circle cx="202" cy="328" r="9" fill="#D96B42"/>
-  <rect x="176" y="370" width="226" height="44" rx="15" fill="#FFF8EF" fill-opacity="0.16"/>
-  <circle cx="202" cy="392" r="9" fill="#57B98D"/>
-  <rect x="176" y="432" width="132" height="36" rx="18" fill="#FFF8EF" fill-opacity="0.88"/>
-  <rect x="502" y="224" width="316" height="244" rx="26" fill="#FFF8EF" fill-opacity="0.12"/>
-  <circle cx="660" cy="310" r="54" fill="#FFF8EF" fill-opacity="0.9"/>
-  <path d="M660 260C636 260 618 279 618 302C618 325 636 344 660 344C684 344 702 325 702 302C702 279 684 260 660 260Z" fill="#D96B42"/>
-  <path d="M594 426C594 388 624 358 662 358H658C696 358 726 388 726 426V446H594V426Z" fill="#18322C"/>
-  <path d="M536 250H784" stroke="#FFF8EF" stroke-opacity="0.24" stroke-width="14" stroke-linecap="round"/>
-  <path d="M536 452H784" stroke="#FFF8EF" stroke-opacity="0.18" stroke-width="14" stroke-linecap="round"/>
-  <text x="118" y="535" fill="#FFF8EF" font-family="Arial, sans-serif" font-size="52" font-weight="700">Minimalist Login</text>
+  <rect width="960" height="600" rx="36" fill="#05060D"/>
+  <rect x="28" y="28" width="904" height="544" rx="30" fill="url(#bg)"/>
+  <circle cx="220" cy="160" r="160" fill="#7CE7FF" fill-opacity="0.14"/>
+  <circle cx="748" cy="454" r="220" fill="#FF4DB7" fill-opacity="0.15"/>
+  <path d="M88 92H872M88 510H872" stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="2"/>
+
+  <rect x="106" y="108" width="748" height="360" rx="32" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <path d="M106 330C178 274 248 306 318 254C400 194 470 234 544 190C644 130 750 166 854 108V468H106V330Z" fill="#FFFFFF" fill-opacity="0.05"/>
+  <rect x="330" y="142" width="300" height="292" rx="30" fill="#FFFFFF" fill-opacity="0.13" stroke="#FFFFFF" stroke-opacity="0.22"/>
+  <rect x="370" y="184" width="112" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.72"/>
+  <rect x="370" y="226" width="220" height="48" rx="16" fill="#05060D" fill-opacity="0.42" stroke="#FFFFFF" stroke-opacity="0.2"/>
+  <circle cx="394" cy="250" r="7" fill="#7CE7FF"/>
+  <path d="M418 250H540" stroke="#FFFFFF" stroke-opacity="0.34" stroke-width="10" stroke-linecap="round"/>
+  <rect x="370" y="296" width="220" height="48" rx="16" fill="#05060D" fill-opacity="0.42" stroke="#FFFFFF" stroke-opacity="0.2"/>
+  <circle cx="394" cy="320" r="7" fill="#FF4DB7"/>
+  <path d="M418 320H526" stroke="#FFFFFF" stroke-opacity="0.34" stroke-width="10" stroke-linecap="round"/>
+  <rect x="370" y="368" width="220" height="42" rx="21" fill="url(#button)"/>
+  <path d="M662 178H774M662 224H738M662 390H802" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="12" stroke-linecap="round"/>
+  <path d="M178 400H282M178 350H238" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="12" stroke-linecap="round"/>
+
+  <text x="106" y="536" fill="#F7F3ED" font-family="Arial, sans-serif" font-size="56" font-weight="800">Minimalist Login</text>
+  <text x="616" y="536" fill="#B9B2BD" font-family="Arial, sans-serif" font-size="22" font-weight="700">Glass auth screen</text>
+
   <defs>
-    <linearGradient id="bg" x1="76" y1="70" x2="870" y2="530" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#24564A"/>
-      <stop offset="1" stop-color="#10251F"/>
+    <linearGradient id="bg" x1="82" y1="74" x2="884" y2="536" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172638"/>
+      <stop offset="0.52" stop-color="#0B0D17"/>
+      <stop offset="1" stop-color="#070711"/>
+    </linearGradient>
+    <linearGradient id="button" x1="370" y1="368" x2="590" y2="410" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7CE7FF"/>
+      <stop offset="0.5" stop-color="#FF4DB7"/>
+      <stop offset="1" stop-color="#9F8CFF"/>
     </linearGradient>
   </defs>
 </svg>

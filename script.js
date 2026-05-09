@@ -23,76 +23,145 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 revealElements.forEach(el => revealObserver.observe(el));
 
-// ===== PROJECT CARD FOCUS =====
-const projectsGrid = document.querySelector('.projects__grid');
-const projectCards = document.querySelectorAll('.project-card');
+// ===== PROJECT CAROUSEL =====
+const projectsViewport = document.querySelector('.projects__viewport');
+const projectsTrack = document.querySelector('.projects__grid');
+const projectCards = Array.from(document.querySelectorAll('.project-card'));
+const carouselPrevButton = document.querySelector('[data-carousel-prev]');
+const carouselNextButton = document.querySelector('[data-carousel-next]');
+const carouselCurrent = document.querySelector('[data-carousel-current]');
+const carouselTotal = document.querySelector('[data-carousel-total]');
 const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-const interactiveSelector = 'a, button, input, textarea, select, [role="button"]';
 
 function getCardTitle(card) {
   return card.querySelector('.project-card__title')?.textContent?.trim() || 'project';
 }
 
-function getClosestElement(target, selector) {
-  return target instanceof Element ? target.closest(selector) : null;
+function formatProjectIndex(index) {
+  return String(index + 1).padStart(2, '0');
 }
 
-function selectProjectCard(selectedCard) {
-  projectCards.forEach((card) => {
-    const isSelected = card === selectedCard;
-    const action = isSelected ? 'Collapse' : 'Expand';
+function getProjectOffset(card) {
+  return card.offsetLeft - (projectsTrack?.offsetLeft || 0);
+}
 
-    card.classList.toggle('is-selected', isSelected);
-    card.setAttribute('aria-expanded', String(isSelected));
-    card.setAttribute('aria-label', `${action} ${getCardTitle(card)} project card`);
+function getClosestProjectIndex() {
+  if (!projectsViewport || projectCards.length === 0) return 0;
+
+  const viewportCenter = projectsViewport.scrollLeft + (projectsViewport.clientWidth / 2);
+  let closestIndex = 0;
+  let closestDistance = Number.POSITIVE_INFINITY;
+
+  projectCards.forEach((card, index) => {
+    const cardCenter = getProjectOffset(card) + (card.offsetWidth / 2);
+    const distance = Math.abs(cardCenter - viewportCenter);
+
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closestIndex = index;
+    }
   });
 
-  if (projectsGrid) {
-    projectsGrid.classList.toggle('has-selected', Boolean(selectedCard));
+  return closestIndex;
+}
+
+function updateProjectCarousel(index = getClosestProjectIndex()) {
+  if (!projectsViewport || projectCards.length === 0) return;
+
+  const activeIndex = Math.max(0, Math.min(index, projectCards.length - 1));
+
+  projectCards.forEach((card, cardIndex) => {
+    const isActive = cardIndex === activeIndex;
+    card.classList.toggle('is-active', isActive);
+    card.setAttribute('aria-current', String(isActive));
+    card.setAttribute(
+      'aria-label',
+      `${formatProjectIndex(cardIndex)} of ${formatProjectIndex(projectCards.length - 1)}: ${getCardTitle(card)}`
+    );
+  });
+
+  if (carouselCurrent) {
+    carouselCurrent.textContent = formatProjectIndex(activeIndex);
   }
 
-  if (selectedCard) {
-    selectedCard.focus({ preventScroll: true });
-    selectedCard.scrollIntoView({
-      behavior: reduceMotionQuery.matches ? 'auto' : 'smooth',
-      block: 'nearest'
-    });
+  if (carouselPrevButton) {
+    carouselPrevButton.disabled = activeIndex === 0;
+  }
+
+  if (carouselNextButton) {
+    carouselNextButton.disabled = activeIndex === projectCards.length - 1;
   }
 }
 
-projectCards.forEach((card) => {
-  card.setAttribute('tabindex', '0');
-  card.setAttribute('aria-expanded', 'false');
-  card.setAttribute('aria-label', `Expand ${getCardTitle(card)} project card`);
+function scrollToProject(index) {
+  if (!projectsViewport || projectCards.length === 0) return;
 
-  card.addEventListener('click', (event) => {
-    if (getClosestElement(event.target, interactiveSelector)) return;
+  const nextIndex = Math.max(0, Math.min(index, projectCards.length - 1));
+  const targetCard = projectCards[nextIndex];
+  const targetLeft = getProjectOffset(targetCard) - ((projectsViewport.clientWidth - targetCard.offsetWidth) / 2);
 
-    const nextCard = card.classList.contains('is-selected') ? null : card;
-    selectProjectCard(nextCard);
+  projectsViewport.scrollTo({
+    left: Math.max(0, targetLeft),
+    behavior: reduceMotionQuery.matches ? 'auto' : 'smooth'
   });
 
-  card.addEventListener('keydown', (event) => {
-    if (event.target !== card || (event.key !== 'Enter' && event.key !== ' ')) return;
+  updateProjectCarousel(nextIndex);
+}
 
+if (carouselTotal) {
+  carouselTotal.textContent = formatProjectIndex(projectCards.length - 1);
+}
+
+carouselPrevButton?.addEventListener('click', () => {
+  scrollToProject(getClosestProjectIndex() - 1);
+});
+
+carouselNextButton?.addEventListener('click', () => {
+  scrollToProject(getClosestProjectIndex() + 1);
+});
+
+projectsViewport?.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowLeft') {
     event.preventDefault();
-    const nextCard = card.classList.contains('is-selected') ? null : card;
-    selectProjectCard(nextCard);
-  });
-});
+    scrollToProject(getClosestProjectIndex() - 1);
+  }
 
-document.addEventListener('click', (event) => {
-  if (!projectsGrid?.classList.contains('has-selected')) return;
-  if (getClosestElement(event.target, '.project-card')) return;
+  if (event.key === 'ArrowRight') {
+    event.preventDefault();
+    scrollToProject(getClosestProjectIndex() + 1);
+  }
 
-  selectProjectCard(null);
-});
+  if (event.key === 'Home') {
+    event.preventDefault();
+    scrollToProject(0);
+  }
 
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') {
-    selectProjectCard(null);
+  if (event.key === 'End') {
+    event.preventDefault();
+    scrollToProject(projectCards.length - 1);
   }
 });
+
+let carouselTicking = false;
+
+projectsViewport?.addEventListener('scroll', () => {
+  if (carouselTicking) return;
+
+  window.requestAnimationFrame(() => {
+    updateProjectCarousel();
+    carouselTicking = false;
+  });
+
+  carouselTicking = true;
+}, { passive: true });
+
+window.addEventListener('resize', () => {
+  updateProjectCarousel();
+});
+
+if (projectCards.length > 0) {
+  updateProjectCarousel(0);
+}
 
 // ===== HEADER SCROLL EFFECT =====
 const header = document.getElementById('header');

@@ -1,23 +1,36 @@
 <svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="960" height="600" rx="36" fill="#E7D5BD"/>
-  <rect x="28" y="28" width="904" height="544" rx="28" fill="url(#bg)"/>
-  <rect x="86" y="74" width="788" height="452" rx="34" fill="#FFF8F0" fill-opacity="0.88"/>
-  <circle cx="676" cy="226" r="106" fill="#D6B18A"/>
-  <circle cx="676" cy="226" r="68" fill="#4D3428"/>
-  <rect x="148" y="144" width="248" height="22" rx="11" fill="#8A5B3F" fill-opacity="0.3"/>
-  <rect x="148" y="188" width="336" height="64" rx="18" fill="#4D3428"/>
-  <rect x="148" y="274" width="246" height="18" rx="9" fill="#8A5B3F" fill-opacity="0.42"/>
-  <rect x="148" y="308" width="286" height="18" rx="9" fill="#8A5B3F" fill-opacity="0.26"/>
-  <rect x="148" y="378" width="174" height="54" rx="27" fill="#B7683E"/>
-  <rect x="340" y="378" width="174" height="54" rx="27" fill="#EFE2D3"/>
-  <circle cx="646" cy="412" r="20" fill="#8A5B3F"/>
-  <circle cx="694" cy="394" r="20" fill="#8A5B3F"/>
-  <circle cx="736" cy="422" r="20" fill="#8A5B3F"/>
-  <text x="148" y="482" fill="#4D3428" font-family="Arial, sans-serif" font-size="52" font-weight="700">Morning Set</text>
+  <rect width="960" height="600" rx="36" fill="#05060D"/>
+  <rect x="28" y="28" width="904" height="544" rx="30" fill="url(#bg)"/>
+  <circle cx="724" cy="196" r="190" fill="#D6A06B" fill-opacity="0.2"/>
+  <circle cx="220" cy="468" r="210" fill="#FF4DB7" fill-opacity="0.1"/>
+  <circle cx="812" cy="454" r="160" fill="#7CE7FF" fill-opacity="0.08"/>
+  <path d="M88 92H872M88 510H872" stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="2"/>
+
+  <rect x="104" y="108" width="752" height="360" rx="30" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <rect x="142" y="148" width="342" height="280" rx="28" fill="#FFF8F0" fill-opacity="0.92"/>
+  <path d="M176 210H304" stroke="#4D3428" stroke-opacity="0.42" stroke-width="18" stroke-linecap="round"/>
+  <path d="M176 258H404M176 296H358" stroke="#8A5B3F" stroke-opacity="0.28" stroke-width="14" stroke-linecap="round"/>
+  <rect x="176" y="350" width="132" height="46" rx="23" fill="#B7683E"/>
+  <rect x="328" y="350" width="100" height="46" rx="23" fill="#EFE2D3"/>
+
+  <circle cx="646" cy="230" r="104" fill="#D6B18A"/>
+  <circle cx="646" cy="230" r="66" fill="#4D3428"/>
+  <path d="M610 212C628 196 664 196 682 212" stroke="#EFE2D3" stroke-opacity="0.32" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="598" cy="390" r="28" fill="#8A5B3F"/>
+  <circle cx="666" cy="372" r="28" fill="#8A5B3F"/>
+  <circle cx="728" cy="404" r="28" fill="#8A5B3F"/>
+  <circle cx="590" cy="382" r="5" fill="#3B2319"/>
+  <circle cx="660" cy="366" r="5" fill="#3B2319"/>
+  <circle cx="738" cy="398" r="5" fill="#3B2319"/>
+
+  <text x="104" y="536" fill="#F7F3ED" font-family="Arial, sans-serif" font-size="56" font-weight="800">Morning Set</text>
+  <text x="610" y="536" fill="#B9B2BD" font-family="Arial, sans-serif" font-size="22" font-weight="700">Coffee product card</text>
+
   <defs>
-    <linearGradient id="bg" x1="82" y1="70" x2="884" y2="536" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F1E0C7"/>
-      <stop offset="1" stop-color="#D5BA9B"/>
+    <linearGradient id="bg" x1="82" y1="74" x2="884" y2="536" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#241712"/>
+      <stop offset="0.55" stop-color="#110D12"/>
+      <stop offset="1" stop-color="#070711"/>
     </linearGradient>
   </defs>
 </svg>

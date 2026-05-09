@@ -1,23 +1,33 @@
 <svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="960" height="600" rx="36" fill="#1A111A"/>
-  <rect x="30" y="30" width="900" height="540" rx="28" fill="url(#bg)"/>
-  <circle cx="230" cy="210" r="118" fill="#D63347"/>
-  <circle cx="482" cy="248" r="118" fill="#2547D0"/>
-  <circle cx="734" cy="210" r="118" fill="#F4F0E8" fill-opacity="0.14"/>
-  <path d="M170 198C188 160 212 140 230 140C248 140 272 160 290 198C266 184 248 178 230 178C212 178 194 184 170 198Z" fill="#0E0E11"/>
-  <path d="M422 238C440 200 464 180 482 180C500 180 524 200 542 238C518 224 500 218 482 218C464 218 446 224 422 238Z" fill="#0E0E11"/>
-  <path d="M674 198C692 160 716 140 734 140C752 140 776 160 794 198C770 184 752 178 734 178C716 178 698 184 674 198Z" fill="#0E0E11"/>
-  <path d="M112 378H848" stroke="#F4F0E8" stroke-opacity="0.14" stroke-width="2"/>
-  <path d="M178 378L230 322L282 378" stroke="#F4F0E8" stroke-opacity="0.3" stroke-width="10" stroke-linecap="round"/>
-  <path d="M430 378L482 304L534 378" stroke="#F4F0E8" stroke-opacity="0.3" stroke-width="10" stroke-linecap="round"/>
-  <path d="M682 378L734 322L786 378" stroke="#F4F0E8" stroke-opacity="0.3" stroke-width="10" stroke-linecap="round"/>
-  <rect x="116" y="420" width="728" height="78" rx="20" fill="#F4F0E8" fill-opacity="0.08"/>
-  <text x="148" y="474" fill="#F4F0E8" font-family="Arial, sans-serif" font-size="52" font-weight="700">Spider Slider</text>
+  <rect width="960" height="600" rx="36" fill="#05060D"/>
+  <rect x="28" y="28" width="904" height="544" rx="30" fill="url(#bg)"/>
+  <circle cx="214" cy="222" r="150" fill="#D63347" fill-opacity="0.38"/>
+  <circle cx="488" cy="230" r="160" fill="#2547D0" fill-opacity="0.4"/>
+  <circle cx="752" cy="224" r="150" fill="#FF4DB7" fill-opacity="0.2"/>
+  <path d="M88 92H872M88 510H872" stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="2"/>
+
+  <rect x="98" y="132" width="216" height="262" rx="30" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.1"/>
+  <rect x="374" y="102" width="236" height="322" rx="32" fill="#FFFFFF" fill-opacity="0.09" stroke="#FFFFFF" stroke-opacity="0.18"/>
+  <rect x="670" y="132" width="216" height="262" rx="30" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.1"/>
+
+  <path d="M156 260C172 198 188 170 206 170C224 170 240 198 256 260C236 244 222 238 206 238C190 238 176 244 156 260Z" fill="#070711"/>
+  <path d="M428 276C448 198 470 162 492 162C514 162 536 198 556 276C532 258 512 250 492 250C472 250 452 258 428 276Z" fill="#070711"/>
+  <path d="M722 260C738 198 754 170 772 170C790 170 806 198 822 260C802 244 788 238 772 238C756 238 742 244 722 260Z" fill="#070711"/>
+  <path d="M158 350L206 296L254 350M436 372L492 288L548 372M724 350L772 296L820 350" stroke="#F7F3ED" stroke-opacity="0.34" stroke-width="10" stroke-linecap="round"/>
+  <path d="M132 464H828" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="2"/>
+  <circle cx="436" cy="464" r="7" fill="#FFFFFF" fill-opacity="0.34"/>
+  <rect x="464" y="457" width="56" height="14" rx="7" fill="#FF4DB7"/>
+  <circle cx="548" cy="464" r="7" fill="#FFFFFF" fill-opacity="0.34"/>
+  <path d="M118 286L94 310L118 334M842 286L866 310L842 334" stroke="#F7F3ED" stroke-opacity="0.52" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="98" y="536" fill="#F7F3ED" font-family="Arial, sans-serif" font-size="56" font-weight="800">Spider Slider</text>
+  <text x="606" y="536" fill="#B9B2BD" font-family="Arial, sans-serif" font-size="22" font-weight="700">Animated character carousel</text>
+
   <defs>
     <linearGradient id="bg" x1="84" y1="76" x2="880" y2="532" gradientUnits="userSpaceOnUse">
       <stop stop-color="#301629"/>
-      <stop offset="0.55" stop-color="#141E4C"/>
-      <stop offset="1" stop-color="#110E16"/>
+      <stop offset="0.5" stop-color="#121D4D"/>
+      <stop offset="1" stop-color="#080711"/>
     </linearGradient>
   </defs>
 </svg>
