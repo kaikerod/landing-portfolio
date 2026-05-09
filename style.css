@@ -1189,8 +1189,8 @@ select {
   }
 
   [data-parallax] {
-    transform: none;
-    will-change: auto;
+    /* Subtle parallax on mobile is allowed now */
+    will-change: transform;
   }
 
   .projects__header {
@@ -1282,12 +1282,20 @@ select {
 
 
   .project-card,
-  .project-card:hover,
-  .project-card.is-active,
-  .project-card.is-active:hover,
-  .project-card.revealed:not(.is-active) {
+  .project-card:hover {
     transform: none;
     filter: none;
+  }
+
+  .project-card.revealed:not(.is-active) {
+    filter: brightness(0.88) saturate(0.9);
+    transform: scale(0.98);
+  }
+
+  .project-card.is-active {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+    border-color: rgba(255, 77, 183, 0.4);
   }
 
   .footer .container {
