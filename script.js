@@ -344,7 +344,7 @@ sections.forEach(section => navObserver.observe(section));
 
 // ===== PARALLAX EFFECT =====
 const parallaxElements = document.querySelectorAll('[data-parallax]');
-const parallaxMediaQuery = window.matchMedia('(max-width: 820px), (prefers-reduced-motion: reduce)');
+const parallaxMediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 let parallaxTicking = false;
 
@@ -366,7 +366,11 @@ function updateParallax() {
     const viewportCenter = viewportHeight / 2;
     const distanceFromCenter = elementCenter - viewportCenter;
     const normalizedDistance = distanceFromCenter / viewportHeight;
-    const offset = Math.max(-48, Math.min(48, normalizedDistance * speed * -180));
+    const isMobile = window.innerWidth <= 820;
+    const multiplier = isMobile ? -80 : -180; // More subtle on mobile
+    const maxOffset = isMobile ? 32 : 48; // Smaller range on mobile
+    
+    const offset = Math.max(-maxOffset, Math.min(maxOffset, normalizedDistance * speed * multiplier));
 
     element.style.setProperty('--parallax-offset', `${offset.toFixed(2)}px`);
   });
