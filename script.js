@@ -27,10 +27,8 @@ revealElements.forEach(el => revealObserver.observe(el));
 const projectsViewport = document.querySelector('.projects__viewport');
 const projectsTrack = document.querySelector('.projects__grid');
 const projectCards = Array.from(document.querySelectorAll('.project-card'));
-const carouselPrevButton = document.querySelector('[data-carousel-prev]');
-const carouselNextButton = document.querySelector('[data-carousel-next]');
-const carouselCurrent = document.querySelector('[data-carousel-current]');
-const carouselTotal = document.querySelector('[data-carousel-total]');
+const scrollbarTrack = document.querySelector('.projects__scrollbar');
+const scrollbarThumb = document.querySelector('.projects__scrollbar-thumb');
 const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 function getCardTitle(card) {
@@ -53,7 +51,8 @@ function getClosestProjectIndex() {
   let closestDistance = Number.POSITIVE_INFINITY;
 
   projectCards.forEach((card, index) => {
-    const cardCenter = getProjectOffset(card) + (card.offsetWidth / 2);
+    // Using card.offsetLeft directly as it is relative to the common offsetParent (.projects__carousel)
+    const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
     const distance = Math.abs(cardCenter - viewportCenter);
 
     if (distance < closestDistance) {
@@ -63,6 +62,26 @@ function getClosestProjectIndex() {
   });
 
   return closestIndex;
+}
+
+function updateScrollbar() {
+  if (!projectsViewport || !scrollbarTrack || !scrollbarThumb) return;
+
+  const maxScroll = projectsViewport.scrollWidth - projectsViewport.clientWidth;
+  if (maxScroll <= 0) {
+    scrollbarTrack.style.display = 'none';
+    return;
+  }
+  scrollbarTrack.style.display = '';
+
+  const trackWidth = scrollbarTrack.clientWidth;
+  const thumbRatio = projectsViewport.clientWidth / projectsViewport.scrollWidth;
+  const thumbWidth = Math.max(40, trackWidth * thumbRatio);
+  const scrollProgress = projectsViewport.scrollLeft / maxScroll;
+  const thumbLeft = scrollProgress * (trackWidth - thumbWidth);
+
+  scrollbarThumb.style.width = `${thumbWidth}px`;
+  scrollbarThumb.style.left = `${thumbLeft}px`;
 }
 
 function updateProjectCarousel(index = getClosestProjectIndex()) {
@@ -80,17 +99,7 @@ function updateProjectCarousel(index = getClosestProjectIndex()) {
     );
   });
 
-  if (carouselCurrent) {
-    carouselCurrent.textContent = formatProjectIndex(activeIndex);
-  }
-
-  if (carouselPrevButton) {
-    carouselPrevButton.disabled = activeIndex === 0;
-  }
-
-  if (carouselNextButton) {
-    carouselNextButton.disabled = activeIndex === projectCards.length - 1;
-  }
+  updateScrollbar();
 }
 
 function scrollToProject(index) {
@@ -107,18 +116,6 @@ function scrollToProject(index) {
 
   updateProjectCarousel(nextIndex);
 }
-
-if (carouselTotal) {
-  carouselTotal.textContent = formatProjectIndex(projectCards.length - 1);
-}
-
-carouselPrevButton?.addEventListener('click', () => {
-  scrollToProject(getClosestProjectIndex() - 1);
-});
-
-carouselNextButton?.addEventListener('click', () => {
-  scrollToProject(getClosestProjectIndex() + 1);
-});
 
 projectsViewport?.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowLeft') {
@@ -154,6 +151,46 @@ projectsViewport?.addEventListener('scroll', () => {
 
   carouselTicking = true;
 }, { passive: true });
+
+// Scrollbar click-to-seek
+scrollbarTrack?.addEventListener('click', (e) => {
+  if (!projectsViewport) return;
+  const rect = scrollbarTrack.getBoundingClientRect();
+  const clickRatio = (e.clientX - rect.left) / rect.width;
+  const maxScroll = projectsViewport.scrollWidth - projectsViewport.clientWidth;
+  projectsViewport.scrollTo({
+    left: clickRatio * maxScroll,
+    behavior: reduceMotionQuery.matches ? 'auto' : 'smooth'
+  });
+});
+
+// Scrollbar drag
+let isDragging = false;
+
+scrollbarThumb?.addEventListener('pointerdown', (e) => {
+  isDragging = true;
+  scrollbarThumb.setPointerCapture(e.pointerId);
+  scrollbarThumb.style.transition = 'none';
+  e.preventDefault();
+});
+
+window.addEventListener('pointermove', (e) => {
+  if (!isDragging || !projectsViewport || !scrollbarTrack) return;
+  const rect = scrollbarTrack.getBoundingClientRect();
+  const thumbWidth = scrollbarThumb.offsetWidth;
+  const dragRatio = Math.max(0, Math.min(1, (e.clientX - rect.left - thumbWidth / 2) / (rect.width - thumbWidth)));
+  const maxScroll = projectsViewport.scrollWidth - projectsViewport.clientWidth;
+  projectsViewport.scrollLeft = dragRatio * maxScroll;
+});
+
+window.addEventListener('pointerup', () => {
+  if (isDragging) {
+    isDragging = false;
+    if (scrollbarThumb) {
+      scrollbarThumb.style.transition = '';
+    }
+  }
+});
 
 window.addEventListener('resize', () => {
   updateProjectCarousel();
