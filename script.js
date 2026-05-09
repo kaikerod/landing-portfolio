@@ -107,10 +107,13 @@ function scrollToProject(index) {
 
   const nextIndex = Math.max(0, Math.min(index, projectCards.length - 1));
   const targetCard = projectCards[nextIndex];
-  const targetLeft = getProjectOffset(targetCard) - ((projectsViewport.clientWidth - targetCard.offsetWidth) / 2);
+  
+  // Since we added physical padding to the viewport, scrolling to the card's offset 
+  // relative to the grid start will perfectly center it.
+  const targetLeft = getProjectOffset(targetCard);
 
   projectsViewport.scrollTo({
-    left: Math.max(0, targetLeft),
+    left: targetLeft,
     behavior: reduceMotionQuery.matches ? 'auto' : 'smooth'
   });
 
@@ -196,8 +199,51 @@ window.addEventListener('resize', () => {
   updateProjectCarousel();
 });
 
+// ===== CAROUSEL AUTO-SCROLL & CLICK-TO-FOCUS =====
+let autoScrollTimer;
+const AUTO_SCROLL_DELAY = 3000;
+
+function startAutoScroll() {
+  if (reduceMotionQuery.matches) return;
+  stopAutoScroll();
+  autoScrollTimer = setInterval(() => {
+    const currentIndex = getClosestProjectIndex();
+    const nextIndex = (currentIndex + 1) % projectCards.length;
+    scrollToProject(nextIndex);
+  }, AUTO_SCROLL_DELAY);
+}
+
+function stopAutoScroll() {
+  if (autoScrollTimer) {
+    clearInterval(autoScrollTimer);
+    autoScrollTimer = null;
+  }
+}
+
+// Click to focus
+projectCards.forEach((card, index) => {
+  card.addEventListener('click', (e) => {
+    // Only scroll if the user didn't click a link or button inside the card
+    if (!e.target.closest('a, button')) {
+      scrollToProject(index);
+      stopAutoScroll();
+      // Restart auto-scroll after a longer delay if mouse leaves later
+    }
+  });
+});
+
+// Interaction handling
+const carouselContainer = document.querySelector('.projects__carousel');
+carouselContainer?.addEventListener('mouseenter', stopAutoScroll);
+carouselContainer?.addEventListener('mouseleave', startAutoScroll);
+
+// Stop auto-scroll on manual touch/drag
+projectsViewport?.addEventListener('touchstart', stopAutoScroll, { passive: true });
+projectsViewport?.addEventListener('mousedown', stopAutoScroll);
+
 if (projectCards.length > 0) {
   updateProjectCarousel(0);
+  startAutoScroll();
 }
 
 // ===== HEADER SCROLL EFFECT =====
