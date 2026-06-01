@@ -13,6 +13,9 @@
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
   <link
     href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
@@ -198,17 +201,33 @@
       <div class="projects__header reveal">
         <div>
           <span class="section-label">Portfolio</span>
-          <h2 class="section-title">My <span class="gradient-text">Projects</span></h2>
+          <h2 class="section-title">Selected <span class="accent-text">Projects</span></h2>
         </div>
-
+        <div class="projects__controls" aria-label="Project carousel controls">
+          <button class="projects__control" type="button" data-project-direction="prev" aria-label="Previous project">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6"></path>
+            </svg>
+          </button>
+          <p class="projects__status" aria-live="polite" aria-atomic="true">
+            <span class="projects__status-current">01</span>
+            <span class="projects__status-separator" aria-hidden="true">/</span>
+            <span class="projects__status-total">08</span>
+          </p>
+          <button class="projects__control" type="button" data-project-direction="next" aria-label="Next project">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6"></path>
+            </svg>
+          </button>
+        </div>
       </div>
 
-      <div class="projects__carousel" aria-label="Project carousel">
-        <div class="projects__viewport" tabindex="0">
-          <div class="projects__grid">
+      <div class="projects__carousel" aria-label="Project carousel" aria-roledescription="carousel">
+        <div class="projects__viewport" tabindex="0" aria-label="Projects carousel. Use left and right arrow keys to move between projects.">
+          <div class="projects__grid" role="list">
 
         <!-- Card 1: Parserly -->
-        <article class="project-card" id="project-parserly">
+        <article class="project-card" role="listitem" id="project-parserly">
           <div class="project-card__image">
             <img src="img/parserly-card.svg" alt="Parserly ATS resume analyzer dashboard" loading="lazy">
           </div>
@@ -248,7 +267,7 @@
         </article>
 
         <!-- Card 2: DocAudit -->
-        <article class="project-card" id="project-docaudit">
+        <article class="project-card" role="listitem" id="project-docaudit">
           <div class="project-card__image">
             <img src="img/docaudit-card.svg" alt="DocAudit document audit platform" loading="lazy">
           </div>
@@ -287,15 +306,15 @@
         </article>
 
         <!-- Card 3: Sales Dash PRO -->
-        <article class="project-card" id="project-vendas">
+        <article class="project-card" role="listitem" id="project-vendas">
           <div class="project-card__image">
             <img src="img/vendas-card.svg" alt="Sales Dash PRO" loading="lazy">
           </div>
           <div class="project-card__body">
             <h3 class="project-card__title">Sales Dash</h3>
             <p class="project-card__description">
-              Modern sales dashboard with glassmorphism UI, real-time KPIs, interactive Chart.js graphs, and full CRUD
-              powered by a FastAPI backend and PostgreSQL.
+              Sales dashboard with real-time KPI cards, interactive Chart.js views, and CRUD workflows powered by
+              FastAPI and PostgreSQL.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">FastAPI</span>
@@ -326,7 +345,7 @@
         </article>
 
         <!-- Card 4: Cartao App -->
-        <article class="project-card" id="project-cartao">
+        <article class="project-card" role="listitem" id="project-cartao">
           <div class="project-card__image">
             <img src="img/cartao-app-card.svg" alt="Credit Card Simulator" loading="lazy">
           </div>
@@ -356,15 +375,15 @@
         </article>
 
         <!-- Card 5: Spider Slider -->
-        <article class="project-card" id="project-slider">
+        <article class="project-card" role="listitem" id="project-slider">
           <div class="project-card__image">
             <img src="img/spider-slider-card.svg" alt="Spider-Slider" loading="lazy">
           </div>
           <div class="project-card__body">
             <h3 class="project-card__title">Spider-Slider</h3>
             <p class="project-card__description">
-              Interactive carousel with different versions of Spider-Man. Dynamic animations, image swaps, and
-              informative texts.
+              Interactive character carousel with animated image swaps, themed panels, and concise context for each
+              version.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">HTML5</span>
@@ -394,16 +413,16 @@
           </div>
         </article>
 
-        <!-- Card 6: Coffe -->
-        <article class="project-card" id="project-coffe">
+        <!-- Card 6: Coffee -->
+        <article class="project-card" role="listitem" id="project-coffe">
           <div class="project-card__image">
-            <img src="img/coffe-card.svg" alt="Coffe Morning Set" loading="lazy">
+            <img src="img/coffe-card.svg" alt="Coffee Morning Set product card" loading="lazy">
           </div>
           <div class="project-card__body">
-            <h3 class="project-card__title">Coffe Morning Set</h3>
+            <h3 class="project-card__title">Coffee Morning Set</h3>
             <p class="project-card__description">
-              Elegant product card for a coffee and cookies "Morning Set", with a clean and modern design using Inter
-              typography.
+              Product landing card for a coffee and cookies morning set, focused on image balance, price hierarchy, and
+              a compact purchase action.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">HTML5</span>
@@ -434,7 +453,7 @@
         </article>
 
         <!-- Card 7: Apple Clone -->
-        <article class="project-card" id="project-apple">
+        <article class="project-card" role="listitem" id="project-apple">
           <div class="project-card__image">
             <img src="img/apple-clone-card.svg" alt="Apple Clone" loading="lazy">
           </div>
@@ -473,14 +492,14 @@
         </article>
 
         <!-- Card 8: Login Minimalista -->
-        <article class="project-card" id="project-login">
+        <article class="project-card" role="listitem" id="project-login">
           <div class="project-card__image">
             <img src="img/login-card.svg" alt="Minimalist Login" loading="lazy">
           </div>
           <div class="project-card__body">
             <h3 class="project-card__title">Minimalist Login</h3>
             <p class="project-card__description">
-              Modern and minimalist login screen with clean and responsive interface, using Boxicons for icons.
+              Responsive login screen with a focused form layout, icon-supported fields, and mobile-friendly spacing.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">HTML5</span>

@@ -1,35 +1,45 @@
 // ===== SCROLL REVEAL =====
+const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 const revealElements = document.querySelectorAll('.reveal, .project-card');
 
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, index) => {
-    if (entry.isIntersecting) {
-      // Stagger animation for project cards
-      const delay = entry.target.classList.contains('project-card')
-        ? index * 100
-        : 0;
-      
-      setTimeout(() => {
-        entry.target.classList.add('revealed');
-      }, delay);
-      
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-});
+function revealElement(element) {
+  element.classList.add('revealed');
+}
 
-revealElements.forEach(el => revealObserver.observe(el));
+if ('IntersectionObserver' in window && !reduceMotionQuery.matches) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.classList.contains('project-card')
+          ? index * 100
+          : 0;
+
+        setTimeout(() => {
+          revealElement(entry.target);
+        }, delay);
+
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  revealElements.forEach(el => revealObserver.observe(el));
+} else {
+  revealElements.forEach(revealElement);
+}
 
 // ===== PROJECT CAROUSEL =====
 const projectsViewport = document.querySelector('.projects__viewport');
-const projectsTrack = document.querySelector('.projects__grid');
 const projectCards = Array.from(document.querySelectorAll('.project-card'));
 const scrollbarTrack = document.querySelector('.projects__scrollbar');
 const scrollbarThumb = document.querySelector('.projects__scrollbar-thumb');
-const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+const prevProjectButton = document.querySelector('[data-project-direction="prev"]');
+const nextProjectButton = document.querySelector('[data-project-direction="next"]');
+const projectStatusCurrent = document.querySelector('.projects__status-current');
+const projectStatusTotal = document.querySelector('.projects__status-total');
 
 function getCardTitle(card) {
   return card.querySelector('.project-card__title')?.textContent?.trim() || 'project';
@@ -40,19 +50,26 @@ function formatProjectIndex(index) {
 }
 
 function getProjectOffset(card) {
-  return card.offsetLeft - (projectsTrack?.offsetLeft || 0);
+  if (!projectsViewport) return 0;
+
+  const viewportRect = projectsViewport.getBoundingClientRect();
+  const cardRect = card.getBoundingClientRect();
+  const centeredOffset = (projectsViewport.clientWidth - card.offsetWidth) / 2;
+
+  return projectsViewport.scrollLeft + cardRect.left - viewportRect.left - centeredOffset;
 }
 
 function getClosestProjectIndex() {
   if (!projectsViewport || projectCards.length === 0) return 0;
 
-  const viewportCenter = projectsViewport.scrollLeft + (projectsViewport.clientWidth / 2);
+  const viewportRect = projectsViewport.getBoundingClientRect();
+  const viewportCenter = viewportRect.left + (projectsViewport.clientWidth / 2);
   let closestIndex = 0;
   let closestDistance = Number.POSITIVE_INFINITY;
 
   projectCards.forEach((card, index) => {
-    // Using card.offsetLeft directly as it is relative to the common offsetParent (.projects__carousel)
-    const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+    const cardRect = card.getBoundingClientRect();
+    const cardCenter = cardRect.left + (card.offsetWidth / 2);
     const distance = Math.abs(cardCenter - viewportCenter);
 
     if (distance < closestDistance) {
@@ -81,7 +98,7 @@ function updateScrollbar() {
   const thumbLeft = scrollProgress * (trackWidth - thumbWidth);
 
   scrollbarThumb.style.width = `${thumbWidth}px`;
-  scrollbarThumb.style.left = `${thumbLeft}px`;
+  scrollbarThumb.style.transform = `translate3d(${thumbLeft}px, 0, 0)`;
 }
 
 function updateProjectCarousel(index = getClosestProjectIndex()) {
@@ -92,12 +109,32 @@ function updateProjectCarousel(index = getClosestProjectIndex()) {
   projectCards.forEach((card, cardIndex) => {
     const isActive = cardIndex === activeIndex;
     card.classList.toggle('is-active', isActive);
-    card.setAttribute('aria-current', String(isActive));
+    if (isActive) {
+      card.setAttribute('aria-current', 'true');
+    } else {
+      card.removeAttribute('aria-current');
+    }
     card.setAttribute(
       'aria-label',
       `${formatProjectIndex(cardIndex)} of ${formatProjectIndex(projectCards.length - 1)}: ${getCardTitle(card)}`
     );
   });
+
+  if (projectStatusCurrent) {
+    projectStatusCurrent.textContent = formatProjectIndex(activeIndex);
+  }
+
+  if (projectStatusTotal) {
+    projectStatusTotal.textContent = formatProjectIndex(projectCards.length - 1);
+  }
+
+  if (prevProjectButton) {
+    prevProjectButton.disabled = activeIndex === 0;
+  }
+
+  if (nextProjectButton) {
+    nextProjectButton.disabled = activeIndex === projectCards.length - 1;
+  }
 
   updateScrollbar();
 }
@@ -142,6 +179,16 @@ projectsViewport?.addEventListener('keydown', (event) => {
   }
 });
 
+prevProjectButton?.addEventListener('click', () => {
+  stopAutoScroll();
+  scrollToProject(getClosestProjectIndex() - 1);
+});
+
+nextProjectButton?.addEventListener('click', () => {
+  stopAutoScroll();
+  scrollToProject(getClosestProjectIndex() + 1);
+});
+
 let carouselTicking = false;
 
 projectsViewport?.addEventListener('scroll', () => {
@@ -158,6 +205,7 @@ projectsViewport?.addEventListener('scroll', () => {
 // Scrollbar click-to-seek
 scrollbarTrack?.addEventListener('click', (e) => {
   if (!projectsViewport) return;
+  stopAutoScroll();
   const rect = scrollbarTrack.getBoundingClientRect();
   const clickRatio = (e.clientX - rect.left) / rect.width;
   const maxScroll = projectsViewport.scrollWidth - projectsViewport.clientWidth;
@@ -171,6 +219,7 @@ scrollbarTrack?.addEventListener('click', (e) => {
 let isDragging = false;
 
 scrollbarThumb?.addEventListener('pointerdown', (e) => {
+  stopAutoScroll();
   isDragging = true;
   scrollbarThumb.setPointerCapture(e.pointerId);
   scrollbarThumb.style.transition = 'none';
@@ -201,10 +250,11 @@ window.addEventListener('resize', () => {
 
 // ===== CAROUSEL AUTO-SCROLL & CLICK-TO-FOCUS =====
 let autoScrollTimer;
+let carouselInView = false;
 const AUTO_SCROLL_DELAY = 3000;
 
 function startAutoScroll() {
-  if (reduceMotionQuery.matches) return;
+  if (reduceMotionQuery.matches || document.hidden || !carouselInView || projectCards.length < 2) return;
   stopAutoScroll();
   autoScrollTimer = setInterval(() => {
     const currentIndex = getClosestProjectIndex();
@@ -236,14 +286,69 @@ projectCards.forEach((card, index) => {
 const carouselContainer = document.querySelector('.projects__carousel');
 carouselContainer?.addEventListener('mouseenter', stopAutoScroll);
 carouselContainer?.addEventListener('mouseleave', startAutoScroll);
+carouselContainer?.addEventListener('focusin', stopAutoScroll);
+carouselContainer?.addEventListener('focusout', (event) => {
+  if (!carouselContainer.contains(event.relatedTarget)) {
+    startAutoScroll();
+  }
+});
 
 // Stop auto-scroll on manual touch/drag
 projectsViewport?.addEventListener('touchstart', stopAutoScroll, { passive: true });
 projectsViewport?.addEventListener('mousedown', stopAutoScroll);
+projectsViewport?.addEventListener('wheel', stopAutoScroll, { passive: true });
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    stopAutoScroll();
+  } else {
+    startAutoScroll();
+  }
+});
+
+if (typeof reduceMotionQuery.addEventListener === 'function') {
+  reduceMotionQuery.addEventListener('change', () => {
+    if (reduceMotionQuery.matches) {
+      stopAutoScroll();
+    } else {
+      revealElements.forEach(revealElement);
+      startAutoScroll();
+    }
+  });
+} else if (typeof reduceMotionQuery.addListener === 'function') {
+  reduceMotionQuery.addListener(() => {
+    if (reduceMotionQuery.matches) {
+      stopAutoScroll();
+    } else {
+      revealElements.forEach(revealElement);
+      startAutoScroll();
+    }
+  });
+}
 
 if (projectCards.length > 0) {
   updateProjectCarousel(0);
-  startAutoScroll();
+
+  if ('IntersectionObserver' in window && carouselContainer) {
+    const carouselObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        carouselInView = entry.isIntersecting;
+
+        if (carouselInView) {
+          startAutoScroll();
+        } else {
+          stopAutoScroll();
+        }
+      });
+    }, {
+      threshold: 0.35
+    });
+
+    carouselObserver.observe(carouselContainer);
+  } else {
+    carouselInView = true;
+    startAutoScroll();
+  }
 }
 
 // ===== HEADER SCROLL EFFECT =====

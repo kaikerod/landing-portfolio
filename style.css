@@ -187,6 +187,11 @@ select {
   text-shadow: 0 0 42px rgba(255, 77, 183, 0.18);
 }
 
+.accent-text {
+  color: var(--accent-primary);
+  text-shadow: 0 0 36px rgba(255, 77, 183, 0.24);
+}
+
 .header {
   position: sticky;
   top: 0;
@@ -712,6 +717,81 @@ select {
   margin-bottom: 0;
 }
 
+.projects__controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.projects__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: transform var(--transition), background var(--transition), border-color var(--transition), opacity var(--transition);
+}
+
+.projects__control:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 77, 183, 0.34);
+  background: rgba(255, 77, 183, 0.12);
+}
+
+.projects__control:disabled {
+  cursor: default;
+  opacity: 0.42;
+  transform: none;
+  border-color: transparent;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.projects__control:focus-visible,
+.project-card__link:focus-visible {
+  outline: 3px solid rgba(255, 77, 183, 0.54);
+  outline-offset: 4px;
+}
+
+.projects__control svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.projects__status {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  min-width: 74px;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.projects__status-current {
+  color: var(--text-primary);
+}
+
+.projects__status-separator {
+  margin: 0 5px;
+  color: var(--accent-primary);
+}
+
 .projects__viewport:focus-visible {
   outline: 3px solid rgba(255, 77, 183, 0.5);
   outline-offset: 5px;
@@ -737,6 +817,7 @@ select {
   scrollbar-width: none;
   margin: 0 0 var(--projects-shadow-space-bottom-negative);
   padding: calc(var(--projects-shadow-space-top) + 8px) var(--carousel-padding) calc(var(--projects-shadow-space-bottom) + 30px);
+  cursor: grab;
 }
 
 .projects__viewport::-webkit-scrollbar {
@@ -753,6 +834,7 @@ select {
   background: rgba(255, 255, 255, 0.08);
   overflow: hidden;
   z-index: 3;
+  cursor: pointer;
 }
 
 .projects__scrollbar-thumb {
@@ -763,8 +845,13 @@ select {
   border-radius: 999px;
   background: linear-gradient(90deg, var(--accent-tertiary), var(--accent-primary), var(--accent-secondary));
   box-shadow: 0 0 12px rgba(255, 77, 183, 0.4), 0 0 28px rgba(255, 77, 183, 0.15);
-  transition: left 360ms cubic-bezier(0.22, 1, 0.36, 1), width 360ms cubic-bezier(0.22, 1, 0.36, 1);
-  cursor: pointer;
+  transform: translate3d(0, 0, 0);
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: grab;
+}
+
+.projects__scrollbar-thumb:active {
+  cursor: grabbing;
 }
 
 .projects__grid {
@@ -792,8 +879,8 @@ select {
     0 1px 0 rgba(255, 255, 255, 0.04) inset;
   scroll-snap-align: center;
   scroll-snap-stop: always;
-  opacity: 0;
-  transform: translate3d(0, 36px, 0) scale(1);
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
   filter: brightness(1);
   transition:
     transform 480ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -801,6 +888,11 @@ select {
     border-color 380ms ease,
     filter 400ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js .project-card {
+  opacity: 1;
+  transform: translate3d(0, 18px, 0) scale(1);
 }
 
 .project-card::before {
@@ -907,6 +999,7 @@ select {
   line-height: 0.95;
   letter-spacing: 0.01em;
   text-transform: uppercase;
+  text-wrap: balance;
 }
 
 .project-card__description {
@@ -919,6 +1012,7 @@ select {
   color: var(--text-secondary);
   font-size: 0.92rem;
   line-height: 1.62;
+  text-wrap: pretty;
 }
 
 .project-card__tags {
@@ -1081,12 +1175,17 @@ select {
 }
 
 .reveal {
-  opacity: 0;
-  transform: translate3d(0, calc(30px + var(--parallax-offset, 0px)), 0) rotate(var(--parallax-rotate, 0deg));
+  opacity: 1;
+  transform: translate3d(0, var(--parallax-offset, 0px), 0) rotate(var(--parallax-rotate, 0deg));
+}
+
+.js .reveal {
+  opacity: 1;
+  transform: translate3d(0, calc(18px + var(--parallax-offset, 0px)), 0) rotate(var(--parallax-rotate, 0deg));
   transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.reveal.revealed {
+.js .reveal.revealed {
   opacity: 1;
   transform: translate3d(0, var(--parallax-offset, 0px), 0) rotate(var(--parallax-rotate, 0deg));
 }
@@ -1198,6 +1297,9 @@ select {
     flex-direction: column;
   }
 
+  .projects__controls {
+    align-self: flex-start;
+  }
 
 }
 
@@ -1280,9 +1382,32 @@ select {
     --projects-shadow-space-bottom-negative: -34px;
   }
 
+  .projects__controls {
+    display: grid;
+    grid-template-columns: 44px minmax(74px, 1fr) 44px;
+    width: min(330px, calc(100vw - 24px));
+    max-width: 100%;
+  }
+
+  .projects__viewport {
+    --carousel-padding: 24px;
+  }
+
+  .projects__grid {
+    gap: 14px;
+  }
+
+  .projects__status {
+    min-width: 0;
+  }
+
+  .projects__scrollbar {
+    width: min(360px, 72%);
+  }
 
   .project-card,
   .project-card:hover {
+    flex-basis: min(342px, calc(100vw - 48px));
     transform: none;
     filter: none;
   }
@@ -1312,6 +1437,16 @@ select {
   [data-parallax] {
     transform: none;
     will-change: auto;
+  }
+
+  .projects__viewport {
+    scroll-behavior: auto;
+  }
+
+  .projects__scrollbar-thumb,
+  .project-card__image img,
+  .js .reveal {
+    transition: none;
   }
 
   .project-card,
