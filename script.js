@@ -32,6 +32,7 @@ if ('IntersectionObserver' in window && !reduceMotionQuery.matches) {
 }
 
 // ===== PROJECT CAROUSEL =====
+const projectsSection = document.getElementById('projetos');
 const projectsViewport = document.querySelector('.projects__viewport');
 const projectCards = Array.from(document.querySelectorAll('.project-card'));
 const scrollbarTrack = document.querySelector('.projects__scrollbar');
@@ -41,35 +42,37 @@ const nextProjectButton = document.querySelector('[data-project-direction="next"
 const projectStatusCurrent = document.querySelector('.projects__status-current');
 const projectStatusTotal = document.querySelector('.projects__status-total');
 
+let activeProjectIndex = 0;
+let isProgrammaticScroll = false;
+let programmaticScrollTimeout = null;
+
 function getCardTitle(card) {
   return card.querySelector('.project-card__title')?.textContent?.trim() || 'project';
 }
 
-function formatProjectIndex(index) {
-  return String(index + 1).padStart(2, '0');
+function formatProjectNumber(num) {
+  return String(num).padStart(2, '0');
 }
 
 function getProjectOffset(card) {
   if (!projectsViewport) return 0;
+  const maxScroll = projectsViewport.scrollWidth - projectsViewport.clientWidth;
+  if (maxScroll <= 0) return 0;
 
-  const viewportRect = projectsViewport.getBoundingClientRect();
-  const cardRect = card.getBoundingClientRect();
   const centeredOffset = (projectsViewport.clientWidth - card.offsetWidth) / 2;
-
-  return projectsViewport.scrollLeft + cardRect.left - viewportRect.left - centeredOffset;
+  const target = card.offsetLeft - centeredOffset;
+  return Math.max(0, Math.min(maxScroll, target));
 }
 
 function getClosestProjectIndex() {
   if (!projectsViewport || projectCards.length === 0) return 0;
 
-  const viewportRect = projectsViewport.getBoundingClientRect();
-  const viewportCenter = viewportRect.left + (projectsViewport.clientWidth / 2);
+  const viewportCenter = projectsViewport.scrollLeft + (projectsViewport.clientWidth / 2);
   let closestIndex = 0;
   let closestDistance = Number.POSITIVE_INFINITY;
 
   projectCards.forEach((card, index) => {
-    const cardRect = card.getBoundingClientRect();
-    const cardCenter = cardRect.left + (card.offsetWidth / 2);
+    const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
     const distance = Math.abs(cardCenter - viewportCenter);
 
     if (distance < closestDistance) {
@@ -94,20 +97,20 @@ function updateScrollbar() {
   const trackWidth = scrollbarTrack.clientWidth;
   const thumbRatio = projectsViewport.clientWidth / projectsViewport.scrollWidth;
   const thumbWidth = Math.max(40, trackWidth * thumbRatio);
-  const scrollProgress = projectsViewport.scrollLeft / maxScroll;
+  const scrollProgress = Math.max(0, Math.min(1, projectsViewport.scrollLeft / maxScroll));
   const thumbLeft = scrollProgress * (trackWidth - thumbWidth);
 
   scrollbarThumb.style.width = `${thumbWidth}px`;
   scrollbarThumb.style.transform = `translate3d(${thumbLeft}px, 0, 0)`;
 }
 
-function updateProjectCarousel(index = getClosestProjectIndex()) {
+function updateProjectCarousel(index = activeProjectIndex) {
   if (!projectsViewport || projectCards.length === 0) return;
 
-  const activeIndex = Math.max(0, Math.min(index, projectCards.length - 1));
+  activeProjectIndex = Math.max(0, Math.min(index, projectCards.length - 1));
 
   projectCards.forEach((card, cardIndex) => {
-    const isActive = cardIndex === activeIndex;
+    const isActive = cardIndex === activeProjectIndex;
     card.classList.toggle('is-active', isActive);
     if (isActive) {
       card.setAttribute('aria-current', 'true');
@@ -116,24 +119,24 @@ function updateProjectCarousel(index = getClosestProjectIndex()) {
     }
     card.setAttribute(
       'aria-label',
-      `${formatProjectIndex(cardIndex)} of ${formatProjectIndex(projectCards.length - 1)}: ${getCardTitle(card)}`
+      `${formatProjectNumber(cardIndex + 1)} of ${formatProjectNumber(projectCards.length)}: ${getCardTitle(card)}`
     );
   });
 
   if (projectStatusCurrent) {
-    projectStatusCurrent.textContent = formatProjectIndex(activeIndex);
+    projectStatusCurrent.textContent = formatProjectNumber(activeProjectIndex + 1);
   }
 
   if (projectStatusTotal) {
-    projectStatusTotal.textContent = formatProjectIndex(projectCards.length - 1);
+    projectStatusTotal.textContent = formatProjectNumber(projectCards.length);
   }
 
   if (prevProjectButton) {
-    prevProjectButton.disabled = activeIndex === 0;
+    prevProjectButton.disabled = activeProjectIndex === 0;
   }
 
   if (nextProjectButton) {
-    nextProjectButton.disabled = activeIndex === projectCards.length - 1;
+    nextProjectButton.disabled = activeProjectIndex === projectCards.length - 1;
   }
 
   updateScrollbar();
@@ -144,121 +147,262 @@ function scrollToProject(index) {
 
   const nextIndex = Math.max(0, Math.min(index, projectCards.length - 1));
   const targetCard = projectCards[nextIndex];
-  
-  // Since we added physical padding to the viewport, scrolling to the card's offset 
-  // relative to the grid start will perfectly center it.
   const targetLeft = getProjectOffset(targetCard);
+
+  isProgrammaticScroll = true;
+  if (programmaticScrollTimeout) {
+    clearTimeout(programmaticScrollTimeout);
+  }
+
+  updateProjectCarousel(nextIndex);
 
   projectsViewport.scrollTo({
     left: targetLeft,
     behavior: reduceMotionQuery.matches ? 'auto' : 'smooth'
   });
 
-  updateProjectCarousel(nextIndex);
+  const unlockScroll = () => {
+    isProgrammaticScroll = false;
+    programmaticScrollTimeout = null;
+    projectsViewport.removeEventListener('scrollend', unlockScroll);
+  };
+
+  if ('onscrollend' in window) {
+    projectsViewport.addEventListener('scrollend', unlockScroll, { once: true });
+  }
+  programmaticScrollTimeout = setTimeout(() => {
+    unlockScroll();
+  }, reduceMotionQuery.matches ? 50 : 500);
 }
 
+// Keyboard navigation
 projectsViewport?.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowLeft') {
     event.preventDefault();
-    scrollToProject(getClosestProjectIndex() - 1);
+    pauseAutoScrollTemporarily();
+    scrollToProject(activeProjectIndex - 1);
   }
 
   if (event.key === 'ArrowRight') {
     event.preventDefault();
-    scrollToProject(getClosestProjectIndex() + 1);
+    pauseAutoScrollTemporarily();
+    scrollToProject(activeProjectIndex + 1);
   }
 
   if (event.key === 'Home') {
     event.preventDefault();
+    pauseAutoScrollTemporarily();
     scrollToProject(0);
   }
 
   if (event.key === 'End') {
     event.preventDefault();
+    pauseAutoScrollTemporarily();
     scrollToProject(projectCards.length - 1);
   }
 });
 
+// Navigation buttons
 prevProjectButton?.addEventListener('click', () => {
-  stopAutoScroll();
-  scrollToProject(getClosestProjectIndex() - 1);
+  pauseAutoScrollTemporarily();
+  scrollToProject(activeProjectIndex - 1);
 });
 
 nextProjectButton?.addEventListener('click', () => {
-  stopAutoScroll();
-  scrollToProject(getClosestProjectIndex() + 1);
+  pauseAutoScrollTemporarily();
+  scrollToProject(activeProjectIndex + 1);
 });
 
+// Viewport scroll listener
 let carouselTicking = false;
 
 projectsViewport?.addEventListener('scroll', () => {
   if (carouselTicking) return;
 
   window.requestAnimationFrame(() => {
-    updateProjectCarousel();
+    if (!isProgrammaticScroll && !isViewportDragging && !isDraggingThumb) {
+      updateProjectCarousel(getClosestProjectIndex());
+    } else {
+      updateScrollbar();
+    }
     carouselTicking = false;
   });
 
   carouselTicking = true;
 }, { passive: true });
 
+// ===== VIEWPORT DRAG-TO-SCROLL (MOUSE) =====
+let isViewportDragging = false;
+let hasDraggedViewport = false;
+let dragStartX = 0;
+let dragStartScrollLeft = 0;
+let dragPointerId = null;
+let preventCardClick = false;
+
+projectsViewport?.addEventListener('pointerdown', (e) => {
+  if (e.pointerType === 'touch') return;
+  if (e.button !== 0) return;
+
+  isViewportDragging = true;
+  hasDraggedViewport = false;
+  dragPointerId = e.pointerId;
+  dragStartX = e.clientX;
+  dragStartScrollLeft = projectsViewport.scrollLeft;
+  pauseAutoScrollTemporarily();
+});
+
+window.addEventListener('pointermove', (e) => {
+  if (!isViewportDragging || !projectsViewport) return;
+
+  const diffX = e.clientX - dragStartX;
+  if (!hasDraggedViewport && Math.abs(diffX) > 6) {
+    hasDraggedViewport = true;
+    preventCardClick = true;
+    projectsViewport.classList.add('is-dragging');
+    if (dragPointerId !== null) {
+      try {
+        projectsViewport.setPointerCapture(dragPointerId);
+      } catch (_) {}
+    }
+  }
+
+  if (hasDraggedViewport) {
+    projectsViewport.scrollLeft = dragStartScrollLeft - diffX;
+  }
+});
+
+function endViewportDrag(e) {
+  if (!isViewportDragging) return;
+  isViewportDragging = false;
+
+  if (projectsViewport) {
+    projectsViewport.classList.remove('is-dragging');
+    if (dragPointerId !== null) {
+      try {
+        projectsViewport.releasePointerCapture(dragPointerId);
+      } catch (_) {}
+    }
+  }
+  dragPointerId = null;
+
+  if (hasDraggedViewport) {
+    scrollToProject(getClosestProjectIndex());
+    setTimeout(() => {
+      preventCardClick = false;
+    }, 50);
+  } else {
+    preventCardClick = false;
+  }
+}
+
+window.addEventListener('pointerup', endViewportDrag);
+window.addEventListener('pointercancel', endViewportDrag);
+
+// Click to focus card
+projectCards.forEach((card, index) => {
+  card.addEventListener('click', (e) => {
+    if (preventCardClick) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+    if (!e.target.closest('a, button')) {
+      scrollToProject(index);
+      pauseAutoScrollTemporarily();
+    }
+  });
+});
+
+// ===== SCROLLBAR DRAG & SEEK =====
+let isDraggingThumb = false;
+let thumbDragStartX = 0;
+let thumbDragStartScrollLeft = 0;
+let wasDraggingThumb = false;
+
+scrollbarThumb?.addEventListener('pointerdown', (e) => {
+  if (e.button !== 0) return;
+  e.stopPropagation();
+  e.preventDefault();
+
+  pauseAutoScrollTemporarily();
+  isDraggingThumb = true;
+  wasDraggingThumb = true;
+  thumbDragStartX = e.clientX;
+  thumbDragStartScrollLeft = projectsViewport.scrollLeft;
+  scrollbarThumb.style.transition = 'none';
+  scrollbarThumb.setPointerCapture(e.pointerId);
+});
+
+scrollbarThumb?.addEventListener('pointermove', (e) => {
+  if (!isDraggingThumb || !projectsViewport || !scrollbarTrack) return;
+
+  const trackWidth = scrollbarTrack.clientWidth;
+  const thumbWidth = scrollbarThumb.offsetWidth;
+  const availableTrack = trackWidth - thumbWidth;
+  if (availableTrack <= 0) return;
+
+  const maxScroll = projectsViewport.scrollWidth - projectsViewport.clientWidth;
+  const deltaX = e.clientX - thumbDragStartX;
+  const deltaRatio = deltaX / availableTrack;
+
+  projectsViewport.scrollLeft = Math.max(0, Math.min(maxScroll, thumbDragStartScrollLeft + deltaRatio * maxScroll));
+});
+
+function endThumbDrag() {
+  if (isDraggingThumb) {
+    isDraggingThumb = false;
+    if (scrollbarThumb) {
+      scrollbarThumb.style.transition = '';
+    }
+    scrollToProject(getClosestProjectIndex());
+    setTimeout(() => {
+      wasDraggingThumb = false;
+    }, 100);
+  }
+}
+
+scrollbarThumb?.addEventListener('pointerup', endThumbDrag);
+scrollbarThumb?.addEventListener('pointercancel', endThumbDrag);
+
 // Scrollbar click-to-seek
 scrollbarTrack?.addEventListener('click', (e) => {
-  if (!projectsViewport) return;
-  stopAutoScroll();
+  if (!projectsViewport || wasDraggingThumb) return;
+  if (e.target === scrollbarThumb) return;
+
+  pauseAutoScrollTemporarily();
   const rect = scrollbarTrack.getBoundingClientRect();
-  const clickRatio = (e.clientX - rect.left) / rect.width;
+  const thumbWidth = scrollbarThumb ? scrollbarThumb.offsetWidth : 40;
+  const trackWidth = rect.width - thumbWidth;
+  if (trackWidth <= 0) return;
+
+  const clickRatio = Math.max(0, Math.min(1, (e.clientX - rect.left - thumbWidth / 2) / trackWidth));
   const maxScroll = projectsViewport.scrollWidth - projectsViewport.clientWidth;
+
   projectsViewport.scrollTo({
     left: clickRatio * maxScroll,
     behavior: reduceMotionQuery.matches ? 'auto' : 'smooth'
   });
 });
 
-// Scrollbar drag
-let isDragging = false;
-
-scrollbarThumb?.addEventListener('pointerdown', (e) => {
-  stopAutoScroll();
-  isDragging = true;
-  scrollbarThumb.setPointerCapture(e.pointerId);
-  scrollbarThumb.style.transition = 'none';
-  e.preventDefault();
-});
-
-window.addEventListener('pointermove', (e) => {
-  if (!isDragging || !projectsViewport || !scrollbarTrack) return;
-  const rect = scrollbarTrack.getBoundingClientRect();
-  const thumbWidth = scrollbarThumb.offsetWidth;
-  const dragRatio = Math.max(0, Math.min(1, (e.clientX - rect.left - thumbWidth / 2) / (rect.width - thumbWidth)));
-  const maxScroll = projectsViewport.scrollWidth - projectsViewport.clientWidth;
-  projectsViewport.scrollLeft = dragRatio * maxScroll;
-});
-
-window.addEventListener('pointerup', () => {
-  if (isDragging) {
-    isDragging = false;
-    if (scrollbarThumb) {
-      scrollbarThumb.style.transition = '';
-    }
+window.addEventListener('resize', () => {
+  updateScrollbar();
+  const targetCard = projectCards[activeProjectIndex];
+  if (targetCard) {
+    projectsViewport.scrollLeft = getProjectOffset(targetCard);
   }
 });
 
-window.addEventListener('resize', () => {
-  updateProjectCarousel();
-});
-
-// ===== CAROUSEL AUTO-SCROLL & CLICK-TO-FOCUS =====
-let autoScrollTimer;
+// ===== CAROUSEL AUTO-SCROLL =====
+let autoScrollTimer = null;
+let autoScrollResumeTimeout = null;
 let carouselInView = false;
-const AUTO_SCROLL_DELAY = 3000;
+const AUTO_SCROLL_DELAY = 4500;
 
 function startAutoScroll() {
   if (reduceMotionQuery.matches || document.hidden || !carouselInView || projectCards.length < 2) return;
   stopAutoScroll();
   autoScrollTimer = setInterval(() => {
-    const currentIndex = getClosestProjectIndex();
-    const nextIndex = (currentIndex + 1) % projectCards.length;
+    const nextIndex = (activeProjectIndex + 1) % projectCards.length;
     scrollToProject(nextIndex);
   }, AUTO_SCROLL_DELAY);
 }
@@ -268,40 +412,40 @@ function stopAutoScroll() {
     clearInterval(autoScrollTimer);
     autoScrollTimer = null;
   }
+  if (autoScrollResumeTimeout) {
+    clearTimeout(autoScrollResumeTimeout);
+    autoScrollResumeTimeout = null;
+  }
 }
 
-// Click to focus
-projectCards.forEach((card, index) => {
-  card.addEventListener('click', (e) => {
-    // Only scroll if the user didn't click a link or button inside the card
-    if (!e.target.closest('a, button')) {
-      scrollToProject(index);
-      stopAutoScroll();
-      // Restart auto-scroll after a longer delay if mouse leaves later
-    }
-  });
-});
+function pauseAutoScrollTemporarily(resumeDelay = 6000) {
+  stopAutoScroll();
+  if (!carouselInView || document.hidden || reduceMotionQuery.matches) return;
+  autoScrollResumeTimeout = setTimeout(() => {
+    startAutoScroll();
+  }, resumeDelay);
+}
 
-// Interaction handling
-const carouselContainer = document.querySelector('.projects__carousel');
-carouselContainer?.addEventListener('mouseenter', stopAutoScroll);
-carouselContainer?.addEventListener('mouseleave', startAutoScroll);
-carouselContainer?.addEventListener('focusin', stopAutoScroll);
-carouselContainer?.addEventListener('focusout', (event) => {
-  if (!carouselContainer.contains(event.relatedTarget)) {
+// Pause when hover/focus is anywhere in the projects section
+projectsSection?.addEventListener('mouseenter', stopAutoScroll);
+projectsSection?.addEventListener('mouseleave', () => {
+  if (carouselInView) startAutoScroll();
+});
+projectsSection?.addEventListener('focusin', stopAutoScroll);
+projectsSection?.addEventListener('focusout', (event) => {
+  if (!projectsSection.contains(event.relatedTarget) && carouselInView) {
     startAutoScroll();
   }
 });
 
-// Stop auto-scroll on manual touch/drag
-projectsViewport?.addEventListener('touchstart', stopAutoScroll, { passive: true });
-projectsViewport?.addEventListener('mousedown', stopAutoScroll);
-projectsViewport?.addEventListener('wheel', stopAutoScroll, { passive: true });
+// Interaction handling for touch & wheel
+projectsViewport?.addEventListener('touchstart', () => pauseAutoScrollTemporarily(6000), { passive: true });
+projectsViewport?.addEventListener('wheel', () => pauseAutoScrollTemporarily(6000), { passive: true });
 
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
     stopAutoScroll();
-  } else {
+  } else if (carouselInView) {
     startAutoScroll();
   }
 });
@@ -312,7 +456,7 @@ if (typeof reduceMotionQuery.addEventListener === 'function') {
       stopAutoScroll();
     } else {
       revealElements.forEach(revealElement);
-      startAutoScroll();
+      if (carouselInView) startAutoScroll();
     }
   });
 } else if (typeof reduceMotionQuery.addListener === 'function') {
@@ -321,7 +465,7 @@ if (typeof reduceMotionQuery.addEventListener === 'function') {
       stopAutoScroll();
     } else {
       revealElements.forEach(revealElement);
-      startAutoScroll();
+      if (carouselInView) startAutoScroll();
     }
   });
 }
@@ -329,11 +473,10 @@ if (typeof reduceMotionQuery.addEventListener === 'function') {
 if (projectCards.length > 0) {
   updateProjectCarousel(0);
 
-  if ('IntersectionObserver' in window && carouselContainer) {
+  if ('IntersectionObserver' in window && projectsSection) {
     const carouselObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         carouselInView = entry.isIntersecting;
-
         if (carouselInView) {
           startAutoScroll();
         } else {
@@ -341,10 +484,10 @@ if (projectCards.length > 0) {
         }
       });
     }, {
-      threshold: 0.35
+      threshold: 0.2
     });
 
-    carouselObserver.observe(carouselContainer);
+    carouselObserver.observe(projectsSection);
   } else {
     carouselInView = true;
     startAutoScroll();
