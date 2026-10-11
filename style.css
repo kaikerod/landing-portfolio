@@ -581,10 +581,16 @@ select {
 }
 
 .about,
-.projects,
 .contact {
   position: relative;
   padding: 88px 0;
+  scroll-margin-top: 80px;
+}
+
+.projects {
+  position: relative;
+  padding: 88px 0 44px;
+  scroll-margin-top: 80px;
 }
 
 .about__content {
@@ -813,11 +819,21 @@ select {
   --carousel-padding: max(24px, calc((100% - min(420px, 78vw)) / 2));
   scroll-padding-inline: var(--carousel-padding);
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
   scrollbar-width: none;
   margin: 0 0 var(--projects-shadow-space-bottom-negative);
-  padding: calc(var(--projects-shadow-space-top) + 8px) var(--carousel-padding) calc(var(--projects-shadow-space-bottom) + 30px);
+  padding: calc(var(--projects-shadow-space-top) + 8px) var(--carousel-padding) calc(var(--projects-shadow-space-bottom) + 14px);
   cursor: grab;
+}
+
+.projects__viewport.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+  -webkit-user-select: none;
+  scroll-snap-type: none;
+}
+
+.projects__viewport.is-dragging .project-card {
+  pointer-events: none;
 }
 
 .projects__viewport::-webkit-scrollbar {
@@ -829,7 +845,7 @@ select {
   position: relative;
   width: min(480px, 60%);
   height: 4px;
-  margin: -20px auto 0;
+  margin: -16px auto 0;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
   overflow: hidden;
@@ -977,6 +993,9 @@ select {
   height: 100%;
   object-fit: cover;
   transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
 }
 
 .project-card:hover .project-card__image img {
@@ -1362,9 +1381,12 @@ select {
   }
 
   .about,
-  .projects,
   .contact {
     padding: 64px 0;
+  }
+
+  .projects {
+    padding: 64px 0 32px;
   }
 
   .about__stats {
@@ -1378,8 +1400,8 @@ select {
   .projects__carousel {
     margin-top: 6px;
     --projects-shadow-space-top: 24px;
-    --projects-shadow-space-bottom: 34px;
-    --projects-shadow-space-bottom-negative: -34px;
+    --projects-shadow-space-bottom: 28px;
+    --projects-shadow-space-bottom-negative: -28px;
   }
 
   .projects__controls {
@@ -1403,6 +1425,7 @@ select {
 
   .projects__scrollbar {
     width: min(360px, 72%);
+    margin: 8px auto 0;
   }
 
   .project-card,
