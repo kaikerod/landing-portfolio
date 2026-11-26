@@ -117,12 +117,24 @@ export function Hero() {
     }
   };
 
-  const handlePointerLeave = () => {
+  const handlePointerLeave = (event: PointerEvent<HTMLDivElement>) => {
     if (rafIdRef.current !== null) {
       cancelAnimationFrame(rafIdRef.current);
       rafIdRef.current = null;
     }
     pendingCoordsRef.current = null;
+
+    if (event.pointerType !== 'touch') {
+      const el = portraitRef.current;
+      if (el) {
+        const rect = portraitRectRef.current ?? el.getBoundingClientRect();
+        portraitRectRef.current = rect;
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        el.style.setProperty('--mx', `${x.toFixed(1)}px`);
+        el.style.setProperty('--my', `${y.toFixed(1)}px`);
+      }
+    }
     setIsSpotlightActive(false);
   };
 
@@ -139,18 +151,16 @@ export function Hero() {
 
   const showFullColor = isTouchRevealed || (prefersReducedMotion && isSpotlightActive);
   const spotlightMask =
-    !showFullColor && isSpotlightActive && !prefersReducedMotion
-      ? 'radial-gradient(circle 135px at var(--mx, 50%) var(--my, 42%), rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.92) 52%, rgba(0, 0, 0, 0) 100%)'
-      : undefined;
+    'radial-gradient(circle 135px at var(--mx, 50%) var(--my, 42%), rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.92) 52%, rgba(0, 0, 0, 0) 100%)';
 
-  const colorLayerStyle: CSSProperties = {
-    opacity: showFullColor || isSpotlightActive ? 1 : 0,
-    ...(spotlightMask
-      ? {
-          WebkitMaskImage: spotlightMask,
-          maskImage: spotlightMask,
-        }
-      : {}),
+  const spotlightLayerStyle: CSSProperties = {
+    opacity: isSpotlightActive && !prefersReducedMotion ? 1 : 0,
+    WebkitMaskImage: spotlightMask,
+    maskImage: spotlightMask,
+  };
+
+  const fullColorLayerStyle: CSSProperties = {
+    opacity: showFullColor ? 1 : 0,
   };
 
   return (
@@ -231,14 +241,34 @@ export function Hero() {
                   src={SITE_META.portraitSrc}
                   alt={`${SITE_META.fullName} — ${SITE_META.role}`}
                   width={851}
-                  height={954}
+                  height={962}
                   decoding="async"
                   fetchPriority="high"
                   className="pointer-events-none block h-auto max-h-[430px] w-full object-contain object-bottom grayscale contrast-[1.05] sm:max-h-[490px] lg:max-h-[580px] xl:max-h-[640px]"
                 />
               </picture>
 
-              {/* Full-color radial spotlight layer */}
+              {/* Radial color spotlight layer (mask stays attached during fade-out) */}
+              {!prefersReducedMotion && (
+                <picture
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 block h-full w-full"
+                >
+                  <source srcSet="/img/portrait.webp" type="image/webp" />
+                  <img
+                    src={SITE_META.portraitSrc}
+                    alt=""
+                    aria-hidden="true"
+                    width={851}
+                    height={962}
+                    decoding="async"
+                    style={spotlightLayerStyle}
+                    className="pointer-events-none block h-full w-full object-contain object-bottom transition-opacity duration-300 ease-out"
+                  />
+                </picture>
+              )}
+
+              {/* Full-color reveal layer (click/tap toggle or reduced-motion hover) */}
               <picture
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 block h-full w-full"
@@ -249,9 +279,9 @@ export function Hero() {
                   alt=""
                   aria-hidden="true"
                   width={851}
-                  height={954}
+                  height={962}
                   decoding="async"
-                  style={colorLayerStyle}
+                  style={fullColorLayerStyle}
                   className="pointer-events-none block h-full w-full object-contain object-bottom transition-opacity duration-300 ease-out"
                 />
               </picture>
