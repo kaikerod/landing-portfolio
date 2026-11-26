@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties, KeyboardEvent, PointerEvent } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { ArrowUpRight, Mail } from 'lucide-react';
@@ -49,36 +49,91 @@ function SocialIcon({ id }: { id: SocialLink['id'] }) {
 export function Hero() {
   const prefersReducedMotion = useReducedMotion();
   const portraitRef = useRef<HTMLDivElement>(null);
+  const portraitRectRef = useRef<DOMRect | null>(null);
+  const rafIdRef = useRef<number | null>(null);
+  const pendingCoordsRef = useRef<{ x: number; y: number } | null>(null);
   const [isSpotlightActive, setIsSpotlightActive] = useState(false);
   const [isTouchRevealed, setIsTouchRevealed] = useState(false);
 
-  const updatePointerCoords = (event: PointerEvent<HTMLDivElement>) => {
+  useEffect(() => {
+    const invalidateRect = () => {
+      portraitRectRef.current = null;
+    };
+
+    window.addEventListener('resize', invalidateRect, { passive: true });
+    window.addEventListener('scroll', invalidateRect, { passive: true });
+
+    return () => {
+      window.removeEventListener('resize', invalidateRect);
+      window.removeEventListener('scroll', invalidateRect);
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
+    };
+  }, []);
+
+  const schedulePointerCoords = (event: PointerEvent<HTMLDivElement>) => {
     const el = portraitRef.current;
     if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    el.style.setProperty('--mx', `${x.toFixed(1)}px`);
-    el.style.setProperty('--my', `${y.toFixed(1)}px`);
+
+    let rect = portraitRectRef.current;
+    if (!rect) {
+      rect = el.getBoundingClientRect();
+      portraitRectRef.current = rect;
+    }
+
+    pendingCoordsRef.current = {
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+    };
+
+    if (rafIdRef.current === null) {
+      rafIdRef.current = requestAnimationFrame(() => {
+        rafIdRef.current = null;
+        const target = portraitRef.current;
+        const coords = pendingCoordsRef.current;
+        if (!target || !coords) return;
+        target.style.setProperty('--mx', `${coords.x.toFixed(1)}px`);
+        target.style.setProperty('--my', `${coords.y.toFixed(1)}px`);
+      });
+    }
   };
 
   const handlePointerEnter = (event: PointerEvent<HTMLDivElement>) => {
     if (event.pointerType === 'touch') return;
-    updatePointerCoords(event);
+    if (portraitRef.current) {
+      portraitRectRef.current = portraitRef.current.getBoundingClientRect();
+    }
+    schedulePointerCoords(event);
     setIsSpotlightActive(true);
   };
 
   const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
     if (event.pointerType === 'touch') return;
-    updatePointerCoords(event);
+    schedulePointerCoords(event);
     if (!isSpotlightActive) {
       setIsSpotlightActive(true);
     }
   };
 
   const handlePointerLeave = (event: PointerEvent<HTMLDivElement>) => {
+    if (rafIdRef.current !== null) {
+      cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = null;
+    }
+    pendingCoordsRef.current = null;
+
     if (event.pointerType !== 'touch') {
-      updatePointerCoords(event);
+      const el = portraitRef.current;
+      if (el) {
+        const rect = portraitRectRef.current ?? el.getBoundingClientRect();
+        portraitRectRef.current = rect;
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        el.style.setProperty('--mx', `${x.toFixed(1)}px`);
+        el.style.setProperty('--my', `${y.toFixed(1)}px`);
+      }
     }
     setIsSpotlightActive(false);
   };
@@ -180,31 +235,56 @@ export function Hero() {
               className="group relative mx-auto w-full max-w-[320px] cursor-crosshair select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#111111] sm:max-w-[390px] lg:max-w-[480px] xl:max-w-[560px]"
             >
               {/* Grayscale editorial base layer */}
-              <img
-                src={SITE_META.portraitSrc}
-                alt={`${SITE_META.fullName} — ${SITE_META.role}`}
-                className="pointer-events-none block h-auto max-h-[430px] w-full object-contain object-bottom grayscale contrast-[1.05] sm:max-h-[490px] lg:max-h-[580px] xl:max-h-[640px]"
-              />
+              <picture className="pointer-events-none block w-full">
+                <source srcSet="/img/portrait.webp" type="image/webp" />
+                <img
+                  src={SITE_META.portraitSrc}
+                  alt={`${SITE_META.fullName} — ${SITE_META.role}`}
+                  width={851}
+                  height={962}
+                  decoding="async"
+                  fetchPriority="high"
+                  className="pointer-events-none block h-auto max-h-[430px] w-full object-contain object-bottom grayscale contrast-[1.05] sm:max-h-[490px] lg:max-h-[580px] xl:max-h-[640px]"
+                />
+              </picture>
 
               {/* Radial color spotlight layer (mask stays attached during fade-out) */}
               {!prefersReducedMotion && (
+                <picture
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 block h-full w-full"
+                >
+                  <source srcSet="/img/portrait.webp" type="image/webp" />
+                  <img
+                    src={SITE_META.portraitSrc}
+                    alt=""
+                    aria-hidden="true"
+                    width={851}
+                    height={962}
+                    decoding="async"
+                    style={spotlightLayerStyle}
+                    className="pointer-events-none block h-full w-full object-contain object-bottom transition-opacity duration-300 ease-out"
+                  />
+                </picture>
+              )}
+
+              {/* Full-color reveal layer (click/tap toggle or reduced-motion hover) */}
+              <picture
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 block h-full w-full"
+              >
+                <source srcSet="/img/portrait.webp" type="image/webp" />
                 <img
                   src={SITE_META.portraitSrc}
                   alt=""
                   aria-hidden="true"
-                  style={spotlightLayerStyle}
-                  className="pointer-events-none absolute inset-0 block h-full w-full object-contain object-bottom transition-opacity duration-300 ease-out"
+                  width={851}
+                  height={962}
+                  decoding="async"
+                  style={fullColorLayerStyle}
+                  className="pointer-events-none block h-full w-full object-contain object-bottom transition-opacity duration-300 ease-out"
                 />
-              )}
-
-              {/* Full-color reveal layer (click/tap toggle or reduced-motion hover) */}
-              <img
-                src={SITE_META.portraitSrc}
-                alt=""
-                aria-hidden="true"
-                style={fullColorLayerStyle}
-                className="pointer-events-none absolute inset-0 block h-full w-full object-contain object-bottom transition-opacity duration-300 ease-out"
-              />
+              </picture>
             </div>
           </motion.div>
 

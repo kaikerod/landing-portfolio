@@ -20,10 +20,10 @@ export function ServicesSection() {
       <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
         {/* Editorial Header with Watermark */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="relative mb-12 md:mb-16"
         >
           <span
@@ -50,15 +50,15 @@ export function ServicesSection() {
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 18 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{
-                  duration: 0.45,
-                  delay: index * 0.05,
+                  duration: 0.32,
+                  delay: Math.min(index * 0.03, 0.1),
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className={`border-b border-neutral-900/10 transition-all duration-300 ${
+                className={`border-b border-neutral-900/10 transition-[padding,border-color] duration-300 ${
                   isOpen ? 'border-transparent py-3 md:py-4' : ''
                 }`}
               >
@@ -149,6 +149,9 @@ export function ServicesSection() {
                                 <img
                                   src={service.previewImage}
                                   alt={service.previewLabel}
+                                  width={960}
+                                  height={600}
+                                  decoding="async"
                                   loading="lazy"
                                   className="h-full w-full object-cover"
                                 />
@@ -186,6 +189,9 @@ export function ServicesSection() {
                             <img
                               src={service.previewImage}
                               alt=""
+                              width={960}
+                              height={600}
+                              decoding="async"
                               loading="lazy"
                               className="h-full w-full object-cover"
                             />

@@ -19,8 +19,8 @@ export function Footer() {
     <motion.footer
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       className="border-t border-neutral-900/10 bg-[#f5f5f5]"
     >
       <div className="mx-auto flex max-w-[1320px] flex-col items-center justify-between gap-5 px-5 py-8 sm:flex-row sm:px-8 md:py-9 lg:px-12">

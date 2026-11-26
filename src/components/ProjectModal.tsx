@@ -235,6 +235,9 @@ export function ProjectModal({
                   <img
                     src={project.image}
                     alt={`${project.title} showcase preview`}
+                    width={960}
+                    height={600}
+                    decoding="async"
                     className="h-full w-full object-cover"
                   />
                 </div>

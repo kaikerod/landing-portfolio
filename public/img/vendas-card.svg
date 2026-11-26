@@ -8,16 +8,16 @@
       <stop offset="0" stop-color="#22C55E" stop-opacity="0.28"/>
       <stop offset="1" stop-color="#22C55E" stop-opacity="0.0"/>
     </linearGradient>
-    <filter id="dashShadow" x="34" y="40" width="892" height="536" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#000000" flood-opacity="0.5"/>
-    </filter>
   </defs>
 
   <!-- Dark Studio Canvas -->
   <rect width="960" height="600" fill="url(#dashBg)"/>
 
   <!-- Main Dashboard Frame -->
-  <g filter="url(#dashShadow)">
+  <g>
+    <rect x="50" y="84" width="860" height="484" rx="28" fill="#000000" fill-opacity="0.14"/>
+    <rect x="56" y="74" width="848" height="482" rx="24" fill="#000000" fill-opacity="0.20"/>
+    <rect x="62" y="67" width="836" height="480" rx="20" fill="#000000" fill-opacity="0.26"/>
     <rect x="60" y="60" width="840" height="480" rx="20" fill="#18191D"/>
     <rect x="60.5" y="60.5" width="839" height="479" rx="19.5" stroke="#FFFFFF" stroke-opacity="0.09"/>
   </g>

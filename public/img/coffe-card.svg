@@ -9,19 +9,16 @@
       <stop offset="0.55" stop-color="#4A2C1D"/>
       <stop offset="1" stop-color="#2A170F"/>
     </radialGradient>
-    <filter id="coffeeCardShadow" x="38" y="42" width="884" height="532" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#3B2416" flood-opacity="0.12"/>
-    </filter>
-    <filter id="cupShadow" x="536" y="186" width="268" height="268" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feDropShadow dx="8" dy="18" stdDeviation="16" flood-color="#2D1B12" flood-opacity="0.18"/>
-    </filter>
   </defs>
 
   <!-- Warm Minimalist Oat Backdrop -->
   <rect width="960" height="600" fill="url(#warmCanvas)"/>
 
   <!-- Editorial Landing Page Frame -->
-  <g filter="url(#coffeeCardShadow)">
+  <g>
+    <rect x="54" y="88" width="852" height="476" rx="30" fill="#3B2416" fill-opacity="0.03"/>
+    <rect x="60" y="78" width="840" height="474" rx="26" fill="#3B2416" fill-opacity="0.045"/>
+    <rect x="66" y="70" width="828" height="472" rx="22" fill="#3B2416" fill-opacity="0.055"/>
     <rect x="64" y="64" width="832" height="472" rx="22" fill="#FAF7F2"/>
     <rect x="64.5" y="64.5" width="831" height="471" rx="21.5" stroke="#2D1B12" stroke-opacity="0.08"/>
   </g>
@@ -66,7 +63,11 @@
   <rect x="488" y="156" width="368" height="346" rx="18" fill="#EFE7DB"/>
 
   <!-- Overhead Matte Ceramic Cup & Saucer -->
-  <g filter="url(#cupShadow)">
+  <g>
+    <!-- Soft Ceramic Cup Shadow -->
+    <ellipse cx="664" cy="318" rx="112" ry="110" fill="#2D1B12" fill-opacity="0.045"/>
+    <ellipse cx="662" cy="312" rx="106" ry="105" fill="#2D1B12" fill-opacity="0.065"/>
+    <circle cx="658" cy="304" r="102" fill="#2D1B12" fill-opacity="0.085"/>
     <!-- Saucer -->
     <circle cx="654" cy="296" r="102" fill="#FAF7F2" stroke="#E2D6C5" stroke-width="2"/>
     <circle cx="654" cy="296" r="76" fill="none" stroke="#E5D9C8" stroke-width="1.5"/>

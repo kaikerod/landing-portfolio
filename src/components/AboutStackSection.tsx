@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { FocusEvent, PointerEvent } from 'react';
 import { AnimatePresence, motion, useMotionValue, useSpring } from 'motion/react';
 import { SITE_META, STACK_ITEMS } from '../data/portfolio';
@@ -6,6 +6,12 @@ import type { StackItem } from '../data/portfolio';
 
 export function AboutStackSection() {
   const listRef = useRef<HTMLDivElement | null>(null);
+  const listRectRef = useRef<DOMRect | null>(null);
+  const isScrollingRef = useRef(false);
+  const scrollTimerRef = useRef<number | null>(null);
+  const rafIdRef = useRef<number | null>(null);
+  const pendingPointerRef = useRef<{ clientX: number; clientY: number } | null>(null);
+
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [canFloatPreview, setCanFloatPreview] = useState(false);
 
@@ -14,34 +20,96 @@ export function AboutStackSection() {
   const previewX = useSpring(rawX, { stiffness: 260, damping: 26, mass: 0.65 });
   const previewY = useSpring(rawY, { stiffness: 260, damping: 26, mass: 0.65 });
 
-  const updatePointerPreview = (event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== 'mouse') return;
+  useEffect(() => {
+    const handleScroll = () => {
+      isScrollingRef.current = true;
+      listRectRef.current = null;
+      if (scrollTimerRef.current !== null) {
+        window.clearTimeout(scrollTimerRef.current);
+      }
+      scrollTimerRef.current = window.setTimeout(() => {
+        isScrollingRef.current = false;
+        scrollTimerRef.current = null;
+      }, 140);
+    };
+
+    const handleResize = () => {
+      listRectRef.current = null;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+      if (scrollTimerRef.current !== null) {
+        window.clearTimeout(scrollTimerRef.current);
+        scrollTimerRef.current = null;
+      }
+      if (rafIdRef.current !== null) {
+        window.cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = null;
+      }
+    };
+  }, []);
+
+  const getListRect = () => {
+    if (listRectRef.current) return listRectRef.current;
     const container = listRef.current;
-    if (!container) return;
-
+    if (!container) return null;
     const rect = container.getBoundingClientRect();
-    const minX = rect.width * 0.44;
-    const maxX = rect.width * 0.66;
-    const relativeX = event.clientX - rect.left;
-    const clampedX = Math.min(maxX, Math.max(minX, relativeX));
-    const relativeY = event.clientY - rect.top;
+    listRectRef.current = rect;
+    return rect;
+  };
 
-    rawX.set(clampedX);
-    rawY.set(relativeY);
+  const schedulePointerUpdate = (clientX: number, clientY: number) => {
+    pendingPointerRef.current = { clientX, clientY };
+    if (rafIdRef.current !== null) return;
+
+    rafIdRef.current = window.requestAnimationFrame(() => {
+      rafIdRef.current = null;
+      const point = pendingPointerRef.current;
+      if (!point) return;
+
+      const rect = getListRect();
+      if (!rect) return;
+
+      const minX = rect.width * 0.44;
+      const maxX = rect.width * 0.66;
+      const relativeX = point.clientX - rect.left;
+      const clampedX = Math.min(maxX, Math.max(minX, relativeX));
+      const relativeY = point.clientY - rect.top;
+
+      rawX.set(clampedX);
+      rawY.set(relativeY);
+    });
+  };
+
+  const updatePointerPreview = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== 'mouse' || isScrollingRef.current) return;
+    schedulePointerUpdate(event.clientX, event.clientY);
   };
 
   const handleRowPointerEnter = (index: number, event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== 'mouse') return;
+    if (event.pointerType !== 'mouse' || isScrollingRef.current) return;
     setCanFloatPreview(true);
     setActiveIndex(index);
-    updatePointerPreview(event);
+    schedulePointerUpdate(event.clientX, event.clientY);
+  };
+
+  const handleRowPointerMove = (index: number, event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== 'mouse' || isScrollingRef.current) return;
+    if (activeIndex !== index) {
+      setCanFloatPreview(true);
+      setActiveIndex(index);
+    }
   };
 
   const handleRowFocus = (index: number, event: FocusEvent<HTMLDivElement>) => {
-    const container = listRef.current;
-    if (!container) return;
+    const listRect = getListRect();
+    if (!listRect) return;
 
-    const listRect = container.getBoundingClientRect();
     const rowRect = event.currentTarget.getBoundingClientRect();
 
     setCanFloatPreview(true);
@@ -51,6 +119,11 @@ export function AboutStackSection() {
   };
 
   const handleListLeave = () => {
+    if (rafIdRef.current !== null) {
+      window.cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = null;
+    }
+    pendingPointerRef.current = null;
     setActiveIndex(null);
   };
 
@@ -66,10 +139,10 @@ export function AboutStackSection() {
       <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
         {/* Header Row with Subtle Dark Watermark & Stats */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="mb-12 flex flex-col justify-between gap-4 md:mb-14 md:flex-row md:items-end"
         >
           <div className="relative">
@@ -94,10 +167,10 @@ export function AboutStackSection() {
 
         {/* Concise Editorial Bio */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
           className="mb-14 grid grid-cols-1 gap-5 md:mb-16 lg:grid-cols-12 lg:gap-10"
         >
           <p className="text-xl font-medium leading-[1.35] tracking-[-0.02em] text-white/95 sm:text-2xl lg:col-span-7 md:text-[1.6rem]">
@@ -131,25 +204,26 @@ export function AboutStackSection() {
                 key={item.id}
                 role="listitem"
                 tabIndex={0}
-                initial={{ opacity: 0, y: 18 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{
-                  duration: 0.45,
-                  delay: index * 0.05,
+                  duration: 0.32,
+                  delay: Math.min(index * 0.03, 0.1),
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 onPointerEnter={(event) => handleRowPointerEnter(index, event)}
+                onPointerMove={(event) => handleRowPointerMove(index, event)}
                 onFocus={(event) => handleRowFocus(index, event)}
-                className={`group relative cursor-default border-b border-white/10 px-3 py-6 transition-all duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/30 sm:px-4 md:py-7 ${
-                  isActive
-                    ? 'bg-white/[0.035] opacity-100'
-                    : isDimmed
-                      ? 'opacity-40'
-                      : 'opacity-100'
+                className={`group relative cursor-default border-b border-white/10 px-3 py-6 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/30 sm:px-4 md:py-7 ${
+                  isActive ? 'bg-white/[0.035]' : ''
                 }`}
               >
-                <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center sm:gap-6">
+                <div
+                  className={`flex flex-col justify-between gap-2 transition-opacity duration-200 sm:flex-row sm:items-center sm:gap-6 ${
+                    isDimmed ? 'opacity-40' : 'opacity-100'
+                  }`}
+                >
                   <div className="min-w-0">
                     <h3
                       className={`text-lg font-medium tracking-[-0.015em] transition-colors duration-300 sm:text-xl ${
@@ -207,6 +281,9 @@ export function AboutStackSection() {
                         <img
                           src={activeItem.previewImage}
                           alt=""
+                          width={960}
+                          height={600}
+                          decoding="async"
                           loading="lazy"
                           className="h-full w-full object-cover"
                         />
