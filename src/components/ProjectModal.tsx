@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Lock } from 'lucide-react';
 import { SITE_META } from '../data/portfolio';
 import type { Project } from '../data/portfolio';
 
@@ -145,18 +145,38 @@ export function ProjectModal({
                       </a>
                     ) : null}
 
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2 rounded-full border border-neutral-900/15 bg-white px-5 py-2.5 text-sm font-medium text-[#111111] shadow-xs transition-all duration-200 hover:border-neutral-900/35 hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111111]"
-                    >
-                      <span>GitHub</span>
-                      <ArrowUpRight
-                        className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                        aria-hidden="true"
-                      />
-                    </a>
+                    {project.githubUrl ? (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={
+                          project.liveUrl
+                            ? 'group inline-flex items-center gap-2 rounded-full border border-neutral-900/15 bg-white px-5 py-2.5 text-sm font-medium text-[#111111] shadow-xs transition-all duration-200 hover:border-neutral-900/35 hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111111]'
+                            : 'group inline-flex items-center gap-2 rounded-full bg-[#181818] px-5 py-2.5 text-sm font-medium text-white shadow-xs transition-all duration-200 hover:bg-[#2c2c2c] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111111]'
+                        }
+                      >
+                        <span>GitHub</span>
+                        <ArrowUpRight
+                          className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                          aria-hidden="true"
+                        />
+                      </a>
+                    ) : null}
+
+                    {project.isPrivate ? (
+                      <span className="inline-flex items-center gap-2 rounded-full border border-neutral-900/12 bg-white px-4 py-2 text-xs font-medium text-[#333333] shadow-xs sm:text-sm">
+                        <Lock
+                          className="h-3.5 w-3.5 text-[#555555]"
+                          aria-hidden="true"
+                        />
+                        <span>Private Repository · Architecture Overview</span>
+                      </span>
+                    ) : !project.liveUrl && project.category !== 'Python' ? (
+                      <span className="inline-flex items-center gap-2 rounded-full border border-neutral-900/10 bg-white/90 px-4 py-2 text-xs font-medium text-[#555555] shadow-xs sm:text-sm">
+                        <span>Internal Deployment</span>
+                      </span>
+                    ) : null}
                   </div>
                 </div>
 
@@ -179,6 +199,17 @@ export function ProjectModal({
                       {project.category}
                     </dd>
                   </div>
+
+                  {project.isPrivate ? (
+                    <div>
+                      <dt className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#8a8a8a]">
+                        Access
+                      </dt>
+                      <dd className="mt-1 text-base font-medium text-[#111111] sm:text-lg">
+                        Private Repository
+                      </dd>
+                    </div>
+                  ) : null}
 
                   <div>
                     <dt className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#8a8a8a]">
@@ -208,6 +239,45 @@ export function ProjectModal({
                   />
                 </div>
               </div>
+
+              {/* How It Was Built — architectural highlights */}
+              {project.buildHighlights && project.buildHighlights.length > 0 ? (
+                <section
+                  aria-labelledby="project-modal-build-heading"
+                  className="mt-8 border-t border-neutral-900/[0.08] pt-8 sm:mt-10 sm:pt-10"
+                >
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3
+                      id="project-modal-build-heading"
+                      className="text-lg font-semibold tracking-[-0.02em] text-[#111111] sm:text-xl"
+                    >
+                      /HOW IT WAS BUILT
+                    </h3>
+                    <span className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#8a8a8a]">
+                      Architecture &amp; Key Decisions
+                    </span>
+                  </div>
+
+                  <ol className="mt-5 grid grid-cols-1 gap-3.5 sm:grid-cols-2 sm:gap-4">
+                    {project.buildHighlights.map((highlight, index) => (
+                      <li
+                        key={highlight}
+                        className="flex gap-3.5 rounded-xl border border-neutral-900/[0.07] bg-white p-4 shadow-[0_1px_2px_rgba(17,17,17,0.03)] sm:p-5"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="mt-0.5 shrink-0 font-mono text-xs font-semibold text-[#8a8a8a]"
+                        >
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                        <p className="text-xs leading-relaxed text-[#444444] sm:text-[13.5px]">
+                          {highlight}
+                        </p>
+                      </li>
+                    ))}
+                  </ol>
+                </section>
+              ) : null}
             </div>
           </motion.div>
         </motion.div>
