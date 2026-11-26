@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { KeyboardEvent } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Lock } from 'lucide-react';
 import { PROJECTS } from '../data/portfolio';
 import type { Project, ProjectCategory } from '../data/portfolio';
 
@@ -170,6 +170,12 @@ export function SelectedWork({
                   <span className="absolute top-3 left-3 inline-flex items-center rounded-md border border-neutral-900/[0.06] bg-white/92 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[#111111] shadow-xs backdrop-blur-sm">
                     {project.category}
                   </span>
+                  {project.isPrivate ? (
+                    <span className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-md border border-white/10 bg-[#181818]/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white shadow-xs backdrop-blur-sm">
+                      <Lock className="h-3 w-3" aria-hidden="true" />
+                      <span>Private</span>
+                    </span>
+                  ) : null}
                 </div>
 
                 {/* Card footer */}

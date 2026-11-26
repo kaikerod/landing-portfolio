@@ -1,0 +1,207 @@
+<svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="canvasBg" x1="0" y1="0" x2="960" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F2F1EE"/>
+      <stop offset="1" stop-color="#E5E4DF"/>
+    </linearGradient>
+    <filter id="cardShadow" x="36" y="42" width="888" height="534" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#111111" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <!-- Studio neutral backdrop -->
+  <rect width="960" height="600" fill="url(#canvasBg)"/>
+  <g stroke="#111111" stroke-opacity="0.045" stroke-width="1">
+    <path d="M0 120H960M0 240H960M0 360H960M0 480H960"/>
+    <path d="M160 0V600M320 0V600M480 0V600M640 0V600M800 0V600"/>
+  </g>
+
+  <!-- Main App Window (Editorial Light / Charcoal Web-App UI) -->
+  <g filter="url(#cardShadow)">
+    <rect x="64" y="64" width="832" height="472" rx="20" fill="#FFFFFF"/>
+    <rect x="64.5" y="64.5" width="831" height="471" rx="19.5" stroke="#111111" stroke-opacity="0.09"/>
+  </g>
+
+  <!-- Top App Bar -->
+  <path d="M64 84C64 72.9543 72.9543 64 84 64H876C887.046 64 896 72.9543 896 84V118H64V84Z" fill="#FAFAFA"/>
+  <line x1="64" y1="118" x2="896" y2="118" stroke="#111111" stroke-opacity="0.08"/>
+
+  <!-- Brand -->
+  <rect x="88" y="79" width="22" height="22" rx="6" fill="#111111"/>
+  <rect x="94.5" y="83.5" width="9" height="13" rx="2" stroke="#FFFFFF" stroke-width="1.5"/>
+  <circle cx="99" cy="94" r="1" fill="#FFFFFF"/>
+  <text x="119" y="95" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14.5" font-weight="700" letter-spacing="-0.02em">Smart Divi</text>
+  <rect x="203" y="81" width="1" height="18" fill="#111111" fill-opacity="0.12"/>
+  <text x="216" y="94" fill="#6B7280" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="500">Samsung Service Portal</text>
+
+  <!-- Header Right: Private Case Study Lock Pill & Role Badge -->
+  <rect x="604" y="77" width="150" height="26" rx="13" fill="#F4F4F5" stroke="#111111" stroke-opacity="0.12"/>
+  <!-- Padlock icon -->
+  <rect x="618" y="89" width="8" height="6.5" rx="1.5" stroke="#3F3F46" stroke-width="1.3"/>
+  <path d="M619.8 89V87.3C619.8 86 620.8 85 622 85C623.2 85 624.2 86 624.2 87.3V89" stroke="#3F3F46" stroke-width="1.3" stroke-linecap="round"/>
+  <text x="634" y="94" fill="#3F3F46" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">Private Case Study</text>
+
+  <rect x="764" y="77" width="112" height="26" rx="13" fill="#18181B"/>
+  <circle cx="778" cy="90" r="3.2" fill="#22C55E"/>
+  <text x="789" y="94" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">Admin / Tech</text>
+
+  <!-- Left Pane: Service Order Detail & Immutable State-Machine Timeline -->
+  <rect x="88" y="134" width="404" height="382" rx="14" fill="#F8F8F7" stroke="#111111" stroke-opacity="0.07"/>
+
+  <!-- O.S. Header Card -->
+  <rect x="104" y="148" width="372" height="76" rx="11" fill="#FFFFFF" stroke="#111111" stroke-opacity="0.08"/>
+  <text x="120" y="170" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="700">O.S. #SD-2048</text>
+  <!-- Token / CPF Tracking Pill -->
+  <rect x="292" y="155" width="170" height="22" rx="11" fill="#F4F4F5" stroke="#111111" stroke-opacity="0.09"/>
+  <text x="377" y="170" text-anchor="middle" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" font-weight="600">CPF •••.412-09 · #9F2A</text>
+  <text x="120" y="191" fill="#27272A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="600">Galaxy S24+ · Display &amp; Frame Assembly</text>
+  <text x="120" y="210" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10.5">IMEI verified · Intake 09:12 · Immutable audit log</text>
+
+  <!-- Immutable State-Machine Timeline Card -->
+  <rect x="104" y="234" width="372" height="188" rx="11" fill="#FFFFFF" stroke="#111111" stroke-opacity="0.08"/>
+  <text x="120" y="255" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.08em">IMMUTABLE STATE-MACHINE</text>
+  <rect x="374" y="242" width="88" height="18" rx="9" fill="#ECFDF5"/>
+  <text x="418" y="254" text-anchor="middle" fill="#065F46" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="9" font-weight="700">5/5 Validated</text>
+
+  <!-- Timeline Vertical Connector -->
+  <line x1="128" y1="278" x2="128" y2="398" stroke="#E4E4E7" stroke-width="2"/>
+  <line x1="128" y1="278" x2="128" y2="398" stroke="#10B981" stroke-width="2" stroke-opacity="0.65"/>
+
+  <!-- Step 1 -->
+  <circle cx="128" cy="278" r="5" fill="#10B981"/>
+  <text x="145" y="282" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600">Request Opened</text>
+  <text x="460" y="282" text-anchor="end" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10">09:12</text>
+
+  <!-- Step 2 -->
+  <circle cx="128" cy="308" r="5" fill="#10B981"/>
+  <text x="145" y="312" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600">Linked O.S.</text>
+  <text x="460" y="312" text-anchor="end" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10">Auto-bound #SD-2048</text>
+
+  <!-- Step 3 -->
+  <circle cx="128" cy="338" r="5" fill="#10B981"/>
+  <text x="145" y="342" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600">Tech Quote PDF</text>
+  <text x="460" y="342" text-anchor="end" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10">v2 · R$ 1.480</text>
+
+  <!-- Step 4 -->
+  <circle cx="128" cy="368" r="5" fill="#10B981"/>
+  <text x="145" y="372" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600">Client Partial Approval</text>
+  <text x="460" y="372" text-anchor="end" fill="#047857" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10" font-weight="600">2 of 3 items</text>
+
+  <!-- Step 5 (Active Current State) -->
+  <circle cx="128" cy="398" r="6.5" fill="#18181B"/>
+  <circle cx="128" cy="398" r="2.8" fill="#22C55E"/>
+  <text x="145" y="402" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="700">In Repair</text>
+  <rect x="410" y="388" width="52" height="19" rx="9.5" fill="#18181B"/>
+  <text x="436" y="401" text-anchor="middle" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="9" font-weight="700">ACTIVE</text>
+
+  <!-- Photo Attachments Strip -->
+  <rect x="104" y="432" width="372" height="72" rx="11" fill="#FFFFFF" stroke="#111111" stroke-opacity="0.08"/>
+  <text x="120" y="450" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.07em">INTAKE PHOTO ATTACHMENTS (3)</text>
+
+  <!-- Thumb 1: Front Screen -->
+  <rect x="120" y="458" width="70" height="36" rx="6" fill="#18181B"/>
+  <rect x="128" y="463" width="18" height="26" rx="3" fill="#27272A" stroke="#52525B" stroke-width="1"/>
+  <path d="M131 469L143 482M137 476L143 472" stroke="#A1A1AA" stroke-width="1" stroke-linecap="round"/>
+  <text x="152" y="480" fill="#E4E4E7" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600">Front</text>
+
+  <!-- Thumb 2: Rear Cameras -->
+  <rect x="198" y="458" width="70" height="36" rx="6" fill="#27272A"/>
+  <rect x="206" y="463" width="18" height="26" rx="3" fill="#3F3F46" stroke="#71717A" stroke-width="1"/>
+  <circle cx="212" cy="469" r="2" fill="#E4E4E7"/>
+  <circle cx="212" cy="475" r="2" fill="#E4E4E7"/>
+  <circle cx="212" cy="481" r="2" fill="#E4E4E7"/>
+  <text x="230" y="480" fill="#E4E4E7" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600">Rear</text>
+
+  <!-- Thumb 3: Frame / IMEI -->
+  <rect x="276" y="458" width="70" height="36" rx="6" fill="#F4F4F5" stroke="#E4E4E7"/>
+  <path d="M285 468V484M289 468V484M292 468V484M297 468V484M300 468V484" stroke="#52525B" stroke-width="1.3"/>
+  <text x="310" y="480" fill="#27272A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600">IMEI</text>
+
+  <rect x="358" y="462" width="104" height="28" rx="8" fill="#F4F4F5"/>
+  <text x="410" y="480" text-anchor="middle" fill="#52525B" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600">Evidence Locked</text>
+
+  <!-- Right Pane Top: Charcoal Quote PDF & Client Approval Card -->
+  <rect x="506" y="134" width="368" height="190" rx="14" fill="#161618"/>
+  <rect x="506.5" y="134.5" width="367" height="189" rx="13.5" stroke="#FFFFFF" stroke-opacity="0.09"/>
+
+  <text x="526" y="159" fill="#A1A1AA" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="0.08em">TECH QUOTE PDF · APPROVAL</text>
+  <rect x="780" y="144" width="76" height="22" rx="11" fill="#FFFFFF" fill-opacity="0.10"/>
+  <text x="818" y="159" text-anchor="middle" fill="#E4E4E7" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" font-weight="600">quote.pdf</text>
+
+  <!-- Quote Items -->
+  <g font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5">
+    <circle cx="533" cy="184" r="6" fill="#10B981" fill-opacity="0.22"/>
+    <path d="M530.5 184L532.3 185.8L535.8 182.2" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="546" y="188" fill="#FFFFFF" font-weight="600">Original AMOLED Service Pack</text>
+    <text x="854" y="188" text-anchor="end" fill="#FFFFFF" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="700">R$ 1.190</text>
+
+    <circle cx="533" cy="212" r="6" fill="#10B981" fill-opacity="0.22"/>
+    <path d="M530.5 212L532.3 213.8L535.8 210.2" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="546" y="216" fill="#E4E4E7" font-weight="500">IP68 Seal Kit + Calibration</text>
+    <text x="854" y="216" text-anchor="end" fill="#E4E4E7" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="600">R$ 290</text>
+
+    <circle cx="533" cy="240" r="6" fill="#3F3F46"/>
+    <path d="M531 238L535 242M535 238L531 242" stroke="#A1A1AA" stroke-width="1.3" stroke-linecap="round"/>
+    <text x="546" y="244" fill="#71717A" font-weight="500">Optional Rear Cover Swap</text>
+    <text x="854" y="244" text-anchor="end" fill="#71717A" font-size="10.5" font-weight="600">Skipped</text>
+  </g>
+
+  <line x1="526" y1="257" x2="854" y2="257" stroke="#FFFFFF" stroke-opacity="0.08"/>
+
+  <!-- Approval Buttons: Full / Partial / Decline -->
+  <rect x="526" y="268" width="96" height="30" rx="8" fill="#27272A"/>
+  <text x="574" y="287" text-anchor="middle" fill="#D4D4D8" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">Full</text>
+
+  <rect x="632" y="268" width="120" height="30" rx="8" fill="#059669"/>
+  <text x="692" y="287" text-anchor="middle" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="700">Partial ✓</text>
+
+  <rect x="762" y="268" width="92" height="30" rx="8" fill="#27272A" stroke="#EF4444" stroke-opacity="0.35"/>
+  <text x="808" y="287" text-anchor="middle" fill="#FCA5A5" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">Decline</text>
+
+  <text x="526" y="314" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5">Approved R$ 1.480 · Signed &amp; logged to audit_events</text>
+
+  <!-- Right Pane Middle: Product Showcase Preview Card -->
+  <rect x="506" y="336" width="368" height="118" rx="14" fill="#F8F8F7" stroke="#111111" stroke-opacity="0.08"/>
+  <text x="526" y="358" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="0.08em">PRODUCT SHOWCASE</text>
+  <text x="854" y="358" text-anchor="end" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600">Samsung Catalog</text>
+
+  <!-- Product Mini-Card 1 -->
+  <rect x="526" y="370" width="158" height="72" rx="10" fill="#FFFFFF" stroke="#111111" stroke-opacity="0.08"/>
+  <rect x="538" y="382" width="30" height="48" rx="5" fill="#18181B"/>
+  <circle cx="546" cy="390" r="2" fill="#71717A"/>
+  <circle cx="546" cy="396" r="2" fill="#71717A"/>
+  <circle cx="546" cy="402" r="2" fill="#71717A"/>
+  <text x="578" y="397" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700">Galaxy S25</text>
+  <text x="578" y="412" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="9.5">256GB · Titanium</text>
+  <rect x="578" y="419" width="54" height="16" rx="8" fill="#ECFDF5"/>
+  <text x="605" y="430" text-anchor="middle" fill="#047857" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700">In Stock</text>
+
+  <!-- Product Mini-Card 2 -->
+  <rect x="696" y="370" width="158" height="72" rx="10" fill="#FFFFFF" stroke="#111111" stroke-opacity="0.08"/>
+  <rect x="708" y="388" width="30" height="36" rx="9" fill="#27272A"/>
+  <circle cx="723" cy="406" r="10" fill="#111111" stroke="#52525B" stroke-width="1.5"/>
+  <path d="M723 401V406L726 408" stroke="#34D399" stroke-width="1.4" stroke-linecap="round"/>
+  <text x="748" y="397" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700">Watch 7</text>
+  <text x="748" y="412" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="9.5">44mm · BT / LTE</text>
+  <rect x="748" y="419" width="60" height="16" rx="8" fill="#F4F4F5"/>
+  <text x="778" y="430" text-anchor="middle" fill="#3F3F46" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700">Showcase</text>
+
+  <!-- Right Pane Bottom: Stack Pills Bar -->
+  <rect x="506" y="466" width="368" height="50" rx="12" fill="#FAFAFA" stroke="#111111" stroke-opacity="0.08"/>
+  <g font-family="Inter, system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600" text-anchor="middle">
+    <rect x="518" y="479" width="60" height="24" rx="12" fill="#FFFFFF" stroke="#111111" stroke-opacity="0.12"/>
+    <text x="548" y="494" fill="#18181B">React 19</text>
+
+    <rect x="584" y="479" width="66" height="24" rx="12" fill="#FFFFFF" stroke="#111111" stroke-opacity="0.12"/>
+    <text x="617" y="494" fill="#18181B">Express 5</text>
+
+    <rect x="656" y="479" width="52" height="24" rx="12" fill="#FFFFFF" stroke="#111111" stroke-opacity="0.12"/>
+    <text x="682" y="494" fill="#18181B">Prisma</text>
+
+    <rect x="714" y="479" width="86" height="24" rx="12" fill="#FFFFFF" stroke="#111111" stroke-opacity="0.12"/>
+    <text x="757" y="494" fill="#18181B">PostgreSQL 16</text>
+
+    <rect x="806" y="479" width="56" height="24" rx="12" fill="#FFFFFF" stroke="#111111" stroke-opacity="0.12"/>
+    <text x="834" y="494" fill="#18181B">Docker</text>
+  </g>
+</svg>
