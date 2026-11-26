@@ -8,9 +8,6 @@
       <stop offset="0" stop-color="#DC2626"/>
       <stop offset="1" stop-color="#991B1B"/>
     </linearGradient>
-    <filter id="heroCardShadow" x="296" y="84" width="368" height="444" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#000000" flood-opacity="0.55"/>
-    </filter>
   </defs>
 
   <!-- Editorial Dark Stage -->
@@ -52,7 +49,10 @@
   </g>
 
   <!-- Center Active Spotlight Card (01 - Peter Parker) -->
-  <g filter="url(#heroCardShadow)">
+  <g>
+    <rect x="314" y="130" width="332" height="398" rx="30" fill="#000000" fill-opacity="0.16"/>
+    <rect x="320" y="118" width="320" height="395" rx="26" fill="#000000" fill-opacity="0.24"/>
+    <rect x="327" y="108" width="306" height="392" rx="22" fill="#000000" fill-opacity="0.30"/>
     <rect x="326" y="100" width="308" height="392" rx="22" fill="url(#crimsonCard)"/>
     <rect x="326.5" y="100.5" width="307" height="391" rx="21.5" stroke="#FFFFFF" stroke-opacity="0.22"/>
   </g>

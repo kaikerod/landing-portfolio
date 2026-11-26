@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { PROJECTS, SERVICES, SITE_META, STACK_ITEMS } from '../data/portfolio';
@@ -34,10 +34,15 @@ const NAV_ITEMS: NavItem[] = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const scrolledRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 12);
+      const nextScrolled = window.scrollY > 12;
+      if (nextScrolled !== scrolledRef.current) {
+        scrolledRef.current = nextScrolled;
+        setScrolled(nextScrolled);
+      }
     };
 
     handleScroll();
@@ -70,12 +75,20 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-all duration-300 ${
+      className={`sticky top-0 z-40 w-full border-b transition-[background-color,border-color,box-shadow] duration-300 ${
         scrolled || mobileOpen
-          ? 'bg-[#f5f5f5]/90 backdrop-blur-md border-b border-neutral-900/[0.08] shadow-[0_1px_16px_rgba(17,17,17,0.04)]'
-          : 'bg-[#f5f5f5]/75 backdrop-blur-xs border-b border-transparent'
+          ? 'border-neutral-900/[0.08] shadow-[0_1px_16px_rgba(17,17,17,0.04)]'
+          : 'border-transparent'
       }`}
     >
+      <div
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-0 -z-10 transform-gpu [contain:paint] transition-[background-color] duration-300 ${
+          scrolled || mobileOpen
+            ? 'bg-[#f5f5f5]/90 backdrop-blur-md'
+            : 'bg-[#f5f5f5]/75 backdrop-blur-xs'
+        }`}
+      />
       <div className="mx-auto flex h-[4.5rem] max-w-[1320px] items-center justify-between gap-4 px-5 sm:px-8 lg:px-12">
         {/* Left: Availability status pill */}
         <a
@@ -84,7 +97,7 @@ export function Header() {
           className="inline-flex items-center gap-2.5 rounded-full border border-neutral-900/[0.08] bg-white/95 px-3.5 py-1.5 text-xs font-medium text-[#111111] shadow-[0_1px_2px_rgba(17,17,17,0.03)] transition-colors hover:border-neutral-900/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111111]"
         >
           <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#22c55e] opacity-70 motion-reduce:animate-none" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#22c55e] opacity-70 will-change-transform motion-reduce:animate-none" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-[#22c55e]" />
           </span>
           <span className="whitespace-nowrap tracking-[-0.01em]">

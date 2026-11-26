@@ -18,9 +18,6 @@
       <stop offset="0" stop-color="#FFFFFF"/>
       <stop offset="1" stop-color="#D4D4D8"/>
     </linearGradient>
-    <filter id="browserShadow" x="34" y="42" width="892" height="534" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#111111" flood-opacity="0.09"/>
-    </filter>
     <clipPath id="windowClip">
       <rect x="64" y="64" width="832" height="472" rx="20"/>
     </clipPath>
@@ -30,7 +27,10 @@
   <rect width="960" height="600" fill="url(#appleCanvas)"/>
 
   <!-- Elevated Monochrome Showcase Frame -->
-  <g filter="url(#browserShadow)">
+  <g>
+    <rect x="54" y="88" width="852" height="476" rx="28" fill="#111111" fill-opacity="0.025"/>
+    <rect x="60" y="78" width="840" height="474" rx="24" fill="#111111" fill-opacity="0.035"/>
+    <rect x="66" y="70" width="828" height="472" rx="20" fill="#111111" fill-opacity="0.045"/>
     <rect x="64" y="64" width="832" height="472" rx="20" fill="#FFFFFF"/>
     <rect x="64.5" y="64.5" width="831" height="471" rx="19.5" stroke="#111111" stroke-opacity="0.08"/>
   </g>

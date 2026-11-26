@@ -9,12 +9,6 @@
       <stop offset="0.5" stop-color="#141416"/>
       <stop offset="1" stop-color="#09090B"/>
     </linearGradient>
-    <filter id="termShadow" x="34" y="42" width="760" height="516" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="20" stdDeviation="20" flood-color="#111111" flood-opacity="0.18"/>
-    </filter>
-    <filter id="cardFloat" x="624" y="340" width="312" height="214" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#111111" flood-opacity="0.28"/>
-    </filter>
   </defs>
 
   <!-- Crisp Light Architectural Canvas -->
@@ -25,7 +19,10 @@
   </g>
 
   <!-- macOS Terminal Window -->
-  <g filter="url(#termShadow)">
+  <g>
+    <rect x="54" y="90" width="720" height="468" rx="26" fill="#111111" fill-opacity="0.045"/>
+    <rect x="60" y="80" width="708" height="466" rx="22" fill="#111111" fill-opacity="0.065"/>
+    <rect x="66" y="71" width="696" height="464" rx="18" fill="#111111" fill-opacity="0.085"/>
     <rect x="64" y="64" width="700" height="464" rx="18" fill="#151619"/>
     <rect x="64.5" y="64.5" width="699" height="463" rx="17.5" stroke="#FFFFFF" stroke-opacity="0.1"/>
   </g>
@@ -94,7 +91,10 @@
   <text x="114" y="488" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">[1] Add purchase  [2] Pay invoice  [3] Adjust limit</text>
 
   <!-- Floating Matte-Black Credit Card Object -->
-  <g filter="url(#cardFloat)" transform="rotate(-3 780 444)">
+  <g transform="rotate(-3 780 444)">
+    <rect x="644" y="388" width="272" height="160" rx="22" fill="#111111" fill-opacity="0.07"/>
+    <rect x="648" y="380" width="264" height="158" rx="19" fill="#111111" fill-opacity="0.10"/>
+    <rect x="653" y="372" width="254" height="156" rx="16" fill="#111111" fill-opacity="0.14"/>
     <rect x="652" y="366" width="256" height="156" rx="16" fill="url(#metalCard)"/>
     <rect x="652.5" y="366.5" width="255" height="155" rx="15.5" stroke="#FFFFFF" stroke-opacity="0.18"/>
     <!-- Subtle diagonal sheen -->

@@ -59,10 +59,10 @@ export function SelectedWork({
       <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
         {/* Centered heading over huge faint watermark */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="relative flex items-center justify-center py-4 text-center sm:py-8"
         >
           <span
@@ -81,8 +81,8 @@ export function SelectedWork({
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.5, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 flex flex-col gap-4 border-b border-neutral-900/[0.08] pb-4 sm:mt-8 sm:flex-row sm:items-center sm:justify-between"
         >
           <div
@@ -131,25 +131,21 @@ export function SelectedWork({
         </motion.div>
 
         {/* 2-column project grid */}
-        <motion.div
-          layout
-          className="mt-8 grid grid-cols-1 gap-6 sm:mt-10 md:grid-cols-2 lg:gap-8"
-        >
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:mt-10 md:grid-cols-2 lg:gap-8">
           <AnimatePresence mode="popLayout">
             {visibleProjects.map((project, index) => (
               <motion.article
                 key={project.id}
-                layout
-                initial={{ opacity: 0, y: 22, scale: 0.985 }}
+                initial={{ opacity: 0, y: 16, scale: 0.985 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{
                   opacity: 0,
                   scale: 0.97,
-                  transition: { duration: 0.18, delay: 0 },
+                  transition: { duration: 0.16, delay: 0 },
                 }}
                 transition={{
-                  duration: 0.4,
-                  delay: Math.min(index * 0.05, 0.2),
+                  duration: 0.34,
+                  delay: Math.min(index * 0.04, 0.14),
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 role="button"
@@ -157,14 +153,17 @@ export function SelectedWork({
                 aria-label={`Open case study for ${project.title}`}
                 onClick={() => onSelectProject(project)}
                 onKeyDown={(event) => handleCardKeyDown(event, project)}
-                className="group relative flex cursor-pointer flex-col rounded-2xl border border-neutral-900/[0.07] bg-white p-2.5 shadow-[0_1px_3px_rgba(17,17,17,0.03)] transition-all duration-300 hover:border-neutral-900/15 hover:shadow-[0_22px_50px_-24px_rgba(17,17,17,0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111111] sm:p-3"
+                className="group relative flex cursor-pointer flex-col rounded-2xl border border-neutral-900/[0.07] bg-white p-2.5 shadow-[0_1px_3px_rgba(17,17,17,0.03)] transition-[border-color,box-shadow] duration-300 hover:border-neutral-900/15 hover:shadow-[0_22px_50px_-24px_rgba(17,17,17,0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#111111] sm:p-3"
               >
                 {/* 16/10 preview image frame */}
                 <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-[#efefef]">
                   <img
                     src={project.image}
                     alt={`${project.title} — ${project.shortDescription}`}
-                    loading="lazy"
+                    width={960}
+                    height={600}
+                    decoding="async"
+                    loading={project.featured ? 'eager' : 'lazy'}
                     className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.035]"
                   />
                   <span className="absolute top-3 left-3 inline-flex items-center rounded-md border border-neutral-900/[0.06] bg-white/92 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[#111111] shadow-xs backdrop-blur-sm">
@@ -211,7 +210,7 @@ export function SelectedWork({
               </motion.article>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

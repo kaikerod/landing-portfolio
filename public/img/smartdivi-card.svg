@@ -4,9 +4,6 @@
       <stop offset="0" stop-color="#F2F1EE"/>
       <stop offset="1" stop-color="#E5E4DF"/>
     </linearGradient>
-    <filter id="cardShadow" x="36" y="42" width="888" height="534" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#111111" flood-opacity="0.10"/>
-    </filter>
   </defs>
 
   <!-- Studio neutral backdrop -->
@@ -17,7 +14,10 @@
   </g>
 
   <!-- Main App Window (Editorial Light / Charcoal Web-App UI) -->
-  <g filter="url(#cardShadow)">
+  <g>
+    <rect x="54" y="88" width="852" height="476" rx="28" fill="#111111" fill-opacity="0.025"/>
+    <rect x="60" y="78" width="840" height="474" rx="24" fill="#111111" fill-opacity="0.035"/>
+    <rect x="66" y="70" width="828" height="472" rx="20" fill="#111111" fill-opacity="0.045"/>
     <rect x="64" y="64" width="832" height="472" rx="20" fill="#FFFFFF"/>
     <rect x="64.5" y="64.5" width="831" height="471" rx="19.5" stroke="#111111" stroke-opacity="0.09"/>
   </g>

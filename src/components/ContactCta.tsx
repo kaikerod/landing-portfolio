@@ -12,7 +12,7 @@ export function ContactCta() {
     <section
       id="contato"
       aria-labelledby="contact-heading"
-      className="relative overflow-hidden bg-[#f5f5f5] pt-28 pb-24 md:pt-36 md:pb-32"
+      className="relative overflow-hidden bg-[#f5f5f5] pt-28 pb-24 [contain:layout_paint] md:pt-36 md:pb-32"
     >
       {/* Subtle Top Editorial Fade */}
       <div
@@ -21,21 +21,21 @@ export function ContactCta() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-0 left-1/2 h-72 w-[min(92vw,760px)] -translate-x-1/2 rounded-full bg-white/70 blur-3xl"
+        className="pointer-events-none absolute top-0 left-1/2 h-72 w-[min(92vw,760px)] -translate-x-1/2 transform-gpu rounded-full bg-white/70 blur-3xl will-change-transform"
       />
 
       <div className="relative z-10 mx-auto max-w-[960px] px-6 text-center md:px-10">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col items-center"
         >
           {/* Availability Pill Badge */}
           <div className="inline-flex items-center gap-2.5 rounded-full border border-neutral-900/10 bg-white px-4 py-1.5 text-xs font-medium text-[#111111] shadow-[0_1px_2px_rgba(0,0,0,0.04)] sm:text-[13px]">
             <span className="relative flex h-2 w-2" aria-hidden="true">
-              <span className="absolute inline-flex h-full w-full motion-safe:animate-ping rounded-full bg-[#22c55e] opacity-75" />
+              <span className="absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75 will-change-transform motion-safe:animate-ping" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[#22c55e]" />
             </span>
             <span>{SITE_META.availabilityText}</span>
