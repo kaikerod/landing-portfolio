@@ -1,49 +1,47 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-This repository is a static portfolio site. The root contains the deployable files:
+This repository is a personal portfolio built with **Vite**, **React**, **TypeScript**, **Tailwind CSS v4**, **Motion (Framer Motion)**, and **Lucide React**, managed with **pnpm**:
 
-- `index.html`: page structure and portfolio content.
-- `style.css`: global styles, design tokens, layout, and responsive rules.
-- `script.js`: client-side interactions such as scroll reveal, mobile navigation, and smooth scrolling.
-- `img/`: project screenshots and other image assets referenced by the page.
-- `translate.py`: one-off Python utility used to replace localized text in `index.html`.
+- `index.html`: Vite HTML entry point (SEO/OG meta tags, favicon `/img/favicon.svg`, Google Fonts `Plus Jakarta Sans` & `Inter`).
+- `src/main.tsx`: React root mount.
+- `src/App.tsx`: Top-level composition wrapped in `<MotionConfig reducedMotion="user">` and managing project detail modal state.
+- `src/index.css`: Tailwind CSS v4 (`@tailwindcss/vite`) entry, editorial design tokens (`:root` / `@theme`), outline display typography helpers, watermark utilities, and `prefers-reduced-motion` safeguards.
+- `src/data/portfolio.ts`: Typed content data (`SITE_META`, `SOCIAL_LINKS`, `PROJECTS`, `SERVICES`, `STACK_ITEMS`).
+- `src/components/`: UI sections and modal (`Header`, `Hero`, `SelectedWork`, `ProjectModal`, `ServicesSection`, `AboutStackSection`, `ContactCta`, `Footer`).
+- `public/img/`: Static visual assets (`favicon.svg`, `portrait.png`, and the 8 redesigned project mockup SVGs).
 
-Keep related edits grouped by layer: content in `index.html`, behavior in `script.js`, and presentation in `style.css`.
+Keep content updates in `src/data/portfolio.ts`, presentation tokens in `src/index.css`, and section-specific UI/interactions inside `src/components/`.
 
 ## Build, Test, and Development Commands
-No package manager or build step is configured. Use a simple local server to preview changes:
+Use `pnpm` from the repository root:
 
-- `python -m http.server 8000` from the repository root starts a local server.
-- Open `http://localhost:8000` to verify layout, links, and responsive behavior.
-- `python translate.py` runs the text-replacement helper script. Review its hardcoded file path before using it on another machine.
+- `pnpm install`: Install project dependencies.
+- `pnpm dev`: Start the local Vite development server with HMR.
+- `pnpm exec tsc --noEmit`: Run strict TypeScript typechecking.
+- `pnpm build`: Run TypeScript project build (`tsc -b`) and produce the deployable production bundle in `dist/` (ready for Vercel or Netlify).
+- `pnpm preview`: Serve the production `dist/` build locally to verify output.
 
 ## Coding Style & Naming Conventions
-Use 2 spaces for HTML indentation and 2 spaces for nested CSS/JavaScript blocks to match the current files. Preserve the existing BEM-style class naming such as `header__nav`, `project-card__title`, and modifier forms like `bg-glow--purple`.
-
-Prefer:
-
-- semantic HTML sections and descriptive `alt` text,
-- CSS custom properties in `:root` for colors, spacing, and transitions,
-- small, focused DOM scripts with clear section comments.
-
-Avoid introducing frameworks or build tooling unless the repository is being intentionally restructured.
+- Use 2 spaces for indentation across TypeScript, TSX, CSS, and JSON files.
+- Prefer semantic HTML landmarks (`header`, `main`, `section`, `footer`, `nav`), accessible ARIA attributes (`aria-pressed`, `aria-expanded`, `aria-controls`, `role="dialog"`, `aria-modal="true"`), and descriptive `alt` text.
+- Use Tailwind CSS utilities combined with the editorial color tokens defined in `src/index.css` (`#f5f5f5` / `#fafafa` light surfaces, `#ffffff` cards, `#111111` ink, `#181818` / `#1c1c1c` dark contrast surfaces, `#22c55e` status indicator).
+- Use `motion/react` for animations and always respect `prefers-reduced-motion`.
 
 ## Testing Guidelines
-There is no automated test suite yet. Validate changes manually in the browser:
+Validate changes with both automated type/build checks and browser verification:
 
-- test desktop and mobile widths,
-- confirm navigation, smooth scroll, and menu toggle behavior,
-- verify images load from `img/` and external links open correctly.
-
-If you add automated checks later, place them in a dedicated `tests/` folder and document the command here.
+- Run `pnpm exec tsc --noEmit` and `pnpm build` before shipping.
+- Verify desktop (`1440px` / `1280px`) and mobile (`390px` / `375px`) layouts via `pnpm dev` or `pnpm preview`.
+- Test mobile menu drawer, smooth anchor scrolling, Hero portrait color spotlight, project category filters + `View All Work`, project detail modal (`Esc` and `← Back`), `/SERVICE` accordion, and `/ABOUT & STACK` hover previews.
+- Confirm `public/img/portrait.png`, all 8 SVG cards, and external links load cleanly.
 
 ## Commit & Pull Request Guidelines
-Git history is not available in this workspace, so no repository-specific commit convention could be inferred. Use concise, imperative commit messages such as `Add responsive spacing fix for project cards`.
+Use concise, imperative commit messages (e.g., `Add project detail modal keyboard focus trap`).
 
 Pull requests should include:
 
 - a short summary of the change,
 - affected files or sections,
 - before/after screenshots for visual updates,
-- manual verification notes for browser and mobile checks.
+- typecheck, build, and manual browser/mobile verification notes.

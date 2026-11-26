@@ -1,2 +1,21 @@
+# Dependencies & build output
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Editor & OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+
 # Playwright CLI output (may contain credentials)
 .playwright-cli/
+.playwright/

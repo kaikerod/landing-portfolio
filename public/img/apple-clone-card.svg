@@ -1,0 +1,107 @@
+<svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="appleCanvas" x1="0" y1="0" x2="960" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F5F5F7"/>
+      <stop offset="1" stop-color="#EAEAEE"/>
+    </linearGradient>
+    <linearGradient id="phoneBodyDark" x1="350" y1="260" x2="540" y2="570" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2C2C2E"/>
+      <stop offset="0.5" stop-color="#141416"/>
+      <stop offset="1" stop-color="#09090B"/>
+    </linearGradient>
+    <linearGradient id="phoneScreenMono" x1="364" y1="274" x2="528" y2="560" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E5E5EA"/>
+      <stop offset="0.45" stop-color="#8E8E93"/>
+      <stop offset="1" stop-color="#1C1C1E"/>
+    </linearGradient>
+    <linearGradient id="phoneBodyLight" x1="510" y1="300" x2="670" y2="570" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#D4D4D8"/>
+    </linearGradient>
+    <filter id="browserShadow" x="34" y="42" width="892" height="534" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#111111" flood-opacity="0.09"/>
+    </filter>
+    <clipPath id="windowClip">
+      <rect x="64" y="64" width="832" height="472" rx="20"/>
+    </clipPath>
+  </defs>
+
+  <!-- Ultra-Clean Silver-White Backdrop -->
+  <rect width="960" height="600" fill="url(#appleCanvas)"/>
+
+  <!-- Elevated Monochrome Showcase Frame -->
+  <g filter="url(#browserShadow)">
+    <rect x="64" y="64" width="832" height="472" rx="20" fill="#FFFFFF"/>
+    <rect x="64.5" y="64.5" width="831" height="471" rx="19.5" stroke="#111111" stroke-opacity="0.08"/>
+  </g>
+
+  <g clip-path="url(#windowClip)">
+    <!-- Minimal Apple-Style Top Nav -->
+    <rect x="64" y="64" width="832" height="44" fill="#FAFAFC"/>
+    <line x1="64" y1="108" x2="896" y2="108" stroke="#111111" stroke-opacity="0.06"/>
+    <!-- Minimalist Monochrome Emblem -->
+    <circle cx="292" cy="86" r="5" fill="#111111"/>
+    <g fill="#52525B" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="500">
+      <text x="330" y="90">Store</text>
+      <text x="392" y="90">Mac</text>
+      <text x="448" y="90">iPad</text>
+      <text x="504" y="90" fill="#111111" font-weight="700">iPhone</text>
+      <text x="574" y="90">Watch</text>
+      <text x="640" y="90">AirPods</text>
+    </g>
+
+    <!-- Centered Product Hero Typography -->
+    <text x="480" y="166" text-anchor="middle" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="46" font-weight="800" letter-spacing="-0.04em">iPhone 14</text>
+    <text x="480" y="198" text-anchor="middle" fill="#6E6E73" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" letter-spacing="-0.01em">Big and bigger. Pro-grade monochrome craft.</text>
+
+    <!-- Action Controls -->
+    <rect x="382" y="218" width="82" height="32" rx="16" fill="#111111"/>
+    <text x="423" y="238" text-anchor="middle" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="600">Buy</text>
+    <text x="526" y="238" text-anchor="middle" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="600">Learn more ›</text>
+
+    <!-- Subtle Studio Pedestal Arc -->
+    <ellipse cx="480" cy="542" rx="310" ry="42" fill="#111111" fill-opacity="0.05"/>
+
+    <!-- Rear Starlight iPhone (Right Offset) -->
+    <g transform="translate(508, 304)">
+      <rect x="0" y="0" width="176" height="270" rx="34" fill="url(#phoneBodyLight)" stroke="#D4D4D8" stroke-width="2"/>
+      <!-- Camera Module -->
+      <rect x="18" y="18" width="66" height="66" rx="18" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1.5"/>
+      <circle cx="36" cy="36" r="12" fill="#18181B"/>
+      <circle cx="36" cy="36" r="6" fill="#3F3F46"/>
+      <circle cx="66" cy="66" r="12" fill="#18181B"/>
+      <circle cx="66" cy="66" r="6" fill="#3F3F46"/>
+      <circle cx="66" cy="34" r="4.5" fill="#D4D4D8"/>
+      <!-- Center Minimal Mark -->
+      <circle cx="88" cy="144" r="12" fill="#111111" fill-opacity="0.1"/>
+    </g>
+
+    <!-- Primary Midnight iPhone (Center-Left Foreground) -->
+    <g transform="translate(316, 276)">
+      <!-- Chassis -->
+      <rect x="0" y="0" width="212" height="310" rx="38" fill="url(#phoneBodyDark)"/>
+      <rect x="1" y="1" width="210" height="308" rx="37" stroke="#52525B" stroke-opacity="0.5"/>
+      <!-- Inner Display -->
+      <rect x="10" y="10" width="192" height="290" rx="30" fill="#111113"/>
+      <rect x="10" y="10" width="192" height="290" rx="30" fill="url(#phoneScreenMono)" fill-opacity="0.92"/>
+      <!-- Abstract Architectural Curves Wallpaper -->
+      <circle cx="106" cy="174" r="78" fill="#111113" fill-opacity="0.72"/>
+      <circle cx="106" cy="174" r="54" fill="#FFFFFF" fill-opacity="0.18"/>
+      <circle cx="106" cy="174" r="32" fill="#111113" fill-opacity="0.85"/>
+      <!-- Dynamic Notch -->
+      <rect x="74" y="20" width="64" height="16" rx="8" fill="#09090B"/>
+      <circle cx="122" cy="28" r="3" fill="#27272A"/>
+      <!-- Lock Screen Time -->
+      <text x="106" y="88" text-anchor="middle" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="38" font-weight="700" letter-spacing="-0.03em">9:41</text>
+      <text x="106" y="108" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.85" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="500">Tuesday, September 14</text>
+    </g>
+
+    <!-- Finish Swatch Dots (Bottom Left) -->
+    <g>
+      <circle cx="112" cy="480" r="6" fill="#18181B" stroke="#111111" stroke-width="1.5"/>
+      <circle cx="134" cy="480" r="6" fill="#F4F4F5" stroke="#A1A1AA" stroke-width="1"/>
+      <circle cx="156" cy="480" r="6" fill="#71717A"/>
+      <text x="106" y="506" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="500">Midnight · Starlight</text>
+    </g>
+  </g>
+</svg>

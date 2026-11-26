@@ -1,0 +1,114 @@
+<svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="termCanvas" x1="0" y1="0" x2="960" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#EFEFEF"/>
+      <stop offset="1" stop-color="#E3E4E8"/>
+    </linearGradient>
+    <linearGradient id="metalCard" x1="654" y1="364" x2="906" y2="528" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#27272A"/>
+      <stop offset="0.5" stop-color="#141416"/>
+      <stop offset="1" stop-color="#09090B"/>
+    </linearGradient>
+    <filter id="termShadow" x="34" y="42" width="760" height="516" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="20" stdDeviation="20" flood-color="#111111" flood-opacity="0.18"/>
+    </filter>
+    <filter id="cardFloat" x="624" y="340" width="312" height="214" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#111111" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <!-- Crisp Light Architectural Canvas -->
+  <rect width="960" height="600" fill="url(#termCanvas)"/>
+  <g stroke="#111111" stroke-opacity="0.045" stroke-width="1">
+    <path d="M0 100H960M0 200H960M0 300H960M0 400H960M0 500H960"/>
+    <path d="M120 0V600M240 0V600M360 0V600M480 0V600M600 0V600M720 0V600M840 0V600"/>
+  </g>
+
+  <!-- macOS Terminal Window -->
+  <g filter="url(#termShadow)">
+    <rect x="64" y="64" width="700" height="464" rx="18" fill="#151619"/>
+    <rect x="64.5" y="64.5" width="699" height="463" rx="17.5" stroke="#FFFFFF" stroke-opacity="0.1"/>
+  </g>
+
+  <!-- macOS Titlebar -->
+  <path d="M64 82C64 72.0589 72.0589 64 82 64H746C755.941 64 764 72.0589 764 82V106H64V82Z" fill="#1E2025"/>
+  <line x1="64" y1="106" x2="764" y2="106" stroke="#FFFFFF" stroke-opacity="0.08"/>
+  <circle cx="90" cy="85" r="5.5" fill="#EF4444"/>
+  <circle cx="109" cy="85" r="5.5" fill="#F59E0B"/>
+  <circle cx="128" cy="85" r="5.5" fill="#22C55E"/>
+  <text x="414" y="89" text-anchor="middle" fill="#A1A1AA" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" font-weight="600">python3 cartao_app.py — rich tui</text>
+
+  <!-- Terminal Prompt -->
+  <text x="92" y="138" fill="#22C55E" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700">➜</text>
+  <text x="112" y="138" fill="#E4E4E7" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">cartao_app --statement --limit-bar</text>
+
+  <!-- Rich Box Panel: Statement Summary -->
+  <rect x="92" y="156" width="644" height="196" rx="8" fill="#111215" stroke="#3F3F46" stroke-width="1.2"/>
+  <rect x="110" y="147" width="166" height="18" fill="#151619"/>
+  <text x="118" y="160" fill="#F4F4F5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" font-weight="700">SPENDING CATEGORIES</text>
+
+  <!-- Rich Table Header -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">
+    <text x="114" y="188" fill="#A1A1AA" font-weight="700">CATEGORY</text>
+    <text x="356" y="188" fill="#A1A1AA" font-weight="700">ITEMS</text>
+    <text x="458" y="188" fill="#A1A1AA" font-weight="700">SHARE</text>
+    <text x="714" y="188" text-anchor="end" fill="#A1A1AA" font-weight="700">AMOUNT</text>
+    <line x1="110" y1="200" x2="718" y2="200" stroke="#3F3F46" stroke-width="1"/>
+
+    <!-- Row 1 -->
+    <text x="114" y="226" fill="#FFFFFF">Tech &amp; Cloud</text>
+    <text x="372" y="226" fill="#A1A1AA">04</text>
+    <text x="458" y="226" fill="#22C55E">45.6%</text>
+    <text x="714" y="226" text-anchor="end" fill="#FFFFFF" font-weight="700">R$ 840,00</text>
+
+    <!-- Row 2 -->
+    <text x="114" y="258" fill="#E4E4E7">Food &amp; Dining</text>
+    <text x="372" y="258" fill="#A1A1AA">09</text>
+    <text x="458" y="258" fill="#38BDF8">31.5%</text>
+    <text x="714" y="258" text-anchor="end" fill="#E4E4E7" font-weight="700">R$ 580,00</text>
+
+    <!-- Row 3 -->
+    <text x="114" y="290" fill="#E4E4E7">Mobility &amp; Fuel</text>
+    <text x="372" y="290" fill="#A1A1AA">06</text>
+    <text x="458" y="290" fill="#F59E0B">22.9%</text>
+    <text x="714" y="290" text-anchor="end" fill="#E4E4E7" font-weight="700">R$ 420,00</text>
+
+    <line x1="110" y1="308" x2="718" y2="308" stroke="#27272A" stroke-width="1"/>
+    <text x="114" y="334" fill="#A1A1AA" font-weight="700">CURRENT INVOICE</text>
+    <text x="714" y="334" text-anchor="end" fill="#22C55E" font-size="13" font-weight="700">R$ 1.840,00</text>
+  </g>
+
+  <!-- Rich Limit Progress Panel -->
+  <rect x="92" y="372" width="528" height="128" rx="8" fill="#111215" stroke="#3F3F46" stroke-width="1.2"/>
+  <rect x="110" y="363" width="128" height="18" fill="#151619"/>
+  <text x="118" y="376" fill="#F4F4F5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" font-weight="700">CREDIT LIMIT</text>
+
+  <text x="114" y="408" fill="#E4E4E7" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5">Used: R$ 1.840,00</text>
+  <text x="598" y="408" text-anchor="end" fill="#A1A1AA" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5">Limit: R$ 5.000,00</text>
+
+  <!-- Segmented Terminal Bar -->
+  <rect x="114" y="424" width="484" height="16" rx="4" fill="#27272A"/>
+  <rect x="114" y="424" width="178" height="16" rx="4" fill="#22C55E"/>
+  <text x="114" y="468" fill="#22C55E" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700">36.8% utilized</text>
+  <text x="260" y="468" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">· Available: R$ 3.160,00</text>
+  <text x="114" y="488" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">[1] Add purchase  [2] Pay invoice  [3] Adjust limit</text>
+
+  <!-- Floating Matte-Black Credit Card Object -->
+  <g filter="url(#cardFloat)" transform="rotate(-3 780 444)">
+    <rect x="652" y="366" width="256" height="156" rx="16" fill="url(#metalCard)"/>
+    <rect x="652.5" y="366.5" width="255" height="155" rx="15.5" stroke="#FFFFFF" stroke-opacity="0.18"/>
+    <!-- Subtle diagonal sheen -->
+    <path d="M652 470L822 366H908V404L724 522H652V470Z" fill="#FFFFFF" fill-opacity="0.035"/>
+    <!-- EMV Chip -->
+    <rect x="676" y="390" width="34" height="24" rx="5" fill="#D4D4D8" fill-opacity="0.9"/>
+    <path d="M676 402H710M688 390V414M698 390V414" stroke="#52525B" stroke-width="1"/>
+    <!-- Contactless mark -->
+    <text x="884" y="406" text-anchor="end" fill="#A1A1AA" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="0.12em">VIRTUAL</text>
+    <!-- Card number -->
+    <text x="676" y="458" fill="#FFFFFF" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15.5" font-weight="600" letter-spacing="0.14em">•••• 4829</text>
+    <!-- Holder & status -->
+    <text x="676" y="496" fill="#A1A1AA" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" letter-spacing="0.08em">KAIKE RODRIGUES</text>
+    <circle cx="866" cy="492" r="9.5" fill="#FFFFFF" fill-opacity="0.85"/>
+    <circle cx="878" cy="492" r="9.5" fill="#A1A1AA" fill-opacity="0.65"/>
+  </g>
+</svg>

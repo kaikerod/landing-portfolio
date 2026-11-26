@@ -1,0 +1,122 @@
+<svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="canvasBg" x1="0" y1="0" x2="960" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F2F1EE"/>
+      <stop offset="1" stop-color="#E5E4DF"/>
+    </linearGradient>
+    <filter id="cardShadow" x="36" y="42" width="888" height="534" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#111111" flood-opacity="0.10"/>
+    </filter>
+    <linearGradient id="scoreArc" x1="650" y1="186" x2="778" y2="322" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#34D399"/>
+      <stop offset="1" stop-color="#10B981"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Studio neutral backdrop -->
+  <rect width="960" height="600" fill="url(#canvasBg)"/>
+  <g stroke="#111111" stroke-opacity="0.045" stroke-width="1">
+    <path d="M0 120H960M0 240H960M0 360H960M0 480H960"/>
+    <path d="M160 0V600M320 0V600M480 0V600M640 0V600M800 0V600"/>
+  </g>
+
+  <!-- Main App Window -->
+  <g filter="url(#cardShadow)">
+    <rect x="64" y="64" width="832" height="472" rx="20" fill="#FFFFFF"/>
+    <rect x="64.5" y="64.5" width="831" height="471" rx="19.5" stroke="#111111" stroke-opacity="0.09"/>
+  </g>
+
+  <!-- Top App Bar -->
+  <path d="M64 84C64 72.9543 72.9543 64 84 64H876C887.046 64 896 72.9543 896 84V118H64V84Z" fill="#FAFAFA"/>
+  <line x1="64" y1="118" x2="896" y2="118" stroke="#111111" stroke-opacity="0.08"/>
+
+  <!-- Brand & Navigation -->
+  <rect x="92" y="81" width="20" height="20" rx="6" fill="#111111"/>
+  <path d="M98 91H106M102 87V95" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  <text x="122" y="96" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" letter-spacing="-0.02em">Parserly</text>
+  <rect x="192" y="82" width="1" height="18" fill="#111111" fill-opacity="0.12"/>
+  <text x="208" y="95" fill="#6B7280" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="500">ATS Resume Intelligence</text>
+
+  <!-- Header Right Controls -->
+  <rect x="698" y="79" width="84" height="26" rx="13" fill="#ECFDF5" stroke="#10B981" stroke-opacity="0.25"/>
+  <circle cx="713" cy="92" r="3.5" fill="#10B981"/>
+  <text x="723" y="96" fill="#065F46" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">Parsed</text>
+  <rect x="792" y="79" width="80" height="26" rx="13" fill="#111111"/>
+  <text x="812" y="96" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">Export ↗</text>
+
+  <!-- Left Pane: PDF Resume Upload & Keyword Extraction -->
+  <rect x="92" y="142" width="388" height="368" rx="14" fill="#F8F8F7" stroke="#111111" stroke-opacity="0.07"/>
+
+  <!-- Uploaded File Header Card -->
+  <rect x="112" y="162" width="348" height="72" rx="12" fill="#FFFFFF" stroke="#111111" stroke-opacity="0.08"/>
+  <rect x="128" y="178" width="40" height="40" rx="10" fill="#111111"/>
+  <text x="137" y="202" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="700">PDF</text>
+  <text x="182" y="194" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="700">kaike_rodrigues_cv.pdf</text>
+  <text x="182" y="213" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="500">248 KB · 2 pages · Parsed in 1.4s</text>
+  <circle cx="436" cy="198" r="10" fill="#ECFDF5"/>
+  <path d="M431.5 198L434.8 201.3L441 194.8" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Extracted Resume Preview Box -->
+  <rect x="112" y="248" width="348" height="118" rx="12" fill="#FFFFFF" stroke="#111111" stroke-opacity="0.07"/>
+  <text x="130" y="272" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" letter-spacing="0.08em">DETECTED ROLE ALIGNMENT</text>
+  <text x="130" y="294" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="700">Full-Stack Engineer — Backend &amp; UI</text>
+  <rect x="130" y="308" width="290" height="7" rx="3.5" fill="#E4E4E7"/>
+  <rect x="130" y="324" width="246" height="7" rx="3.5" fill="#E4E4E7"/>
+  <rect x="130" y="340" width="188" height="7" rx="3.5" fill="#F1F1F3"/>
+
+  <!-- Keyword Match Pills -->
+  <text x="114" y="392" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" letter-spacing="0.08em">ATS KEYWORD SIGNALS (9 / 10 MATCHED)</text>
+  <g font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600">
+    <rect x="112" y="406" width="84" height="30" rx="15" fill="#FFFFFF" stroke="#10B981" stroke-opacity="0.45"/>
+    <text x="127" y="425" fill="#111111">FastAPI ✓</text>
+
+    <rect x="204" y="406" width="84" height="30" rx="15" fill="#FFFFFF" stroke="#10B981" stroke-opacity="0.45"/>
+    <text x="219" y="425" fill="#111111">Next.js ✓</text>
+
+    <rect x="296" y="406" width="110" height="30" rx="15" fill="#FFFFFF" stroke="#10B981" stroke-opacity="0.45"/>
+    <text x="311" y="425" fill="#111111">PostgreSQL ✓</text>
+
+    <rect x="112" y="446" width="106" height="30" rx="15" fill="#FFFFFF" stroke="#10B981" stroke-opacity="0.45"/>
+    <text x="127" y="465" fill="#111111">TypeScript ✓</text>
+
+    <rect x="226" y="446" width="86" height="30" rx="15" fill="#FFFFFF" stroke="#10B981" stroke-opacity="0.45"/>
+    <text x="242" y="465" fill="#111111">Python ✓</text>
+
+    <rect x="320" y="446" width="98" height="30" rx="15" fill="#FEF3C7" stroke="#F59E0B" stroke-opacity="0.4"/>
+    <text x="335" y="465" fill="#92400E">+ Docker</text>
+  </g>
+
+  <!-- Right Pane: Dark High-Contrast ATS Score Card -->
+  <rect x="500" y="142" width="368" height="368" rx="16" fill="#161618"/>
+  <rect x="500.5" y="142.5" width="367" height="367" rx="15.5" stroke="#FFFFFF" stroke-opacity="0.08"/>
+
+  <text x="528" y="176" fill="#A1A1AA" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" letter-spacing="0.09em">OVERALL ATS SCORE</text>
+  <rect x="760" y="160" width="82" height="24" rx="12" fill="#10B981" fill-opacity="0.16"/>
+  <text x="774" y="176" fill="#34D399" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">Top 12%</text>
+
+  <!-- Score Ring (86/100) -->
+  <!-- Circle r=68, C = 427.26, 86% = 367.44 -->
+  <circle cx="684" cy="272" r="68" stroke="#27272A" stroke-width="14"/>
+  <circle cx="684" cy="272" r="68" stroke="url(#scoreArc)" stroke-width="14" stroke-linecap="round"
+          stroke-dasharray="367.4 427.3" transform="rotate(-90 684 272)"/>
+  <text x="684" y="282" text-anchor="middle" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="44" font-weight="800" letter-spacing="-0.03em">86</text>
+  <text x="684" y="304" text-anchor="middle" fill="#A1A1AA" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">out of 100</text>
+
+  <!-- Metric Breakdown Bars -->
+  <g font-family="Inter, system-ui, -apple-system, sans-serif">
+    <text x="528" y="378" fill="#D4D4D8" font-size="12" font-weight="500">Keyword Relevance</text>
+    <text x="840" y="378" text-anchor="end" fill="#FFFFFF" font-size="12" font-weight="700">92%</text>
+    <rect x="528" y="387" width="312" height="6" rx="3" fill="#27272A"/>
+    <rect x="528" y="387" width="287" height="6" rx="3" fill="#10B981"/>
+
+    <text x="528" y="418" fill="#D4D4D8" font-size="12" font-weight="500">Section Structure</text>
+    <text x="840" y="418" text-anchor="end" fill="#FFFFFF" font-size="12" font-weight="700">88%</text>
+    <rect x="528" y="427" width="312" height="6" rx="3" fill="#27272A"/>
+    <rect x="528" y="427" width="274" height="6" rx="3" fill="#34D399"/>
+
+    <text x="528" y="458" fill="#D4D4D8" font-size="12" font-weight="500">Quantified Impact</text>
+    <text x="840" y="458" text-anchor="end" fill="#FFFFFF" font-size="12" font-weight="700">78%</text>
+    <rect x="528" y="467" width="312" height="6" rx="3" fill="#27272A"/>
+    <rect x="528" y="467" width="243" height="6" rx="3" fill="#F59E0B"/>
+  </g>
+</svg>
