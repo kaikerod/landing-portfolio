@@ -76,7 +76,10 @@ export function Hero() {
     }
   };
 
-  const handlePointerLeave = () => {
+  const handlePointerLeave = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== 'touch') {
+      updatePointerCoords(event);
+    }
     setIsSpotlightActive(false);
   };
 
@@ -93,18 +96,16 @@ export function Hero() {
 
   const showFullColor = isTouchRevealed || (prefersReducedMotion && isSpotlightActive);
   const spotlightMask =
-    !showFullColor && isSpotlightActive && !prefersReducedMotion
-      ? 'radial-gradient(circle 135px at var(--mx, 50%) var(--my, 42%), rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.92) 52%, rgba(0, 0, 0, 0) 100%)'
-      : undefined;
+    'radial-gradient(circle 135px at var(--mx, 50%) var(--my, 42%), rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.92) 52%, rgba(0, 0, 0, 0) 100%)';
 
-  const colorLayerStyle: CSSProperties = {
-    opacity: showFullColor || isSpotlightActive ? 1 : 0,
-    ...(spotlightMask
-      ? {
-          WebkitMaskImage: spotlightMask,
-          maskImage: spotlightMask,
-        }
-      : {}),
+  const spotlightLayerStyle: CSSProperties = {
+    opacity: isSpotlightActive && !prefersReducedMotion ? 1 : 0,
+    WebkitMaskImage: spotlightMask,
+    maskImage: spotlightMask,
+  };
+
+  const fullColorLayerStyle: CSSProperties = {
+    opacity: showFullColor ? 1 : 0,
   };
 
   return (
@@ -185,12 +186,23 @@ export function Hero() {
                 className="pointer-events-none block h-auto max-h-[430px] w-full object-contain object-bottom grayscale contrast-[1.05] sm:max-h-[490px] lg:max-h-[580px] xl:max-h-[640px]"
               />
 
-              {/* Full-color radial spotlight layer */}
+              {/* Radial color spotlight layer (mask stays attached during fade-out) */}
+              {!prefersReducedMotion && (
+                <img
+                  src={SITE_META.portraitSrc}
+                  alt=""
+                  aria-hidden="true"
+                  style={spotlightLayerStyle}
+                  className="pointer-events-none absolute inset-0 block h-full w-full object-contain object-bottom transition-opacity duration-300 ease-out"
+                />
+              )}
+
+              {/* Full-color reveal layer (click/tap toggle or reduced-motion hover) */}
               <img
                 src={SITE_META.portraitSrc}
                 alt=""
                 aria-hidden="true"
-                style={colorLayerStyle}
+                style={fullColorLayerStyle}
                 className="pointer-events-none absolute inset-0 block h-full w-full object-contain object-bottom transition-opacity duration-300 ease-out"
               />
             </div>
