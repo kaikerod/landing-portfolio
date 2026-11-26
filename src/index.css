@@ -31,6 +31,7 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
   background-color: var(--surface-primary);
   color: var(--ink-primary);
   font-family: var(--font-sans);

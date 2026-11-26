@@ -21,7 +21,7 @@ export function Footer() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="border-t border-neutral-900/10 bg-[#f5f5f5]"
+      className="border-t border-neutral-900/10 bg-[#f5f5f5] [contain:layout_style]"
     >
       <div className="mx-auto flex max-w-[1320px] flex-col items-center justify-between gap-5 px-5 py-8 sm:flex-row sm:px-8 md:py-9 lg:px-12">
         <p className="text-sm font-normal tracking-tight text-[#5c5c5c]">

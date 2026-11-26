@@ -12,7 +12,7 @@ export function ContactCta() {
     <section
       id="contato"
       aria-labelledby="contact-heading"
-      className="relative overflow-hidden bg-[#f5f5f5] pt-28 pb-24 [contain:layout_paint] md:pt-36 md:pb-32"
+      className="relative overflow-hidden bg-[#f5f5f5] pt-28 pb-24 [contain:layout_style_paint] md:pt-36 md:pb-32"
     >
       {/* Subtle Top Editorial Fade */}
       <div
