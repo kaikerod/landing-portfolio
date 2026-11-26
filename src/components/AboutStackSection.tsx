@@ -134,7 +134,7 @@ export function AboutStackSection() {
     <section
       id="sobre"
       aria-labelledby="about-stack-heading"
-      className="relative overflow-x-clip bg-[#1c1c1c] py-24 text-white md:py-32"
+      className="relative overflow-x-clip bg-[#1c1c1c] py-24 text-white [contain:layout_style] md:py-32"
     >
       <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
         {/* Header Row with Subtle Dark Watermark & Stats */}

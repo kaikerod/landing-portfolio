@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { MotionConfig } from 'motion/react';
 import type { Project } from './data/portfolio';
 import { Header } from './components/Header';
@@ -10,24 +10,33 @@ import { ContactCta } from './components/ContactCta';
 import { Footer } from './components/Footer';
 import { ProjectModal } from './components/ProjectModal';
 
+const MemoHeader = memo(Header);
+const MemoHero = memo(Hero);
+const MemoSelectedWork = memo(SelectedWork);
+const MemoServicesSection = memo(ServicesSection);
+const MemoAboutStackSection = memo(AboutStackSection);
+const MemoContactCta = memo(ContactCta);
+const MemoFooter = memo(Footer);
+
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const handleCloseProject = useCallback(() => setSelectedProject(null), []);
 
   return (
     <MotionConfig reducedMotion="user">
       <div className="min-h-screen bg-[#f5f5f5] text-[#111111] antialiased">
-        <Header />
+        <MemoHeader />
         <main>
-          <Hero />
-          <SelectedWork onSelectProject={setSelectedProject} />
-          <ServicesSection />
-          <AboutStackSection />
-          <ContactCta />
+          <MemoHero />
+          <MemoSelectedWork onSelectProject={setSelectedProject} />
+          <MemoServicesSection />
+          <MemoAboutStackSection />
+          <MemoContactCta />
         </main>
-        <Footer />
+        <MemoFooter />
         <ProjectModal
           project={selectedProject}
-          onClose={() => setSelectedProject(null)}
+          onClose={handleCloseProject}
         />
       </div>
     </MotionConfig>
