@@ -1,0 +1,141 @@
+<svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgDark" x1="0" y1="0" x2="960" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#17181B"/>
+      <stop offset="1" stop-color="#101113"/>
+    </linearGradient>
+    <filter id="winShadow" x="38" y="46" width="884" height="528" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="20" stdDeviation="20" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Deep Charcoal Editorial Backdrop -->
+  <rect width="960" height="600" fill="url(#bgDark)"/>
+  <g stroke="#FFFFFF" stroke-opacity="0.035" stroke-width="1">
+    <path d="M0 150H960M0 300H960M0 450H960"/>
+    <path d="M192 0V600M384 0V600M576 0V600M768 0V600"/>
+  </g>
+
+  <!-- Audit Platform Frame -->
+  <g filter="url(#winShadow)">
+    <rect x="64" y="66" width="832" height="468" rx="18" fill="#1C1D21"/>
+    <rect x="64.5" y="66.5" width="831" height="467" rx="17.5" stroke="#FFFFFF" stroke-opacity="0.09"/>
+  </g>
+
+  <!-- Header Bar -->
+  <path d="M64 84C64 74.0589 72.0589 66 82 66H878C887.941 66 896 74.0589 896 84V120H64V84Z" fill="#16171A"/>
+  <line x1="64" y1="120" x2="896" y2="120" stroke="#FFFFFF" stroke-opacity="0.08"/>
+
+  <rect x="90" y="83" width="20" height="20" rx="5" fill="#FFFFFF"/>
+  <path d="M96 90H104M96 94H102M96 98H104" stroke="#111111" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="120" y="98" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="700">DocAudit</text>
+  <text x="196" y="97" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="500">/ Fiscal Batch #2026-04</text>
+
+  <!-- Header Status Chips -->
+  <rect x="646" y="80" width="112" height="26" rx="13" fill="#10B981" fill-opacity="0.14" stroke="#10B981" stroke-opacity="0.3"/>
+  <circle cx="660" cy="93" r="3.5" fill="#10B981"/>
+  <text x="670" y="97" fill="#6EE7B7" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">139 Verified</text>
+
+  <rect x="768" y="80" width="104" height="26" rx="13" fill="#F59E0B" fill-opacity="0.14" stroke="#F59E0B" stroke-opacity="0.35"/>
+  <circle cx="782" cy="93" r="3.5" fill="#F59E0B"/>
+  <text x="792" y="97" fill="#FCD34D" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">3 Flagged</text>
+
+  <!-- Left Queue Sidebar -->
+  <rect x="86" y="140" width="224" height="370" rx="12" fill="#151619" stroke="#FFFFFF" stroke-opacity="0.06"/>
+  <text x="104" y="168" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" letter-spacing="0.08em">DOCUMENT QUEUE</text>
+
+  <!-- Queue Item 1 (Active / Flagged) -->
+  <rect x="98" y="182" width="200" height="62" rx="10" fill="#23252B" stroke="#F59E0B" stroke-opacity="0.45"/>
+  <text x="112" y="204" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700">NF-004821.xml</text>
+  <text x="112" y="224" fill="#A1A1AA" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11">R$ 18.420,00</text>
+  <rect x="226" y="210" width="60" height="20" rx="10" fill="#F59E0B" fill-opacity="0.18"/>
+  <text x="256" y="224" text-anchor="middle" fill="#FCD34D" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10" font-weight="700">ANOMALY</text>
+
+  <!-- Queue Item 2 -->
+  <rect x="98" y="254" width="200" height="58" rx="10" fill="#1A1B20" stroke="#FFFFFF" stroke-opacity="0.05"/>
+  <text x="112" y="276" fill="#E4E4E7" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="600">INV-99204.pdf</text>
+  <text x="112" y="295" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11">R$ 6.150,00</text>
+  <circle cx="278" cy="283" r="4" fill="#10B981"/>
+
+  <!-- Queue Item 3 -->
+  <rect x="98" y="322" width="200" height="58" rx="10" fill="#1A1B20" stroke="#FFFFFF" stroke-opacity="0.05"/>
+  <text x="112" y="344" fill="#E4E4E7" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="600">TAX-0419.txt</text>
+  <text x="112" y="363" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11">R$ 42.900,00</text>
+  <circle cx="278" cy="351" r="4" fill="#EF4444"/>
+
+  <!-- Queue Item 4 -->
+  <rect x="98" y="390" width="200" height="58" rx="10" fill="#1A1B20" stroke="#FFFFFF" stroke-opacity="0.05"/>
+  <text x="112" y="412" fill="#E4E4E7" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="600">BATCH-Q1.zip</text>
+  <text x="112" y="431" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11">138 records · OK</text>
+  <circle cx="278" cy="419" r="4" fill="#10B981"/>
+
+  <!-- Bottom Storage Indicator -->
+  <text x="112" y="484" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5">PostgreSQL · SHA-256</text>
+
+  <!-- Right Main Panel: Structured Field Extraction Table -->
+  <rect x="330" y="140" width="544" height="270" rx="12" fill="#151619" stroke="#FFFFFF" stroke-opacity="0.07"/>
+  <text x="352" y="170" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="700">Structured Field Extraction</text>
+  <text x="852" y="170" text-anchor="end" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">NF-004821.xml</text>
+
+  <!-- Table Header -->
+  <rect x="348" y="186" width="508" height="30" rx="6" fill="#202227"/>
+  <g fill="#A1A1AA" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" letter-spacing="0.06em">
+    <text x="364" y="205">FIELD</text>
+    <text x="500" y="205">EXTRACTED VALUE</text>
+    <text x="692" y="205">CONF.</text>
+    <text x="766" y="205">STATUS</text>
+  </g>
+
+  <!-- Table Rows -->
+  <g font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12">
+    <!-- Row 1 -->
+    <text x="364" y="242" fill="#A1A1AA" font-weight="500">Issuer Tax ID</text>
+    <text x="500" y="242" fill="#F4F4F5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5">27.865.757/0001-02</text>
+    <text x="692" y="242" fill="#D4D4D8" font-weight="600">99.4%</text>
+    <rect x="766" y="227" width="70" height="22" rx="11" fill="#10B981" fill-opacity="0.16"/>
+    <text x="801" y="242" text-anchor="middle" fill="#6EE7B7" font-size="10.5" font-weight="600">Valid</text>
+    <line x1="348" y1="258" x2="856" y2="258" stroke="#FFFFFF" stroke-opacity="0.06"/>
+
+    <!-- Row 2 -->
+    <text x="364" y="286" fill="#A1A1AA" font-weight="500">Gross Amount</text>
+    <text x="500" y="286" fill="#F4F4F5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5">R$ 18.420,00</text>
+    <text x="692" y="286" fill="#D4D4D8" font-weight="600">98.8%</text>
+    <rect x="766" y="271" width="70" height="22" rx="11" fill="#10B981" fill-opacity="0.16"/>
+    <text x="801" y="286" text-anchor="middle" fill="#6EE7B7" font-size="10.5" font-weight="600">Valid</text>
+    <line x1="348" y1="302" x2="856" y2="302" stroke="#FFFFFF" stroke-opacity="0.06"/>
+
+    <!-- Row 3 (Anomaly Highlight) -->
+    <rect x="348" y="306" width="508" height="44" rx="6" fill="#F59E0B" fill-opacity="0.08"/>
+    <text x="364" y="332" fill="#FDE68A" font-weight="600">ICMS Tax Rate</text>
+    <text x="500" y="332" fill="#FFFFFF" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5">22.5% (exp. 18.0%)</text>
+    <text x="692" y="332" fill="#FCD34D" font-weight="700">94.1%</text>
+    <rect x="766" y="317" width="70" height="22" rx="11" fill="#F59E0B" fill-opacity="0.22"/>
+    <text x="801" y="332" text-anchor="middle" fill="#FCD34D" font-size="10.5" font-weight="700">Flagged</text>
+
+    <!-- Row 4 -->
+    <text x="364" y="378" fill="#A1A1AA" font-weight="500">Issue Date</text>
+    <text x="500" y="378" fill="#F4F4F5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5">2026-03-14 14:22Z</text>
+    <text x="692" y="378" fill="#D4D4D8" font-weight="600">99.9%</text>
+    <rect x="766" y="363" width="70" height="22" rx="11" fill="#10B981" fill-opacity="0.16"/>
+    <text x="801" y="378" text-anchor="middle" fill="#6EE7B7" font-size="10.5" font-weight="600">Valid</text>
+  </g>
+
+  <!-- Bottom Audit Trail Strip -->
+  <rect x="330" y="426" width="544" height="84" rx="12" fill="#151619" stroke="#FFFFFF" stroke-opacity="0.07"/>
+  <text x="352" y="449" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" letter-spacing="0.08em">IMMUTABLE AUDIT TRAIL</text>
+
+  <line x1="364" y1="468" x2="520" y2="468" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="1.5"/>
+  <line x1="532" y1="468" x2="688" y2="468" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="1.5"/>
+  <circle cx="358" cy="468" r="4.5" fill="#10B981"/>
+  <circle cx="526" cy="468" r="4.5" fill="#10B981"/>
+  <circle cx="694" cy="468" r="4.5" fill="#F59E0B"/>
+
+  <text x="354" y="489" fill="#D4D4D8" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">Ingested</text>
+  <text x="354" y="502" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5">14:22:01Z</text>
+
+  <text x="522" y="489" fill="#D4D4D8" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">LLM Parsed</text>
+  <text x="522" y="502" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5">14:22:03Z</text>
+
+  <text x="690" y="489" fill="#FCD34D" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">Rule Alert #04</text>
+  <text x="690" y="502" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5">logged → pg_audit</text>
+</svg>

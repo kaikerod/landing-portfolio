@@ -2,54 +2,74 @@
 
 ## Português
 
-Portfolio pessoal estático de Kaike Rodrigues, com foco em projetos, habilidades e contato.
+Portfólio pessoal de **Kaike Rodrigues** construído com **Vite**, **React**, **TypeScript**, **Tailwind CSS v4**, **Motion (Framer Motion)** e **Lucide React**, seguindo uma direção editorial minimalista com alto contraste tipográfico, retrato com efeito spotlight colorido, grade interativa de projetos com modal de detalhes, acordeão de serviços e seção escura de stack.
+
+### Stack
+
+- **Build & Dev**: Vite + TypeScript
+- **UI & Estilos**: React + Tailwind CSS v4 (`@tailwindcss/vite`)
+- **Animações**: `motion` (`motion/react` com suporte a `prefers-reduced-motion`)
+- **Ícones**: `lucide-react`
+- **Gerenciador de pacotes**: `pnpm`
 
 ### Estrutura
 
-- `index.html`: conteúdo e estrutura da página.
-- `style.css`: estilos globais, layout e responsividade.
-- `script.js`: interações da interface.
-- `img/`: imagens e capturas dos projetos.
-- `translate.py`: utilitário para substituir textos localizados no HTML.
+- `index.html`: entrada Vite (fontes Google, favicon e metadados SEO/OG).
+- `src/main.tsx` e `src/App.tsx`: inicialização React e composição principal.
+- `src/index.css`: Tailwind CSS v4, tokens editoriais e utilitários tipográficos.
+- `src/data/portfolio.ts`: dados tipados de projetos, serviços, stack e contatos.
+- `src/components/`: componentes das seções (`Header`, `Hero`, `SelectedWork`, `ProjectModal`, `ServicesSection`, `AboutStackSection`, `ContactCta`, `Footer`).
+- `public/img/`: retrato recortado (`portrait.png`), `favicon.svg` e os 8 SVGs dos projetos.
 
 ### Como executar
 
-Abra o projeto em um servidor local simples:
-
 ```bash
-python -m http.server 8000
+pnpm install
+pnpm dev
 ```
 
-Depois acesse `http://localhost:8000` no navegador.
+Para validar tipagem e gerar o build de produção (`dist/`, pronto para deploy na Vercel ou Netlify):
 
-### Observações
+```bash
+pnpm exec tsc --noEmit
+pnpm build
+pnpm preview
+```
 
-- Não há dependências ou build step.
-- As alterações principais devem seguir a separação entre conteúdo, estilo e comportamento.
+---
 
 ## English
 
-Static personal portfolio for Kaike Rodrigues, focused on projects, skills, and contact.
+Personal portfolio for **Kaike Rodrigues** built with **Vite**, **React**, **TypeScript**, **Tailwind CSS v4**, **Motion (Framer Motion)**, and **Lucide React**, featuring an editorial minimalist layout, color-spotlight portrait hero, filterable project grid with detail modal, interactive services accordion, and a high-contrast dark stack section.
+
+### Stack
+
+- **Build & Dev**: Vite + TypeScript
+- **UI & Styling**: React + Tailwind CSS v4 (`@tailwindcss/vite`)
+- **Motion**: `motion` (`motion/react` with `prefers-reduced-motion` support)
+- **Icons**: `lucide-react`
+- **Package Manager**: `pnpm`
 
 ### Structure
 
-- `index.html`: page content and structure.
-- `style.css`: global styles, layout, and responsiveness.
-- `script.js`: interface interactions.
-- `img/`: project images and screenshots.
-- `translate.py`: helper script used to replace localized text in the HTML.
+- `index.html`: Vite entry point (Google Fonts, favicon, and SEO/OG meta tags).
+- `src/main.tsx` & `src/App.tsx`: React root and top-level layout composition.
+- `src/index.css`: Tailwind CSS v4 setup, editorial theme tokens, and display typography helpers.
+- `src/data/portfolio.ts`: Typed portfolio data for projects, services, stack items, and social links.
+- `src/components/`: Section and modal components (`Header`, `Hero`, `SelectedWork`, `ProjectModal`, `ServicesSection`, `AboutStackSection`, `ContactCta`, `Footer`).
+- `public/img/`: Hero cutout portrait (`portrait.png`), `favicon.svg`, and 8 redesigned project SVGs.
 
 ### How to run
 
-Serve the project with a simple local server:
-
 ```bash
-python -m http.server 8000
+pnpm install
+pnpm dev
 ```
 
-Then open `http://localhost:8000` in the browser.
+To typecheck and build for production (`dist/`, ready for Vercel or Netlify):
 
-### Notes
-
-- There are no dependencies or build steps.
-- Main changes should stay separated by content, style, and behavior.
+```bash
+pnpm exec tsc --noEmit
+pnpm build
+pnpm preview
+```

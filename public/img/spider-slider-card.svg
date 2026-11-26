@@ -1,0 +1,99 @@
+<svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="stageBg" x1="0" y1="0" x2="960" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#17171A"/>
+      <stop offset="1" stop-color="#0E0E10"/>
+    </linearGradient>
+    <linearGradient id="crimsonCard" x1="330" y1="104" x2="630" y2="486" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#DC2626"/>
+      <stop offset="1" stop-color="#991B1B"/>
+    </linearGradient>
+    <filter id="heroCardShadow" x="296" y="84" width="368" height="444" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <!-- Editorial Dark Stage -->
+  <rect width="960" height="600" fill="url(#stageBg)"/>
+
+  <!-- Giant Subtle Editorial Watermark -->
+  <text x="480" y="346" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.04" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="184" font-weight="900" letter-spacing="-0.05em">SPIDER</text>
+
+  <!-- Top Editorial Metadata Bar -->
+  <line x1="64" y1="74" x2="896" y2="74" stroke="#FFFFFF" stroke-opacity="0.1"/>
+  <text x="896" y="58" text-anchor="end" fill="#A1A1AA" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600" letter-spacing="0.12em">CHARACTER SLIDER · 01 / 03</text>
+
+  <!-- Left Peeking Card (03 - Miles / Monochrome Dark) -->
+  <g opacity="0.65">
+    <rect x="64" y="142" width="218" height="316" rx="18" fill="#1F1F24" stroke="#FFFFFF" stroke-opacity="0.1"/>
+    <text x="88" y="176" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="700">03</text>
+    <!-- Subtle Geometric Web Motif -->
+    <circle cx="173" cy="274" r="56" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1.2"/>
+    <circle cx="173" cy="274" r="34" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1.2"/>
+    <path d="M117 274H229M173 218V330M133 234L213 314M213 234L133 314" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1.2"/>
+    <!-- Minimalist Mask Eyes -->
+    <path d="M138 268C146 258 158 260 165 272C155 276 144 275 138 268Z" fill="#DC2626"/>
+    <path d="M208 268C200 258 188 260 181 272C191 276 202 275 208 268Z" fill="#DC2626"/>
+    <text x="88" y="406" fill="#E4E4E7" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="15" font-weight="700">Miles Morales</text>
+    <text x="88" y="426" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5">Earth-1610</text>
+  </g>
+
+  <!-- Right Peeking Card (02 - Spider-Gwen / Off-White Editorial) -->
+  <g opacity="0.72">
+    <rect x="678" y="142" width="218" height="316" rx="18" fill="#F4F3EF" stroke="#FFFFFF" stroke-opacity="0.16"/>
+    <text x="702" y="176" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="700">02</text>
+    <circle cx="787" cy="274" r="56" stroke="#111111" stroke-opacity="0.09" stroke-width="1.2"/>
+    <circle cx="787" cy="274" r="34" stroke="#111111" stroke-opacity="0.09" stroke-width="1.2"/>
+    <path d="M731 274H843M787 218V330M747 234L827 314M827 234L747 314" stroke="#111111" stroke-opacity="0.07" stroke-width="1.2"/>
+    <path d="M752 268C760 257 773 260 779 272C769 277 758 275 752 268Z" fill="#111111"/>
+    <path d="M822 268C814 257 801 260 795 272C805 277 816 275 822 268Z" fill="#111111"/>
+    <text x="702" y="406" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="15" font-weight="700">Ghost-Spider</text>
+    <text x="702" y="426" fill="#52525B" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5">Earth-65</text>
+  </g>
+
+  <!-- Center Active Spotlight Card (01 - Peter Parker) -->
+  <g filter="url(#heroCardShadow)">
+    <rect x="326" y="100" width="308" height="392" rx="22" fill="url(#crimsonCard)"/>
+    <rect x="326.5" y="100.5" width="307" height="391" rx="21.5" stroke="#FFFFFF" stroke-opacity="0.22"/>
+  </g>
+
+  <!-- Web Radial Pattern inside Center Card -->
+  <g stroke="#111111" stroke-opacity="0.18" stroke-width="1.3">
+    <circle cx="480" cy="264" r="118"/>
+    <circle cx="480" cy="264" r="82"/>
+    <circle cx="480" cy="264" r="46"/>
+    <path d="M362 264H598M480 146V382M396 180L564 348M564 180L396 348"/>
+  </g>
+
+  <!-- Top Row inside Active Card -->
+  <text x="354" y="136" fill="#FFFFFF" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700">01 / ACTIVE</text>
+  <rect x="536" y="119" width="70" height="24" rx="12" fill="#111111" fill-opacity="0.35"/>
+  <text x="571" y="135" text-anchor="middle" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700">616</text>
+
+  <!-- Iconic Graphic Mask Lenses -->
+  <path d="M394 244C412 222 444 228 462 256C446 276 414 276 394 244Z" fill="#111111"/>
+  <path d="M405 245C419 231 440 235 452 254C440 266 418 266 405 245Z" fill="#FFFFFF"/>
+
+  <path d="M566 244C548 222 516 228 498 256C514 276 546 276 566 244Z" fill="#111111"/>
+  <path d="M555 245C541 231 520 235 508 254C520 266 542 266 555 245Z" fill="#FFFFFF"/>
+
+  <!-- Active Card Footer Content -->
+  <rect x="348" y="380" width="264" height="88" rx="14" fill="#111111" fill-opacity="0.82"/>
+  <text x="368" y="410" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" letter-spacing="-0.02em">Peter Parker</text>
+  <text x="368" y="432" fill="#D4D4D8" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12">Classic Suit · Interactive Slide</text>
+  <circle cx="586" cy="424" r="16" fill="#FFFFFF"/>
+  <path d="M582 428L590 420M583 420H590V427" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Carousel Navigation Arrows & Indicators -->
+  <circle cx="294" cy="296" r="22" fill="#FFFFFF"/>
+  <path d="M298 289L291 296L298 303" stroke="#111111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="666" cy="296" r="22" fill="#FFFFFF"/>
+  <path d="M662 289L669 296L662 303" stroke="#111111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Bottom Editorial Progress Bar -->
+  <text x="380" y="544" fill="#FFFFFF" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" font-weight="700">01</text>
+  <rect x="408" y="538" width="144" height="4" rx="2" fill="#FFFFFF" fill-opacity="0.16"/>
+  <rect x="408" y="538" width="52" height="4" rx="2" fill="#DC2626"/>
+  <text x="564" y="544" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" font-weight="700">03</text>
+</svg>

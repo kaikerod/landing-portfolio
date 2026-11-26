@@ -1,0 +1,89 @@
+<svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="loginCanvas" x1="0" y1="0" x2="960" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#EFEFEF"/>
+      <stop offset="1" stop-color="#E4E5E9"/>
+    </linearGradient>
+    <filter id="authShadow" x="62" y="46" width="836" height="528" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="20" stdDeviation="20" flood-color="#111111" flood-opacity="0.11"/>
+    </filter>
+  </defs>
+
+  <!-- Cool Architectural Neutral Canvas -->
+  <rect width="960" height="600" fill="url(#loginCanvas)"/>
+  <g stroke="#111111" stroke-opacity="0.04" stroke-width="1">
+    <path d="M0 120H960M0 240H960M0 360H960M0 480H960"/>
+    <path d="M160 0V600M320 0V600M480 0V600M640 0V600M800 0V600"/>
+  </g>
+
+  <!-- Split Authentication Shell -->
+  <g filter="url(#authShadow)">
+    <rect x="92" y="68" width="776" height="464" rx="22" fill="#FFFFFF"/>
+    <rect x="92.5" y="68.5" width="775" height="463" rx="21.5" stroke="#111111" stroke-opacity="0.09"/>
+  </g>
+
+  <!-- Left Dark Editorial Panel -->
+  <path d="M92 90C92 77.8497 101.85 68 114 68H422V532H114C101.85 532 92 522.15 92 510V90Z" fill="#161618"/>
+  <!-- Subtle Geometric Pattern on Dark Panel -->
+  <g stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="1">
+    <circle cx="256" cy="272" r="118"/>
+    <circle cx="256" cy="272" r="76"/>
+    <line x1="138" y1="272" x2="374" y2="272"/>
+    <line x1="256" y1="154" x2="256" y2="390"/>
+  </g>
+  <!-- Minimal Brand Mark -->
+  <rect x="130" y="106" width="28" height="28" rx="8" fill="#FFFFFF"/>
+  <circle cx="144" cy="120" r="5" fill="#111111"/>
+  <text x="168" y="125" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" letter-spacing="-0.01em">Workspace</text>
+
+  <!-- Editorial Statement -->
+  <text x="130" y="420" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" letter-spacing="-0.02em">Focused access,</text>
+  <text x="130" y="448" fill="#A1A1AA" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" letter-spacing="-0.02em">zero visual noise.</text>
+  <text x="130" y="492" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">HTML5 · CSS3 · AUTH UI</text>
+
+  <!-- Right Minimalist Login Form -->
+  <text x="476" y="144" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="26" font-weight="800" letter-spacing="-0.03em">Welcome back</text>
+  <text x="476" y="170" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="13">Sign in to continue to your dashboard.</text>
+
+  <!-- Email Field -->
+  <text x="476" y="210" fill="#3F3F46" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600">Email address</text>
+  <rect x="476" y="220" width="336" height="46" rx="12" fill="#FAFAFA" stroke="#111111" stroke-opacity="0.14" stroke-width="1.2"/>
+  <!-- User / Mail Icon -->
+  <rect x="494" y="236" width="16" height="12" rx="2.5" stroke="#71717A" stroke-width="1.5"/>
+  <path d="M495 238L502 243L509 238" stroke="#71717A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="522" y="248" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="13" font-weight="500">kaike@studio.dev</text>
+
+  <!-- Password Field -->
+  <text x="476" y="294" fill="#3F3F46" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600">Password</text>
+  <rect x="476" y="304" width="336" height="46" rx="12" fill="#FFFFFF" stroke="#111111" stroke-width="1.6"/>
+  <!-- Lock Icon -->
+  <rect x="495" y="325" width="14" height="10" rx="2" stroke="#111111" stroke-width="1.5"/>
+  <path d="M498 325V321C498 318.8 499.8 317 502 317C504.2 317 506 318.8 506 321V325" stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Password Dots -->
+  <g fill="#111111">
+    <circle cx="526" cy="327" r="3"/>
+    <circle cx="538" cy="327" r="3"/>
+    <circle cx="550" cy="327" r="3"/>
+    <circle cx="562" cy="327" r="3"/>
+    <circle cx="574" cy="327" r="3"/>
+    <circle cx="586" cy="327" r="3"/>
+    <circle cx="598" cy="327" r="3"/>
+    <circle cx="610" cy="327" r="3"/>
+  </g>
+  <!-- Eye Icon -->
+  <path d="M782 327C784.8 322.8 789.2 320.5 794 320.5C798.8 320.5 803.2 322.8 806 327C803.2 331.2 798.8 333.5 794 333.5C789.2 333.5 784.8 331.2 782 327Z" stroke="#71717A" stroke-width="1.5"/>
+  <circle cx="794" cy="327" r="2.2" fill="#71717A"/>
+
+  <!-- Remember & Forgot Row -->
+  <rect x="476" y="368" width="16" height="16" rx="4" fill="#111111"/>
+  <path d="M480 376L483 379L488 373" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="500" y="380" fill="#52525B" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="500">Remember me</text>
+  <text x="812" y="380" text-anchor="end" fill="#111111" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="600">Forgot password?</text>
+
+  <!-- Primary Sign In Button -->
+  <rect x="476" y="406" width="336" height="46" rx="23" fill="#111111"/>
+  <text x="644" y="434" text-anchor="middle" fill="#FFFFFF" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="600">Sign in →</text>
+
+  <!-- Footer Register Line -->
+  <text x="644" y="486" text-anchor="middle" fill="#71717A" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12">Don't have an account? <tspan fill="#111111" font-weight="700">Create one</tspan></text>
+</svg>

@@ -1,0 +1,107 @@
+<svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="warmCanvas" x1="0" y1="0" x2="960" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F4EFE6"/>
+      <stop offset="1" stop-color="#E8DFD2"/>
+    </linearGradient>
+    <radialGradient id="espressoCrema" cx="0.45" cy="0.4" r="0.6">
+      <stop offset="0" stop-color="#8C5A3C"/>
+      <stop offset="0.55" stop-color="#4A2C1D"/>
+      <stop offset="1" stop-color="#2A170F"/>
+    </radialGradient>
+    <filter id="coffeeCardShadow" x="38" y="42" width="884" height="532" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#3B2416" flood-opacity="0.12"/>
+    </filter>
+    <filter id="cupShadow" x="536" y="186" width="268" height="268" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="8" dy="18" stdDeviation="16" flood-color="#2D1B12" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- Warm Minimalist Oat Backdrop -->
+  <rect width="960" height="600" fill="url(#warmCanvas)"/>
+
+  <!-- Editorial Landing Page Frame -->
+  <g filter="url(#coffeeCardShadow)">
+    <rect x="64" y="64" width="832" height="472" rx="22" fill="#FAF7F2"/>
+    <rect x="64.5" y="64.5" width="831" height="471" rx="21.5" stroke="#2D1B12" stroke-opacity="0.08"/>
+  </g>
+
+  <!-- Minimalist Top Navigation -->
+  <text x="104" y="108" fill="#1F1713" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="700" letter-spacing="0.08em">KOFFEE.</text>
+  <g fill="#78685E" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12" font-weight="500">
+    <text x="580" y="107">Menu</text>
+    <text x="646" y="107">Roasts</text>
+    <text x="718" y="107">Story</text>
+  </g>
+  <rect x="782" y="88" width="76" height="28" rx="14" fill="#1F1713"/>
+  <text x="820" y="106" text-anchor="middle" fill="#FAF7F2" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">Bag (1)</text>
+  <line x1="104" y1="130" x2="856" y2="130" stroke="#2D1B12" stroke-opacity="0.09"/>
+
+  <!-- Left Editorial Product Copy & Pricing -->
+  <text x="104" y="176" fill="#9A6B4C" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" letter-spacing="0.14em">SINGLE ORIGIN · SEASONAL</text>
+  <text x="104" y="226" fill="#1F1713" font-family="Georgia, 'Times New Roman', serif" font-size="44" font-weight="700" letter-spacing="-0.02em">Morning Set</text>
+  <text x="104" y="264" fill="#635349" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="400">Velvety Ethiopian pour-over paired with</text>
+  <text x="104" y="286" fill="#635349" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="14" font-weight="400">two warm dark-chocolate sea salt cookies.</text>
+
+  <!-- Price Hierarchy -->
+  <text x="104" y="346" fill="#1F1713" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="36" font-weight="800" letter-spacing="-0.03em">$14.50</text>
+  <text x="234" y="344" fill="#A09086" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="13" font-weight="500">Served fresh · 320 kcal</text>
+
+  <!-- Roast & Size Pills -->
+  <rect x="104" y="372" width="76" height="32" rx="16" fill="#1F1713"/>
+  <text x="142" y="392" text-anchor="middle" fill="#FAF7F2" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600">250 ml</text>
+
+  <rect x="190" y="372" width="76" height="32" rx="16" fill="#FFFFFF" stroke="#2D1B12" stroke-opacity="0.14"/>
+  <text x="228" y="392" text-anchor="middle" fill="#5C4D44" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600">350 ml</text>
+
+  <rect x="276" y="372" width="112" height="32" rx="16" fill="#FFFFFF" stroke="#2D1B12" stroke-opacity="0.14"/>
+  <text x="332" y="392" text-anchor="middle" fill="#5C4D44" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600">Oat Milk +$1</text>
+
+  <!-- Primary CTA Button -->
+  <rect x="104" y="430" width="194" height="48" rx="24" fill="#1F1713"/>
+  <text x="184" y="459" text-anchor="middle" fill="#FAF7F2" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="600">Order Morning Set</text>
+  <path d="M266 458L274 450M267 450H274V457" stroke="#FAF7F2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Right Studio Illustration Stage -->
+  <rect x="488" y="156" width="368" height="346" rx="18" fill="#EFE7DB"/>
+
+  <!-- Overhead Matte Ceramic Cup & Saucer -->
+  <g filter="url(#cupShadow)">
+    <!-- Saucer -->
+    <circle cx="654" cy="296" r="102" fill="#FAF7F2" stroke="#E2D6C5" stroke-width="2"/>
+    <circle cx="654" cy="296" r="76" fill="none" stroke="#E5D9C8" stroke-width="1.5"/>
+    <!-- Cup Handle -->
+    <rect x="720" y="282" width="40" height="24" rx="12" fill="#FFFFFF" stroke="#E2D6C5" stroke-width="2"/>
+    <!-- Cup Rim -->
+    <circle cx="654" cy="296" r="74" fill="#FFFFFF"/>
+    <!-- Espresso & Crema -->
+    <circle cx="654" cy="296" r="62" fill="url(#espressoCrema)"/>
+    <!-- Delicate Latte Rosetta Swirl -->
+    <path d="M626 292C636 276 664 274 680 286C666 294 646 296 626 292Z" fill="#F3E5D4" fill-opacity="0.88"/>
+    <path d="M636 308C646 298 668 298 678 308C666 316 648 316 636 308Z" fill="#F3E5D4" fill-opacity="0.72"/>
+    <circle cx="656" cy="272" r="5" fill="#F3E5D4" fill-opacity="0.82"/>
+  </g>
+
+  <!-- Artisan Dark Chocolate Cookies -->
+  <g>
+    <!-- Cookie 1 -->
+    <circle cx="764" cy="416" r="40" fill="#B67C4E"/>
+    <circle cx="764" cy="416" r="36" fill="#C48A5A"/>
+    <circle cx="750" cy="404" r="5" fill="#3B2316"/>
+    <circle cx="774" cy="400" r="4.5" fill="#3B2316"/>
+    <circle cx="764" cy="422" r="5.5" fill="#3B2316"/>
+    <circle cx="782" cy="424" r="4" fill="#3B2316"/>
+    <circle cx="748" cy="428" r="4" fill="#3B2316"/>
+
+    <!-- Cookie 2 -->
+    <circle cx="696" cy="442" r="34" fill="#AA7044"/>
+    <circle cx="696" cy="442" r="30" fill="#BA7E50"/>
+    <circle cx="686" cy="434" r="4.5" fill="#3B2316"/>
+    <circle cx="708" cy="436" r="4" fill="#3B2316"/>
+    <circle cx="696" cy="454" r="4.5" fill="#3B2316"/>
+  </g>
+
+  <!-- Tasting Note Chip -->
+  <rect x="508" y="176" width="128" height="28" rx="14" fill="#FAF7F2"/>
+  <text x="572" y="194" text-anchor="middle" fill="#4A3529" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="11" font-weight="600">Cocoa · Bergamot</text>
+</svg>
